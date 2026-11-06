@@ -15,7 +15,7 @@ global.localStorage = { getItem: () => null, setItem: noop };
 global.window = global;
 global.setInterval = noop;
 
-(0, eval)(src + '\n;globalThis.__T = { bandOf, lightOn, yelanAsleep, patrolTonight, isWeekend };');
+(0, eval)(src + '\n;globalThis.__T = { bandOf, lightOn, yelanAsleep, patrolTonight, isWeekend, isPortraitBroken };');
 const T = globalThis.__T;
 if (!T || !T.lightOn) { console.error('FAIL: 无法从 app.js 取出规则函数'); process.exit(1); }
 
@@ -27,6 +27,25 @@ function eq(name, got, want) {
 function L(id, h, opts) { return T.lightOn(id, T.bandOf(h), opts); }
 const wkday = { hour: 10, weekend: false, patrol: false };
 const wkend = { hour: 10, weekend: true, patrol: false };
+
+// —— bandOf 时段边界（§8.1 的翻转全在 5/8/17 整点上）——
+eq('band h=0 → night0', T.bandOf(0), 'night0');
+eq('band h=4 → night0', T.bandOf(4), 'night0');
+eq('band h=5 → early', T.bandOf(5), 'early');
+eq('band h=7 → early', T.bandOf(7), 'early');
+eq('band h=8 → day', T.bandOf(8), 'day');
+eq('band h=16 → day', T.bandOf(16), 'day');
+eq('band h=17 → evening', T.bandOf(17), 'evening');
+eq('band h=23 → evening', T.bandOf(23), 'evening');
+
+// —— isPortraitBroken 谓词（init 补扫的正确性核心）——
+function fakeImg(complete, naturalWidth, broken) {
+  return { complete, naturalWidth, dataset: broken ? { broken: '1' } : {} };
+}
+eq('谓词: 加载完成且0宽未标记 → broken', T.isPortraitBroken(fakeImg(true, 0, false)), true);
+eq('谓词: 正常图(naturalWidth>0) → 不标', T.isPortraitBroken(fakeImg(true, 1600, false)), false);
+eq('谓词: 已标记过 → 不重复标', T.isPortraitBroken(fakeImg(true, 0, true)), false);
+eq('谓词: 还没加载完(complete=false) → 不标', T.isPortraitBroken(fakeImg(false, 0, false)), false);
 
 // —— h=2（00–05，夜）——
 eq('02 301灭', L('301', 2, wkday), false);
@@ -64,14 +83,18 @@ eq('23 店灭(打烊)', L('store', 23, { hour: 23, weekend: false, patrol: false
 eq('23 301亮', L('301', 23, wkday), true);
 eq('07 店亮(刚开门)', L('store', 7, { hour: 7, weekend: false, patrol: false }), true);
 
-// —— 出警伪随机：确定性与覆盖 ——
-eq('出警同日一致', T.patrolTonight('2026-11-07'), T.patrolTonight('2026-11-07'));
-let hasPatrolDay = false, hasQuietDay = false;
-for (let d = 1; d <= 30; d++) {
-  const k = '2026-11-' + String(d).padStart(2, '0');
-  if (T.patrolTonight(k)) hasPatrolDay = true; else hasQuietDay = true;
+// —— 出警伪随机：全年比率接近 1/7（CHANGELOG 明示约 1/7，容差 ±3 个百分点）——
+let patrolDays = 0;
+for (let m = 1; m <= 12; m++) {
+  const days = new Date(2026, m, 0).getDate();
+  for (let d = 1; d <= days; d++) {
+    const k = '2026-' + String(m).padStart(2, '0') + '-' + String(d).padStart(2, '0');
+    if (T.patrolTonight(k)) patrolDays++;
+  }
 }
-eq('30天里既有出警日也有安静日', hasPatrolDay && hasQuietDay, true);
+const ratio = patrolDays / 365;
+eq('365天出警比率≈1/7(±0.03)，实际 ' + ratio.toFixed(3), Math.abs(ratio - 1 / 7) < 0.03, true);
+eq('365天里也有安静日', patrolDays < 365, true);
 
 console.log(`亮灯规则断言：${pass} 通过，${fail} 失败`);
 process.exit(fail ? 1 : 0);

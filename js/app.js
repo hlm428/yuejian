@@ -154,6 +154,11 @@ function onRoomClick(id) {
 }
 
 /* ---------- 图片缺失兜底：柔和色块占位，不白屏（SPEC §4.3） ---------- */
+/* 判定谓词单独抽出，tests/test_lights.js 直接覆盖 */
+function isPortraitBroken(img) {
+  return img.complete && img.naturalWidth === 0 && !img.dataset.broken;
+}
+
 function bindPortraitFallback() {
   var imgs = document.querySelectorAll('.portrait');
   Array.prototype.forEach.call(imgs, function (img) {
@@ -161,18 +166,16 @@ function bindPortraitFallback() {
       img.dataset.broken = '1';
       render(); // 显隐统一收口到 render：亮灯才显示占位，灭灯连占位一起藏
     });
+    // 解析期就已失败的图（error 早于本监听挂上，双击 file:// 打开时可能发生）：同趟补扫
+    if (isPortraitBroken(img)) {
+      img.dataset.broken = '1';
+    }
   });
 }
 
 /* ---------- 启动 ---------- */
 function init() {
   bindPortraitFallback();
-  // 解析期就已失败的图（error 早于本监听挂上，双击 file:// 打开时可能发生）：补标 broken
-  Array.prototype.forEach.call(document.querySelectorAll('.portrait'), function (img) {
-    if (img.complete && img.naturalWidth === 0 && !img.dataset.broken) {
-      img.dataset.broken = '1';
-    }
-  });
   Array.prototype.forEach.call(document.querySelectorAll('.room'), function (el) {
     el.addEventListener('click', function () {
       onRoomClick(el.getAttribute('data-room'));
