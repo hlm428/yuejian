@@ -8,8 +8,7 @@
   --moon-deep: #b9d4ea;
   --ink: #5b5346;
   --ink-soft: #8a8071;
-  --card: #ffffff;
-  --lamp-warm: #ffd98a;
+  --lamp-warm: #ffd98a; /* 亮灯暖黄；灯影 rgba 派生自它 */
   --night-bg: linear-gradient(180deg, #2c3550 0%, #3d4a6b 55%, #55618a 100%);
 }
 
@@ -72,8 +71,7 @@ body {
 }
 
 .floor { display: flex; gap: 10px; }
-.floor-split .room { flex: 1; }
-.floor:not(.floor-split) .room { flex: 1; }
+.floor .room { flex: 1; }
 
 .room {
   position: relative;
@@ -89,7 +87,7 @@ body {
 }
 .room:active { transform: scale(0.985); }
 
-/* 灯亮：暖黄窗光 */
+/* 灯亮：暖黄窗光（灯影 rgba 派生自 --lamp-warm #ffd98a） */
 .room.lit {
   background: linear-gradient(180deg, #fff3d6 0%, #ffe6b8 100%);
   box-shadow: 0 0 18px rgba(255, 217, 138, 0.55), inset 0 0 26px rgba(255, 217, 138, 0.35);
@@ -111,8 +109,8 @@ body {
   background: #b8c6d8;
   border: 2px solid rgba(255, 255, 255, 0.9);
 }
-.room.lit .window { background: linear-gradient(180deg, #ffe9a8, #ffd98a); box-shadow: 0 0 10px rgba(255, 217, 138, 0.8); }
-.room-basement .window { display: none; } /* 地下室没窗 */
+.room.lit .window { background: linear-gradient(180deg, #ffe9a8, var(--lamp-warm)); box-shadow: 0 0 10px rgba(255, 217, 138, 0.8); }
+/* 地下室（#room-b1）没有 .window 元素，「没窗」由结构本身表达 */
 
 /* 房号 + 人名 */
 .room-tag { position: relative; z-index: 2; display: flex; flex-direction: column; gap: 2px; }

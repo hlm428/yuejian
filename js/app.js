@@ -167,6 +167,12 @@ function bindPortraitFallback() {
 /* ---------- 启动 ---------- */
 function init() {
   bindPortraitFallback();
+  // 解析期就已失败的图（error 早于本监听挂上，双击 file:// 打开时可能发生）：补标 broken
+  Array.prototype.forEach.call(document.querySelectorAll('.portrait'), function (img) {
+    if (img.complete && img.naturalWidth === 0 && !img.dataset.broken) {
+      img.dataset.broken = '1';
+    }
+  });
   Array.prototype.forEach.call(document.querySelectorAll('.room'), function (el) {
     el.addEventListener('click', function () {
       onRoomClick(el.getAttribute('data-room'));
