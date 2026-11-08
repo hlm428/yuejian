@@ -169,6 +169,15 @@ T.doFeed('bread');
 ok('喂面包：aff+3 mood65', aff() === 12 && mood() === 65);
 const feedPool = globalThis.LINES.yunsheng.neighbor.feed.filter(l => !l.needCat);
 ok('needCat 喂句不抽', feedPool.length === 9);
+// 喂面板接线：index.html 按钮 data-item 与台词数据令牌必须一一对应（拼错令牌会被兜底 toast 掩盖）
+const feedBtnItems = [...html.matchAll(/data-item="([^"]+)"/g)].map(m => m[1]);
+const feedLineItems = [...new Set(feedPool.map(l => l.item))];
+ok('喂按钮 data-item 与台词令牌一一对应', feedBtnItems.length === 4 && feedLineItems.length === 4
+  && feedLineItems.every(i => feedBtnItems.includes(i)) && feedBtnItems.every(i => feedLineItems.includes(i)));
+// 兜底分支：台词数据缺该物品 → 提示且数值不动（当前数据到不了，防阶段 B 改数据后静默失效）
+const affBeforeFallback = aff(), gainedBeforeFallback = gained(), moodBeforeFallback = mood();
+T.doFeed('no_such_item');
+ok('喂未知物品走兜底提示且数值不动', txt('toast') === '云笙没有回应。' && aff() === affBeforeFallback && gained() === gainedBeforeFallback && mood() === moodBeforeFallback);
 
 // —— 7. 聊天：+2，不重复 ——
 T.doChat(); T.doChat();
@@ -183,10 +192,12 @@ T.doChat();
 const deltaCap = gained() - afterCap;
 ok('过上限后砍半（floor(2/2)=1）', deltaCap === 1 && T.save.today.capMsgShown === true);
 
-// —— 9. 戳太多：第 11 次起不涨 ——
-const gainedBefore = gained();
-for (let i = T.save.today.pokes; i < 12; i++) T.doPoke();
-ok('第 11/12 次戳不涨', gained() === gainedBefore && T.save.today.pokes === 12);
+// —— 9. 戳太多：第 11 次起不涨（重置当天计数再测，避免软上限分支把本断言变空转）——
+T.save.today = { date: T.save.today.date, gained: 0, pokes: 0, capMsgShown: false };
+for (let i = 0; i < 10; i++) T.doPoke();
+ok('前 10 次戳每次 +1（mood 65 → ×1）', gained() === 10 && T.save.today.pokes === 10);
+T.doPoke(); // 第 11 次：若删掉 >POKE_DAILY_LIMIT 分支此断言必挂
+ok('第 11 次戳不涨', gained() === 10 && T.save.today.pokes === 11);
 
 // —— 10. 立绘兜底：报错出占位，换到能加载的表情图撤占位 ——
 registry['room-char'].fire('error');
@@ -220,7 +231,8 @@ const affBeforeScene = aff();
 T.advanceScene();
 const sceneMarked = T.save.scenes.yunsheng_coffee !== undefined;
 ok('剧终：关闭 + 记档', visible('scene-overlay') === false && sceneMarked);
-ok('剧情奖励入账', aff() > affBeforeScene && T.save.today.gained >= 20);
+// 第 9 节重置后 gained=10；奖励 +8 基数 × 心情 65（×1）= +8 → 18，确定性断言（数值管道一动就挂）
+ok('剧情奖励入账（+8 计入管道）', aff() === affBeforeScene + 8 && T.save.today.gained === 18);
 T.updateSceneEntry();
 ok('演完当天灰掉', registry['scene-entry'].disabled === true && txt('scene-state') === '今天已经演过啦');
 
@@ -232,6 +244,12 @@ ok('loadSave 读回一致', T.loadSave().affection.yunsheng === raw.affection.yu
 global.localStorage._s['yuejian_save_v1'] = JSON.stringify({ v: 1, affection: { yunsheng: 5 } }); // 半截存档：缺 today/scenes/mood 大半
 const healed = T.loadSave();
 ok('半截存档字段级自愈', !!healed && healed.today.gained === 0 && healed.today.pokes === 0 && healed.today.capMsgShown === false && typeof healed.scenes === 'object' && typeof healed.mood === 'object' && healed.affection.yunsheng === 5);
+global.localStorage._s['yuejian_save_v1'] = JSON.stringify({ v: 1, affection: {}, mood: { yunsheng: '60' } }); // 叶子缺口：缺键 + 类型错
+const healed2 = T.loadSave();
+ok('叶子缺键/类型错自愈', !!healed2 && healed2.affection.yunsheng === 0 && healed2.mood.yunsheng === 60 && healed2.mood.zhixi === 60 && typeof healed2.affection.xiyue === 'number');
+global.localStorage._s['yuejian_save_v1'] = JSON.stringify({ v: 1, affection: { yunsheng: 150 }, mood: { yunsheng: -5 } }); // 越界值夹取
+const healed3 = T.loadSave();
+ok('越界数值夹取 0–100', !!healed3 && healed3.affection.yunsheng === 100 && healed3.mood.yunsheng === 0);
 global.localStorage._s['yuejian_save_v1'] = '{bad json';
 ok('坏档不崩→新档', T.loadSave() === null);
 global.localStorage._s['yuejian_save_v1'] = JSON.stringify({ v: 99 });

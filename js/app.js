@@ -29,15 +29,27 @@ function loadSave() {
     if (!raw) return null;
     var s = JSON.parse(raw);
     if (!s || s.v !== SAVE_V) return null;
-    // 字段级自愈：部分字段缺失 / 类型不对时用默认值补齐（半截存档也不崩，见「坏了就用新档」契约）
-    if (!isPlainObj(s.affection)) s.affection = defaultSave().affection;
-    if (!isPlainObj(s.mood)) s.mood = defaultSave().mood;
-    if (!isPlainObj(s.today)) s.today = defaultSave().today;
+    // 字段级自愈：容器和数值叶子逐项校验，缺的 / 类型不对的 / 非有限数的用默认值补齐，
+    // 并夹取到合法区间——半截或手改的存档不崩、不往数值管道里进 NaN/undefined
+    var d = defaultSave();
+    var KEYS = ['yunsheng', 'zhixi', 'xiyue', 'yelan'];
+    var i, p;
+    if (!isPlainObj(s.affection)) s.affection = {};
+    if (!isPlainObj(s.mood)) s.mood = {};
+    for (i = 0; i < KEYS.length; i++) {
+      p = KEYS[i];
+      if (typeof s.affection[p] !== 'number' || !isFinite(s.affection[p])) s.affection[p] = d.affection[p];
+      if (typeof s.mood[p] !== 'number' || !isFinite(s.mood[p])) s.mood[p] = d.mood[p];
+      s.affection[p] = Math.max(0, Math.min(100, s.affection[p])); // 亲密度 0–100
+      s.mood[p] = Math.max(0, Math.min(100, s.mood[p]));           // 心情 0–100
+    }
+    if (!isPlainObj(s.today)) s.today = {};
+    if (typeof s.today.date !== 'string') s.today.date = '';
+    if (typeof s.today.gained !== 'number' || !isFinite(s.today.gained) || s.today.gained < 0) s.today.gained = 0;
+    if (typeof s.today.pokes !== 'number' || !isFinite(s.today.pokes) || s.today.pokes < 0) s.today.pokes = 0;
+    if (typeof s.today.capMsgShown !== 'boolean') s.today.capMsgShown = false;
     if (!isPlainObj(s.scenes)) s.scenes = {};
     if (typeof s.coaster !== 'boolean') s.coaster = false;
-    if (typeof s.today.gained !== 'number') s.today.gained = 0;
-    if (typeof s.today.pokes !== 'number') s.today.pokes = 0;
-    if (typeof s.today.capMsgShown !== 'boolean') s.today.capMsgShown = false;
     return s;
   } catch (e) { return null; } // 版本不对或坏了就用新档，不要崩
 }
