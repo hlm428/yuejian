@@ -150,13 +150,24 @@ if (T.lightOn('401', band401, { hour: new Date().getHours(), weekend: false, pat
 }
 ok('房间初始数值', txt('stat-mood') === '60' && txt('stat-aff') === '0');
 
-// —— 5. 戳 ×3：+1/次，台词不重复 ——
-T.doPoke(); T.doPoke(); T.doPoke();
+// —— 5. 点她本人 = 戳 ×3：+1/次，台词不重复 ——
+ok('戳按钮已删除', !ids.includes('btn-poke') && !/id="btn-poke"/.test(html));
+ok('底部只剩 喂/聊天/一起', ['btn-feed', 'btn-chat', 'btn-together'].every(id => ids.includes(id))
+  && [...html.matchAll(/class="act[^"]*"/g)].length === 3);
+ok('点击区与脚下阴影入库', ids.includes('char-hit') && ids.includes('char-shadow') && ids.includes('char-tap'));
+ok('进房间飘戳引导', visible('poke-hint'));
+registry['char-hit'].fire('click');
+ok('点她本人触发戳', aff() === 1 && T.save.today.pokes === 1);
+ok('戳有落点反馈与小跳', registry['char-tap'].classList.contains('go') && registry['char-wrap'].classList.contains('hop'));
+ok('戳过引导消失', !visible('poke-hint'));
+registry['char-hit'].fire('click'); registry['char-hit'].fire('click');
 ok('戳×3 亲密度=3', aff() === 3 && gained() === 3);
 ok('戳×3 当天次数=3', T.save.today.pokes === 3);
 ok('戳×3 台词互不重复', new Set(T.usedLines.poke).size === 3);
 ok('表情切换到 5 表情之一', /yunsheng_(smile|shy|angry|eat|sleep)\.png$/.test(registry['room-char'].src));
 ok('气泡显示', visible('bubble') && txt('bubble-text').length > 0);
+T.goExterior(); T.enterRoom();
+ok('戳过后再进房间不再飘引导', !visible('poke-hint'));
 
 // —— 6. 喂：黑咖啡 +3/心情+5/杯垫；甜食 0/-10 ——
 T.doFeed('black_coffee');
@@ -199,15 +210,18 @@ ok('前 10 次戳每次 +1（mood 65 → ×1）', gained() === 10 && T.save.toda
 T.doPoke(); // 第 11 次：若删掉 >POKE_DAILY_LIMIT 分支此断言必挂
 ok('第 11 次戳不涨', gained() === 10 && T.save.today.pokes === 11);
 
-// —— 10. 立绘兜底：报错出占位，换到能加载的表情图撤占位 ——
+// —— 10. 立绘兜底：报错出占位（阴影/点击区同撤），换到能加载的表情图全部撤占位 ——
 registry['room-char'].fire('error');
 ok('立绘报错出占位', visible('char-placeholder') && registry['room-char'].dataset.broken === '1');
+ok('立绘报错时阴影与点击区一并撤掉', registry['char-wrap'].classList.contains('broken'));
+ok('立绘报错时 img 挂 .broken（否则露 alt 破图标）', registry['room-char'].classList.contains('broken'));
 T.setFace('smile');
 ok('setFace 重置 broken 并隐藏占位', registry['room-char'].dataset.broken === undefined && !visible('char-placeholder'));
+ok('setFace 恢复阴影与点击区', !registry['char-wrap'].classList.contains('broken') && !registry['room-char'].classList.contains('broken'));
 registry['room-char'].fire('error');
-ok('再次报错占位回来', visible('char-placeholder'));
+ok('再次报错占位回来', visible('char-placeholder') && registry['char-wrap'].classList.contains('broken'));
 registry['room-char'].fire('load');
-ok('load 成功撤占位', !visible('char-placeholder') && registry['room-char'].dataset.broken === undefined);
+ok('load 成功撤占位', !visible('char-placeholder') && registry['room-char'].dataset.broken === undefined && !registry['char-wrap'].classList.contains('broken'));
 
 // —— 11. 触发剧情：深夜送咖啡 ——
 T.save.scenes = {}; T.writeSave();

@@ -159,6 +159,7 @@ var bubbleTimer = null;
 var toastTimer = null;
 var cardId = null;
 var sceneState = null; // 触发剧情播放状态
+var pokedThisSession = false; // 戳按钮已取消：本次会话第一次进房间飘引导，戳过就不再飘
 
 function rand3() { return Math.floor(Math.random() * 3); } // 每进一次游戏重抽一次
 
@@ -326,12 +327,14 @@ function enterRoom() {
   updateSceneEntry();
   closePopups();
   hideBubble();
+  byId('poke-hint').classList.toggle('hidden', pokedThisSession);
 }
 
 function goExterior() {
   closePopups();
   hideBubble();
   closeScene();
+  byId('poke-hint').classList.add('hidden');
   byId('screen-room').classList.add('hidden');
   byId('screen-exterior').classList.remove('hidden');
   renderExterior();
@@ -342,10 +345,8 @@ var ROOM_FACES = ['smile', 'shy', 'angry', 'eat', 'sleep']; // 只在 5 张表�
 
 function setFace(face) {
   if (ROOM_FACES.indexOf(face) < 0) face = 'smile';
-  var img = byId('room-char');
-  delete img.dataset.broken; // 新表情图重新参与兜底判定
-  byId('char-placeholder').classList.add('hidden');
-  img.src = 'assets/characters/yunsheng_' + face + '.png';
+  markPortraitBroken(false); // 新表情图重新参与兜底判定
+  byId('room-char').src = 'assets/characters/yunsheng_' + face + '.png';
 }
 
 function buildRoomHotspots() {
@@ -376,6 +377,17 @@ function hopChar() {
   el.classList.remove('hop');
   void el.offsetWidth; // 重置动画
   el.classList.add('hop');
+}
+
+/* 戳的落点反馈：鼠标/触摸落在指尖处，键盘激活（detail 0）落在她胸口 */
+function tapFeedback(e) {
+  var ring = byId('char-tap');
+  var atPointer = e && e.detail > 0 && typeof e.offsetX === 'number';
+  ring.style.left = atPointer ? e.offsetX + 'px' : '50%';
+  ring.style.top = atPointer ? e.offsetY + 'px' : '42%';
+  ring.classList.remove('go');
+  void ring.offsetWidth;
+  ring.classList.add('go');
 }
 
 /* ---------- 台词抽取 ---------- */
@@ -439,6 +451,8 @@ function gainAffection(base) {
 function doPoke() {
   ensureToday();
   save.today.pokes += 1;
+  pokedThisSession = true;
+  byId('poke-hint').classList.add('hidden');
   var line = pickLine('poke');
   setFace(line.face);
   hopChar(); // 小跳一下
@@ -503,6 +517,7 @@ function updateSceneEntry() {
 function startScene() {
   closePopups();
   hideBubble();
+  byId('poke-hint').classList.add('hidden');
   var scene = (window.SCENES.yunsheng || [])[0];
   if (!scene) return;
   sceneState = { scene: scene, idx: 0, display: null };
@@ -602,25 +617,31 @@ function isPortraitBroken(img) {
   return img.complete && img.naturalWidth === 0 && !img.dataset.broken;
 }
 
+/* 立绘在/不在的统一开关：占位块、脚下阴影、点击区三者同进同退。
+   img 本身也要挂 .broken（CSS 里 visibility:hidden），否则浏览器会渲染 alt 破图标。 */
+function markPortraitBroken(broken) {
+  var img = byId('room-char');
+  if (broken) img.dataset.broken = '1'; else delete img.dataset.broken;
+  img.classList.toggle('broken', broken);
+  byId('char-placeholder').classList.toggle('hidden', !broken);
+  byId('char-wrap').classList.toggle('broken', broken);
+}
+
 function bindPortraitFallback() {
   var imgs = document.querySelectorAll('.patch, #room-char');
   Array.prototype.forEach.call(imgs, function (img) {
+    var isChar = img.id === 'room-char';
     img.addEventListener('error', function () {
-      img.dataset.broken = '1';
-      if (img.id === 'room-char') byId('char-placeholder').classList.remove('hidden');
-      else img.style.display = 'none';
+      if (isChar) markPortraitBroken(true);
+      else { img.dataset.broken = '1'; img.style.display = 'none'; }
     });
-    if (img.id === 'room-char') { // 换到能正常加载的表情图后撤掉占位，不让它卡在立绘上面
-      img.addEventListener('load', function () {
-        delete img.dataset.broken;
-        byId('char-placeholder').classList.add('hidden');
-      });
+    if (isChar) { // 换到能正常加载的表情图后撤掉占位，不让它卡在立绘上面
+      img.addEventListener('load', function () { markPortraitBroken(false); });
     }
     // 解析期就已失败的图（error 早于本监听挂上，双击 file:// 打开时可能发生）：同趟补扫
     if (isPortraitBroken(img)) {
-      img.dataset.broken = '1';
-      if (img.id === 'room-char') byId('char-placeholder').classList.remove('hidden');
-      else img.style.display = 'none';
+      if (isChar) markPortraitBroken(true);
+      else { img.dataset.broken = '1'; img.style.display = 'none'; }
     }
   });
 }
@@ -653,7 +674,11 @@ function bindEvents() {
   });
 
   byId('btn-back').addEventListener('click', goExterior);
-  byId('btn-poke').addEventListener('click', function () { closePopups(); doPoke(); });
+  byId('char-hit').addEventListener('click', function (e) {
+    closePopups();
+    tapFeedback(e);
+    doPoke();
+  });
   byId('btn-feed').addEventListener('click', function () { togglePanel('feed-panel'); });
   byId('btn-chat').addEventListener('click', function () { closePopups(); doChat(); });
   byId('btn-together').addEventListener('click', function () { togglePanel('together-panel'); });

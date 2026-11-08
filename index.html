@@ -42,16 +42,21 @@
     </div>
 
     <div id="char-wrap">
+      <div id="char-shadow"></div>
       <div id="char-placeholder" class="hidden">顾云笙</div>
       <img id="room-char" src="assets/characters/yunsheng_smile.png" alt="顾云笙" draggable="false">
+      <button id="char-hit" aria-label="戳一下顾云笙">
+        <span id="char-tap"></span>
+      </button>
     </div>
+
+    <div id="poke-hint" class="hidden">点她一下<span class="poke-hint-arrow">▾</span></div>
 
     <button id="btn-back">‹ 公寓</button>
     <div id="room-stats">心情 <b id="stat-mood">60</b> · 亲密度 <b id="stat-aff">0</b></div>
     <div id="bubble" class="hidden"><span id="bubble-text"></span></div>
 
     <div id="room-bar">
-      <button class="act" id="btn-poke">戳</button>
       <button class="act" id="btn-feed">喂</button>
       <button class="act" id="btn-chat">聊天</button>
       <button class="act together" id="btn-together">一起</button>
