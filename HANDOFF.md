@@ -21,8 +21,8 @@
 
 阶段 A 内**没有半截代码**——所有已开工的东西都是做完、测过、提交的。遗留事项（均等 qi 素材/决定，不是烂尾）：
 
-1. **杯垫占位**：无美术资产，CSS 椭圆顶替。位置在 `js/app.js` 的 `COASTER_RECT`（约 158 行），样式在 `css/style.css` 的 `#coaster`。qi 出图后：加 `<img>` 换掉 div 即可。
-2. **立绘透明版替换**：见上表「换修好的立绘」。替换后若发现 multiply 让立绘发暗，删 `css/style.css` 里三处 `mix-blend-mode: multiply`（`#card-avatar`、`#room-char`、`#scene-chibis img`）及其 `brightness` 补偿。
+1. **杯垫占位**：无美术资产，CSS 椭圆顶替。位置在 `js/app.js` 的 `COASTER_RECT`（约 153 行），样式在 `css/style.css` 的 `#coaster`。qi 出图后：加 `<img>` 换掉 div 即可。
+2. **立绘透明版替换**：见上表「换修好的立绘」。替换后若发现 multiply 让立绘发暗，删 `css/style.css` 里三处 `mix-blend-mode: multiply`（`#card-avatar`、`#room-char`、`#scene-chibis img`）；其中 `#room-char`、`#scene-chibis img` 的 `filter: brightness(...)` 补偿一并删（`#card-avatar` 本来就没有 brightness）。
 3. **401 热点坐标**：`js/app.js` `HOTSPOTS_401` 四个矩形是按底图目测的（没有 windows.js 那种实测数据），qi 试玩点不准就改 rect。
 4. **动作小人 / BGM / 猫 / 私信等**：全部属阶段 B 及以后（v3.2 §22），**下一步是等 qi 验收阶段 A，然后才开始阶段 B**。
 
