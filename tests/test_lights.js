@@ -2,7 +2,8 @@
 /* 月见公寓 · §8.1 亮灯规则回归测试
    运行：node tests/test_lights.js   （纯 node，无依赖）
    验证对象：js/app.js 中的纯函数 bandOf / lightOn / yelanAsleep / patrolTonight。
-   任务 2/任务 7 改动这些函数后必须重跑本测试。 */
+   阶段 B/阶段 C 改动这些函数后必须重跑本测试。
+   夜澜住顶层 7F（v3.2 定稿），窗 id 为 '7f'（旧剖面图地下室 id 'b1' 已作废）。 */
 const fs = require('fs');
 const path = require('path');
 
@@ -54,14 +55,14 @@ eq('02 401灭(出警)', L('401', 2, { hour: 2, weekend: false, patrol: true }), 
 eq('02 501灭', L('501', 2, wkday), false);
 eq('02 302亮', L('302', 2, wkday), true);
 eq('02 店灭', L('store', 2, { hour: 2, weekend: false, patrol: false }), false);
-eq('02 夜澜亮', L('b1', 2, wkday), true);
+eq('02 夜澜亮', L('7f', 2, wkday), true);
 
 // —— h=6（05–08，清晨）——
 eq('06 301亮', L('301', 6, wkday), true);
 eq('06 401亮', L('401', 6, wkday), true);
 eq('06 501灭', L('501', 6, wkday), false);
 eq('06 店灭(未开门)', L('store', 6, { hour: 6, weekend: false, patrol: false }), false);
-eq('06 夜澜灭', L('b1', 6, wkday), false);
+eq('06 夜澜灭', L('7f', 6, wkday), false);
 eq('06 夜澜睡觉', T.yelanAsleep(T.bandOf(6)), true);
 eq('02 夜澜不睡', T.yelanAsleep(T.bandOf(2)), false);
 
@@ -71,11 +72,11 @@ eq('10 401灭(实验室)', L('401', 10, wkday), false);
 eq('10 501亮', L('501', 10, wkday), true);
 eq('10 501周末灭', L('501', 10, wkend), false);
 eq('10 店亮', L('store', 10, wkday), true);
-eq('10 夜澜灭', L('b1', 10, wkday), false);
+eq('10 夜澜灭', L('7f', 10, wkday), false);
 eq('10 夜澜睡觉', T.yelanAsleep(T.bandOf(10)), true);
 
 // —— h=20（17–24，晚上）——
-['301', '401', '501', '302', 'b1'].forEach(id => eq(`20 ${id}亮`, L(id, 20, wkday), true));
+['301', '401', '501', '302', '7f'].forEach(id => eq(`20 ${id}亮`, L(id, 20, wkday), true));
 eq('20 店亮', L('store', 20, { hour: 20, weekend: false, patrol: false }), true);
 
 // —— h=23（便利店 23:00 打烊）与 07:00 开门边界 ——

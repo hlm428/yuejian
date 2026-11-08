@@ -8,71 +8,101 @@
 </head>
 <body>
 <div id="app">
-  <header id="topbar">
-    <h1>月见公寓</h1>
-    <div id="clock">--</div>
-  </header>
 
-  <main id="building" aria-label="公寓剖面图">
-    <!-- 5F -->
-    <section class="floor">
-      <div class="room" id="room-501" data-room="501">
-        <div class="window"></div>
-        <div class="room-tag"><span class="no">501</span><span class="who">幸曦月</span></div>
-        <div class="placeholder">幸曦月</div>
-        <img class="portrait" id="img-501" src="assets/characters/xiyue_full.png" alt="幸曦月">
-      </div>
-    </section>
+  <!-- ===== 主界面：公寓外观（v8 定稿底图 + 12 张窗贴片 + windows.js 窗位） ===== -->
+  <section id="screen-exterior" class="screen">
+    <div id="stage">
+      <img id="bg-exterior" src="assets/exterior/bg_exterior_empty.png" alt="月见公寓外观" draggable="false">
+      <!-- 窗贴片 / 灭窗遮罩 / 点按区由 js/app.js 按 data/windows.js 动态生成 -->
+    </div>
+    <div id="clock-chip">--</div>
 
-    <!-- 4F -->
-    <section class="floor">
-      <div class="room" id="room-401" data-room="401">
-        <div class="window"></div>
-        <div class="room-tag"><span class="no">401</span><span class="who">顾云笙</span></div>
-        <div class="placeholder">顾云笙</div>
-        <img class="portrait" id="img-401" src="assets/characters/yunsheng_full.png" alt="顾云笙">
+    <!-- 点亮着的窗弹出的小卡片 -->
+    <div id="card-backdrop" class="hidden"></div>
+    <div id="window-card" class="hidden">
+      <button id="card-close" aria-label="关闭">×</button>
+      <div class="card-head">
+        <img id="card-avatar" src="" alt="" draggable="false">
+        <div>
+          <div class="card-title"><b id="card-name">--</b><span id="card-room">--</span></div>
+          <div id="card-doing">--</div>
+        </div>
       </div>
-    </section>
+      <button id="card-visit">拜访</button>
+      <div id="card-note" class="hidden"></div>
+    </div>
+  </section>
 
-    <!-- 3F：301 与 302 相邻 -->
-    <section class="floor">
-      <div class="room" id="room-301" data-room="301">
-        <div class="window"></div>
-        <div class="room-tag"><span class="no">301</span><span class="who">宋知夕</span></div>
-        <div class="placeholder">宋知夕</div>
-        <img class="portrait" id="img-301" src="assets/characters/zhixi_full.png" alt="宋知夕">
-      </div>
-      <div class="room" id="room-302" data-room="302">
-        <div class="window"></div>
-        <div class="room-tag"><span class="no">302</span><span class="who">你</span></div>
-      </div>
-    </section>
+  <!-- ===== 401 云笙房间 ===== -->
+  <section id="screen-room" class="screen hidden">
+    <div id="room-stage">
+      <img class="room-bg" src="assets/bg/room_401_yunsheng.png" alt="401 房间" draggable="false">
+      <!-- 房间热点（黑咖啡 / 报告纸 / 推理小说 / 猫碗）由 js/app.js 生成 -->
+      <div id="coaster" class="hidden" title="杯垫"></div>
+    </div>
 
-    <!-- 1F 便利店 -->
-    <section class="floor">
-      <div class="room room-store" id="room-store" data-room="store">
-        <div class="shelf"></div>
-        <div class="room-tag"><span class="no">1F</span><span class="who">便利店</span></div>
-        <div class="store-state" id="store-state">--</div>
-      </div>
-    </section>
+    <div id="char-wrap">
+      <div id="char-placeholder" class="hidden">顾云笙</div>
+      <img id="room-char" src="assets/characters/yunsheng_smile.png" alt="顾云笙" draggable="false">
+    </div>
 
-    <!-- B1 地下室 -->
-    <section class="floor">
-      <div class="room" id="room-b1" data-room="b1">
-        <div class="room-tag"><span class="no">B1</span><span class="who">皇甫夜澜</span></div>
-        <div class="placeholder">皇甫夜澜</div>
-        <img class="portrait" id="img-b1" src="assets/characters/yelan_full.png" alt="皇甫夜澜">
-        <div class="sleep-tip">睡觉中</div>
-      </div>
-    </section>
-  </main>
+    <button id="btn-back">‹ 公寓</button>
+    <div id="room-stats">心情 <b id="stat-mood">60</b> · 亲密度 <b id="stat-aff">0</b></div>
+    <div id="bubble" class="hidden"><span id="bubble-text"></span></div>
 
-  <footer id="hint">点房间互动 · 更多玩法施工中</footer>
+    <div id="room-bar">
+      <button class="act" id="btn-poke">戳</button>
+      <button class="act" id="btn-feed">喂</button>
+      <button class="act" id="btn-chat">聊天</button>
+      <button class="act together" id="btn-together">一起</button>
+    </div>
+
+    <!-- 喂：先选东西 -->
+    <div id="feed-panel" class="popup hidden">
+      <div class="popup-title">喂她点什么？</div>
+      <div class="feed-grid">
+        <button data-item="black_coffee">黑咖啡</button>
+        <button data-item="cat_can">猫罐头</button>
+        <button data-item="sweets">甜食</button>
+        <button data-item="bread">面包</button>
+      </div>
+    </div>
+
+    <!-- 一起：触发剧情列表（阶段 A 只有这一场） -->
+    <div id="together-panel" class="popup hidden">
+      <div class="popup-title">一起……</div>
+      <button id="scene-entry">
+        <span class="scene-name">深夜送咖啡</span>
+        <span class="scene-state" id="scene-state">可以演</span>
+      </button>
+    </div>
+
+    <!-- 触发剧情：深夜送咖啡（背景变暗 + 两个小人 + 对话框） -->
+    <div id="scene-overlay" class="hidden">
+      <div id="scene-chibis">
+        <img id="scene-mc" src="assets/chibi/mc_side.png" alt="你" draggable="false">
+        <img id="scene-char" src="assets/chibi/yunsheng_side.png" alt="云笙" draggable="false">
+      </div>
+      <div id="scene-box">
+        <div id="scene-speaker">旁白</div>
+        <div id="scene-text">--</div>
+        <div id="scene-note" class="hidden"></div>
+        <div id="scene-choices" class="hidden">
+          <button id="scene-choice-a"></button>
+          <button id="scene-choice-b"></button>
+        </div>
+        <div id="scene-hint">点一下继续</div>
+      </div>
+    </div>
+  </section>
+
   <div id="toast" role="status"></div>
 </div>
 
 <script src="data/lines_yunsheng.js"></script>
+<script src="data/scenes_yunsheng.js"></script>
+<script src="data/windows.js"></script>
+<script src="data/passerby.js"></script>
 <script src="js/app.js"></script>
 </body>
 </html>
