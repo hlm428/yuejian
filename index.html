@@ -43,11 +43,16 @@
 
     <div id="char-wrap">
       <div id="char-shadow"></div>
+      <div id="char-contact"></div>
       <div id="char-placeholder" class="hidden">顾云笙</div>
       <img id="room-char" src="assets/characters/yunsheng_smile.png" alt="顾云笙" draggable="false">
-      <button id="char-hit" aria-label="戳一下顾云笙">
-        <span id="char-tap"></span>
-      </button>
+      <!-- 5 个独立点按区：头 / 脸 / 垂手 / 左肩 / 右肩（位置由 js/app.js POKE_ZONES 实测矩形统一下发，?debug=1 显示框） -->
+      <button id="poke-head" class="poke-zone" data-zone="头" aria-label="戳戳她的头"></button>
+      <button id="poke-face" class="poke-zone" data-zone="脸" aria-label="戳戳她的脸"></button>
+      <button id="poke-hand" class="poke-zone" data-zone="垂手" aria-label="碰碰她垂着的手"></button>
+      <button id="poke-shoulderL" class="poke-zone" data-zone="左肩" aria-label="拍拍她的左肩"></button>
+      <button id="poke-shoulderR" class="poke-zone" data-zone="右肩" aria-label="拍拍她的右肩"></button>
+      <span id="char-tap"></span>
     </div>
 
     <div id="poke-hint" class="hidden">点她一下<span class="poke-hint-arrow">▾</span></div>
@@ -57,9 +62,28 @@
     <div id="bubble" class="hidden"><span id="bubble-text"></span></div>
 
     <div id="room-bar">
-      <button class="act" id="btn-feed">喂</button>
-      <button class="act" id="btn-chat">聊天</button>
-      <button class="act together" id="btn-together">一起</button>
+      <button class="act" id="btn-feed" aria-label="喂她点什么">
+        <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#F3E6CF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M5 10.5h10v4.5a4 4 0 0 1-4 4H9a4 4 0 0 1-4-4v-4.5z"/>
+          <path d="M15 11.5h1.6a2.4 2.4 0 0 1 0 4.8H15"/>
+          <path d="M8.2 3.5c-.9 1.1.9 1.9 0 3.2"/>
+          <path d="M11.8 3.5c-.9 1.1.9 1.9 0 3.2"/>
+        </svg>
+        <span class="act-label">喂</span>
+      </button>
+      <button class="act" id="btn-chat" aria-label="和她聊天">
+        <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#F3E6CF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M12 4.5c-4.4 0-8 2.9-8 6.5 0 2 1.1 3.8 2.9 5l-.6 3.2 3.3-1.7c.8.2 1.6.3 2.4.3 4.4 0 8-2.9 8-6.5s-3.6-6.8-8-6.8z"/>
+        </svg>
+        <span class="act-label">聊天</span>
+      </button>
+      <button class="act together" id="btn-together" aria-label="一起演触发剧情">
+        <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#F3E6CF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M18.6 14.4A7.3 7.3 0 0 1 9.6 5.4a7.3 7.3 0 1 0 9 9z"/>
+          <path d="M17.9 3.4l.6 1.4 1.4.6-1.4.6-.6 1.4-.6-1.4-1.4-.6 1.4-.6z"/>
+        </svg>
+        <span class="act-label">一起</span>
+      </button>
     </div>
 
     <!-- 喂：先选东西 -->

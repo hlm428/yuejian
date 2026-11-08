@@ -204,32 +204,41 @@ body {
   50% { transform: scaleY(1.014); }
 }
 
-/* 脚下接地阴影：尺寸全部相对 #char-wrap（宽度 = 立绘渲染宽度），跟着立绘缩放不走位。
-   锚点取自 v3 立绘实测轮廓——5 张表情脚底同在画布 95.88% 处、脚心在 51.6% 宽处。 */
+/* 脚下阴影两层，中心都压在实测鞋底线上（画布 95.88% 高 → 距包裹盒底 4.12%），鞋底与阴影之间不留缝：
+   接触阴影 = 双鞋合宽、6px 高，上半被鞋面盖住，负责「踩在地上」；
+   环境阴影 = 原来的大椭圆，透明度降到 0.3，只负责往外晕开。尺寸全相对 #char-wrap，缩放不走位。 */
+#char-contact {
+  position: absolute;
+  left: 51.6%;
+  bottom: 4.12%;
+  width: 15%;
+  height: 6px;
+  transform: translate(-50%, 50%);
+  background: rgba(10, 5, 20, 0.7);
+  border-radius: 50%;
+  filter: blur(2px);
+  pointer-events: none;
+}
 #char-shadow {
   position: absolute;
   left: 51.6%;
-  bottom: 4.08%;
+  bottom: 4.12%;
   width: 30%;
   height: 5.2%;
   transform: translate(-50%, 50%);
   background: radial-gradient(ellipse at 50% 50%,
-    rgba(14, 16, 26, 0.62) 0%,
-    rgba(14, 16, 26, 0.5) 42%,
-    rgba(14, 16, 26, 0.24) 70%,
+    rgba(14, 16, 26, 0.3) 0%,
+    rgba(14, 16, 26, 0.24) 42%,
+    rgba(14, 16, 26, 0.12) 70%,
     rgba(14, 16, 26, 0) 100%);
   filter: blur(1px);
   pointer-events: none;
 }
 
-/* 点她本人 = 戳。命中区贴合立绘轮廓（实测身体横向 30.4%–67.1%、头顶 0.9%、脚底 95.9%），
-   不是整张画布，避免点到她身边的空气也算戳。 */
-#char-hit {
+/* 点她本人 = 戳：5 个独立点按区（头/脸/垂手/左肩/右肩），矩形由 POKE_ZONES 按 v3 立绘实测统一下发，
+   各区台词池与表情不同；点她身边空气不算戳。 */
+.poke-zone {
   position: absolute;
-  left: 30%;
-  top: 0.9%;
-  width: 37.5%;
-  height: 95%;
   padding: 0;
   border: none;
   background: transparent;
@@ -237,13 +246,40 @@ body {
   pointer-events: auto;
   -webkit-tap-highlight-color: transparent;
 }
-#char-hit:focus-visible {
+.poke-zone:focus-visible {
   outline: 2px dashed var(--lamp-warm);
-  outline-offset: 4px;
-  border-radius: 40% 40% 12% 12%;
+  outline-offset: 3px;
+  border-radius: 30%;
 }
 
-/* 戳到的位置扩散一圈暖光，键盘触发时落在她胸口 */
+/* ?debug=1：5 个框直接画在按钮上（不新建节点），各配一色 + 中文标签 */
+#char-wrap.debug-zones .poke-zone { outline: 2px solid; outline-offset: -2px; border-radius: 6px; }
+#char-wrap.debug-zones .poke-zone::after {
+  content: attr(data-zone);
+  position: absolute;
+  left: 50%;
+  top: -22px;
+  transform: translateX(-50%);
+  padding: 1px 7px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1.5;
+  color: #10131f;
+  white-space: nowrap;
+}
+#char-wrap.debug-zones #poke-head { outline-color: #ffb020; background: rgba(255, 176, 32, 0.18); }
+#char-wrap.debug-zones #poke-head::after { background: #ffb020; }
+#char-wrap.debug-zones #poke-face { outline-color: #ff4d5e; background: rgba(255, 77, 94, 0.18); }
+#char-wrap.debug-zones #poke-face::after { background: #ff4d5e; }
+#char-wrap.debug-zones #poke-hand { outline-color: #3ddc84; background: rgba(61, 220, 132, 0.18); }
+#char-wrap.debug-zones #poke-hand::after { background: #3ddc84; }
+#char-wrap.debug-zones #poke-shoulderL { outline-color: #4da3ff; background: rgba(77, 163, 255, 0.18); }
+#char-wrap.debug-zones #poke-shoulderL::after { background: #4da3ff; }
+#char-wrap.debug-zones #poke-shoulderR { outline-color: #e04dff; background: rgba(224, 77, 255, 0.18); }
+#char-wrap.debug-zones #poke-shoulderR::after { background: #e04dff; }
+
+/* 戳到的位置扩散一圈暖光（挂在包裹层，坐标相对整幅立绘），键盘触发时落在该区中心 */
 #char-tap {
   position: absolute;
   width: 72px;
@@ -269,9 +305,9 @@ body {
   70% { transform: translateX(-50%) translateY(0); }
   100% { transform: translateX(-50%) translateY(0); }
 }
-/* 阴影留在地上：反向位移抵消包裹层的小跳，同时收窄变淡表示离地。
-   关键帧百分比与时长必须和 hop 一致，否则抵消不干净。 */
-#char-wrap.hop #char-shadow { animation: shadow-hop 0.45s ease; }
+/* 两层阴影留在地上：反向位移抵消包裹层的小跳，同时收窄变淡表示离地。
+   关键帧百分比与时长必须和 hop 一致，否则抵消不干净；接触/环境两层同进同退。 */
+#char-wrap.hop #char-shadow, #char-wrap.hop #char-contact { animation: shadow-hop 0.45s ease; }
 @keyframes shadow-hop {
   0% { transform: translate(-50%, 50%) translateY(0) scale(1); opacity: 1; }
   35% { transform: translate(-50%, 50%) translateY(14px) scale(0.78); opacity: 0.55; }
@@ -299,8 +335,11 @@ body {
   right: 14px;
   z-index: 8;
   font-size: 12px;
-  color: #e8ecf8;
-  background: rgba(20, 26, 44, 0.55);
+  color: #f3e6cf;
+  background: rgba(18, 14, 32, 0.55);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 225, 170, 0.35);
   border-radius: 999px;
   padding: 5px 12px;
 }
@@ -369,39 +408,77 @@ body {
   justify-content: center;
 }
 
-/* 底部互动按钮：只有 戳 / 喂 / 聊天（+「一起」开触发剧情）；阶段 A 不做送东西、哄睡 */
-#room-bar {
+/* 底部互动条：喂 / 聊天 /「一起」三个 56px 圆钮（磨砂玻璃 + 内联细线 SVG 图标 + 钮下文字），
+   戳已改成点立绘本人，阶段 A 不做送东西、哄睡。
+   120px 压暗渐变单独铺在 #screen-room::after（z 5，立绘 z 6 之下），不挡脚和阴影。 */
+#screen-room::after {
+  content: '';
   position: absolute;
   left: 0;
   right: 0;
   bottom: 0;
-  height: 76px;
+  height: 120px;
+  background: linear-gradient(180deg, rgba(10, 8, 20, 0) 0%, rgba(10, 8, 20, 0.6) 100%);
+  z-index: 5;
+  pointer-events: none;
+}
+#room-bar {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: calc(30px + env(safe-area-inset-bottom, 0px)); /* 给钮下文字留位置，避免贴底裁掉 */
   display: flex;
-  gap: 10px;
-  padding: 10px 16px calc(10px + env(safe-area-inset-bottom));
-  background: linear-gradient(180deg, rgba(20, 26, 44, 0) 0%, rgba(20, 26, 44, 0.72) 38%);
+  justify-content: center;
+  gap: 28px;
   z-index: 10;
 }
 #room-bar .act {
-  flex: 1;
-  height: 46px;
-  border: none;
-  border-radius: 14px;
-  background: var(--cream);
-  color: var(--ink);
-  font-size: 16px;
-  font-weight: 600;
+  position: relative;
+  width: 56px;
+  height: 56px;
+  padding: 0;
+  border: 1px solid rgba(255, 225, 170, 0.35);
+  border-radius: 50%;
+  background: rgba(18, 14, 32, 0.55);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
-  box-shadow: 0 4px 12px rgba(8, 12, 24, 0.35);
+  -webkit-tap-highlight-color: transparent;
+  transition: transform 120ms ease, border-color 120ms ease;
 }
-#room-bar .act:active { transform: scale(0.97); }
-#room-bar .together { background: linear-gradient(180deg, #ffe4a6, var(--lamp-warm)); color: #6b5312; }
+#room-bar .act:hover { border-color: rgba(255, 225, 170, 0.75); }
+#room-bar .act:active { transform: scale(0.94); }
+#room-bar .act .act-label {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-indent: 2px; /* 抵消 letter-spacing 的尾距，视觉居中 */
+  color: rgba(243, 230, 207, 0.85);
+  white-space: nowrap;
+  pointer-events: none;
+}
+#room-bar .together {
+  border-color: rgba(255, 200, 120, 0.7);
+  animation: together-breathe 3s ease-in-out infinite;
+}
+#room-bar .together:hover { border-color: rgba(255, 200, 120, 0.95); }
+#room-bar .together:disabled { opacity: 0.45; animation: none; }
+@keyframes together-breathe {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(255, 200, 120, 0); }
+  50% { box-shadow: 0 0 18px 2px rgba(255, 200, 120, 0.35); }
+}
 
 /* 弹出面板（喂 / 一起） */
 .popup {
   position: absolute;
   left: 50%;
-  bottom: 88px;
+  bottom: 108px;
   transform: translateX(-50%);
   width: 300px;
   max-width: calc(100% - 32px);
@@ -526,7 +603,7 @@ body {
 /* 图片缺失兜底：贴片 / 立绘加载失败时不白屏（柔和占位由 JS 切 display，样式兜底透明） */
 .patch.broken, #room-char.broken { visibility: hidden; }
 /* 立绘没加载出来时，脚下阴影和点击区一并撤掉，不留凭空一圈影子或隐形按钮；引导也别再喊「点她」 */
-#char-wrap.broken #char-shadow, #char-wrap.broken #char-hit { display: none; }
+#char-wrap.broken #char-shadow, #char-wrap.broken #char-contact, #char-wrap.broken .poke-zone { display: none; }
 #char-wrap.broken ~ #poke-hint { display: none; }
 
 /* 窄屏（真手机）：铺满 */

@@ -142,15 +142,29 @@ var PEOPLE = {
 };
 
 /* 401 房间热点：一句话反应。矩形坐标是实现层按 room_401_yunsheng.png（768×1376）目测估计的，
-   没有 windows.js 那样的实测数据——CHANGELOG 有记录，qi 试玩后可调。 */
+   没有 windows.js 那样的实测数据——CHANGELOG 有记录，qi 试玩后可调。
+   报告纸/小说矩形收窄到露出她身体的部分为止：与 5 个点按区零相交（冒烟测试按三种视口钉死），
+   否则点她肩膀会被热点抢走或反过来。 */
 var HOTSPOTS_401 = [
   { id: 'coffee',  name: '黑咖啡', rect: { x: 0.115, y: 0.425, w: 0.11,  h: 0.085 }, text: '续杯？' },
-  { id: 'papers',  name: '报告纸', rect: { x: 0.21,  y: 0.425, w: 0.23,  h: 0.085 }, text: '别乱翻。' },
-  { id: 'novel',   name: '推理小说', rect: { x: 0.585, y: 0.24,  w: 0.20,  h: 0.28  }, text: '凶手太蠢了。' },
+  { id: 'papers',  name: '报告纸', rect: { x: 0.21,  y: 0.425, w: 0.19,  h: 0.085 }, text: '别乱翻。' },
+  { id: 'novel',   name: '推理小说', rect: { x: 0.61,  y: 0.24,  w: 0.175, h: 0.28  }, text: '凶手太蠢了。' },
   { id: 'catbowl', name: '猫碗', rect: { x: 0.72,  y: 0.585, w: 0.135, h: 0.075 }, text: '空的。猫还没来。' }
 ];
 
 var COASTER_RECT = { x: 0.245, y: 0.484, w: 0.062, h: 0.03 }; // 杯垫出现位置（桌上，报告纸前方）
+
+/* 云笙 5 个独立点按区（第一单第 3 步）：矩形按 v3 立绘实测 anatomy（相对 #char-wrap），
+   lines 是 data/lines_yunsheng.js poke 池的下标——5 区互不重叠、合起来恰好覆盖 qi 定稿 10 句，
+   表情随台词 face 走：头/垂手 shy、脸/右肩 angry、左肩 smile/angry。左右肩以她本人左右为准（左肩在画面右侧）。
+   ?debug=1 时 5 个框直接画在按钮上（CSS .debug-zones），qi 试玩后可调矩形。 */
+var POKE_ZONES = {
+  head:      { label: '头',   rect: { x: 0.41,  y: 0.009, w: 0.18,  h: 0.071 }, lines: [2, 8] },
+  face:      { label: '脸',   rect: { x: 0.435, y: 0.08,  w: 0.125, h: 0.068 }, lines: [0, 4] },
+  hand:      { label: '垂手', rect: { x: 0.605, y: 0.445, w: 0.062, h: 0.085 }, lines: [5, 6] },
+  shoulderL: { label: '左肩', rect: { x: 0.56,  y: 0.163, w: 0.10,  h: 0.055 }, lines: [9, 7] },
+  shoulderR: { label: '右肩', rect: { x: 0.35,  y: 0.163, w: 0.105, h: 0.055 }, lines: [1, 3] }
+};
 
 /* ---------- 运行状态 ---------- */
 var rolls = {};       // 每人本次打开游戏抽到的动作套：'7f'/'501'/'401'/'301' → 0/1/2（A/B/C），不存档
@@ -334,7 +348,6 @@ function goExterior() {
   closePopups();
   hideBubble();
   closeScene();
-  byId('poke-hint').classList.add('hidden');
   byId('screen-room').classList.add('hidden');
   byId('screen-exterior').classList.remove('hidden');
   renderExterior();
@@ -342,11 +355,19 @@ function goExterior() {
 
 /* ---------- 401 房间 ---------- */
 var ROOM_FACES = ['smile', 'shy', 'angry', 'eat', 'sleep']; // 只在 5 张表情图之间切换，_full 不用在房间里
+var currentFaceSrc = 'assets/characters/yunsheng_smile.png'; // 与 index.html 初始 src 一致
 
 function setFace(face) {
   if (ROOM_FACES.indexOf(face) < 0) face = 'smile';
+  var img = byId('room-char');
+  var src = 'assets/characters/yunsheng_' + face + '.png';
+  if (src === currentFaceSrc) { // 同 src 浏览器不会重发 load/error：清掉 broken 会露 alt 破图标，保持现状
+    if (isPortraitBroken(img)) markPortraitBroken(true);
+    return;
+  }
+  currentFaceSrc = src;
   markPortraitBroken(false); // 新表情图重新参与兜底判定
-  byId('room-char').src = 'assets/characters/yunsheng_' + face + '.png';
+  img.src = src;
 }
 
 function buildRoomHotspots() {
@@ -379,15 +400,31 @@ function hopChar() {
   el.classList.add('hop');
 }
 
-/* 戳的落点反馈：鼠标/触摸落在指尖处，键盘激活（detail 0）落在她胸口 */
-function tapFeedback(e) {
+/* 戳的落点反馈：鼠标/触摸落在指尖处（clientX/Y 换算到包裹层坐标），键盘激活（detail 0）落在该区中心 */
+function tapFeedback(e, zone) {
   var ring = byId('char-tap');
-  var atPointer = e && e.detail > 0 && typeof e.offsetX === 'number';
-  ring.style.left = atPointer ? e.offsetX + 'px' : '50%';
-  ring.style.top = atPointer ? e.offsetY + 'px' : '42%';
+  var x = '50%', y = '42%';
+  if (e && e.detail > 0 && typeof e.clientX === 'number') {
+    var r = byId('char-wrap').getBoundingClientRect();
+    x = (e.clientX - r.left) + 'px';
+    y = (e.clientY - r.top) + 'px';
+  } else if (zone && POKE_ZONES[zone]) {
+    var zr = POKE_ZONES[zone].rect;
+    x = ((zr.x + zr.w / 2) * 100) + '%';
+    y = ((zr.y + zr.h / 2) * 100) + '%';
+  }
+  ring.style.left = x;
+  ring.style.top = y;
   ring.classList.remove('go');
   void ring.offsetWidth;
   ring.classList.add('go');
+}
+
+/* 5 区矩形统一下发 + debug 框开关（?debug=1）。矩形只此一处定义，按钮与调试框永远一致。 */
+function applyZoneRects() {
+  Object.keys(POKE_ZONES).forEach(function (z) { setRect(byId('poke-' + z), POKE_ZONES[z].rect); });
+  var debug = !!(window.location && /[?&]debug=1(?:&|$)/.test(window.location.search || ''));
+  byId('char-wrap').classList.toggle('debug-zones', debug);
 }
 
 /* ---------- 台词抽取 ---------- */
@@ -406,6 +443,22 @@ function pickLine(kind) {
     for (var j = 0; j < pool.length; j++) {
       if (!pool[j].needCat) cand.push(j);
     }
+  }
+  var pick = cand[Math.floor(Math.random() * cand.length)];
+  used.push(pick);
+  return pool[pick];
+}
+
+/* 分区戳：只在该区专属下标里抽，同一会话该区不重复（一轮抽完重置）；表情随台词 face。 */
+function pickPokeLine(zone) {
+  var pool = window.LINES.yunsheng.neighbor.poke;
+  var idxs = POKE_ZONES[zone].lines;
+  var key = 'poke_' + zone;
+  var used = usedLines[key] || (usedLines[key] = []);
+  var cand = idxs.filter(function (i) { return !pool[i].needCat && used.indexOf(i) < 0; });
+  if (!cand.length) {
+    used = usedLines[key] = [];
+    cand = idxs.filter(function (i) { return !pool[i].needCat; });
   }
   var pick = cand[Math.floor(Math.random() * cand.length)];
   used.push(pick);
@@ -448,12 +501,12 @@ function gainAffection(base) {
 }
 
 /* ---------- 三个互动（阶段 A 不做送东西、哄睡） ---------- */
-function doPoke() {
+function doPoke(zone) {
   ensureToday();
   save.today.pokes += 1;
   pokedThisSession = true;
   byId('poke-hint').classList.add('hidden');
-  var line = pickLine('poke');
+  var line = zone ? pickPokeLine(zone) : pickLine('poke'); // 不带分区 = 全池（数值测试/兜底用）
   setFace(line.face);
   hopChar(); // 小跳一下
   showBubble(line.text);
@@ -511,6 +564,7 @@ function togglePanel(id) {
 function updateSceneEntry() {
   var playedToday = save.scenes.yunsheng_coffee === dateKeyOf(new Date());
   byId('scene-entry').disabled = playedToday;
+  byId('btn-together').disabled = playedToday; // 圆钮当天演过就变暗停呼吸（CSS :disabled）
   byId('scene-state').textContent = playedToday ? '今天已经演过啦' : '可以演';
 }
 
@@ -674,10 +728,12 @@ function bindEvents() {
   });
 
   byId('btn-back').addEventListener('click', goExterior);
-  byId('char-hit').addEventListener('click', function (e) {
-    closePopups();
-    tapFeedback(e);
-    doPoke();
+  Object.keys(POKE_ZONES).forEach(function (z) {
+    byId('poke-' + z).addEventListener('click', function (e) {
+      closePopups();
+      tapFeedback(e, z);
+      doPoke(z);
+    });
   });
   byId('btn-feed').addEventListener('click', function () { togglePanel('feed-panel'); });
   byId('btn-chat').addEventListener('click', function () { closePopups(); doChat(); });
@@ -707,6 +763,7 @@ function init() {
   rolls = { '7f': rand3(), '501': rand3(), '401': rand3(), '301': rand3() };
   buildExterior();
   buildRoomHotspots();
+  applyZoneRects();
   bindPortraitFallback();
   bindEvents();
   layoutStages();
