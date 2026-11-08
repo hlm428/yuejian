@@ -250,6 +250,9 @@ ok('叶子缺键/类型错自愈', !!healed2 && healed2.affection.yunsheng === 0
 global.localStorage._s['yuejian_save_v1'] = JSON.stringify({ v: 1, affection: { yunsheng: 150 }, mood: { yunsheng: -5 } }); // 越界值夹取
 const healed3 = T.loadSave();
 ok('越界数值夹取 0–100', !!healed3 && healed3.affection.yunsheng === 100 && healed3.mood.yunsheng === 0);
+global.localStorage._s['yuejian_save_v1'] = JSON.stringify({ v: 1, today: { date: '2026-11-08', gained: -5, pokes: '12', capMsgShown: 'yes' } }); // today 叶子校验
+const healed4 = T.loadSave();
+ok('today 叶子校验（负数/类型错归零）', !!healed4 && healed4.today.gained === 0 && healed4.today.pokes === 0 && healed4.today.capMsgShown === false);
 global.localStorage._s['yuejian_save_v1'] = '{bad json';
 ok('坏档不崩→新档', T.loadSave() === null);
 global.localStorage._s['yuejian_save_v1'] = JSON.stringify({ v: 99 });

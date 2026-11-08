@@ -23,26 +23,27 @@ function defaultSave() {
   };
 }
 
+/* 数值叶子自愈：按默认档的键集逐项校验（键集从 defaultSave 派生，阶段 B 加角色不用改这里），
+   非有限数补默认值，并夹取 0–100 */
+function healStats(target, defaults) {
+  Object.keys(defaults).forEach(function (p) {
+    if (typeof target[p] !== 'number' || !isFinite(target[p])) target[p] = defaults[p];
+    target[p] = Math.max(0, Math.min(100, target[p]));
+  });
+}
+
 function loadSave() {
   try {
     var raw = localStorage.getItem(SAVE_KEY);
     if (!raw) return null;
     var s = JSON.parse(raw);
     if (!s || s.v !== SAVE_V) return null;
-    // 字段级自愈：容器和数值叶子逐项校验，缺的 / 类型不对的 / 非有限数的用默认值补齐，
-    // 并夹取到合法区间——半截或手改的存档不崩、不往数值管道里进 NaN/undefined
+    // 字段级自愈：容器和数值叶子逐项校验——半截或手改的存档不崩、不往数值管道里进 NaN/undefined
     var d = defaultSave();
-    var KEYS = ['yunsheng', 'zhixi', 'xiyue', 'yelan'];
-    var i, p;
     if (!isPlainObj(s.affection)) s.affection = {};
     if (!isPlainObj(s.mood)) s.mood = {};
-    for (i = 0; i < KEYS.length; i++) {
-      p = KEYS[i];
-      if (typeof s.affection[p] !== 'number' || !isFinite(s.affection[p])) s.affection[p] = d.affection[p];
-      if (typeof s.mood[p] !== 'number' || !isFinite(s.mood[p])) s.mood[p] = d.mood[p];
-      s.affection[p] = Math.max(0, Math.min(100, s.affection[p])); // 亲密度 0–100
-      s.mood[p] = Math.max(0, Math.min(100, s.mood[p]));           // 心情 0–100
-    }
+    healStats(s.affection, d.affection);
+    healStats(s.mood, d.mood);
     if (!isPlainObj(s.today)) s.today = {};
     if (typeof s.today.date !== 'string') s.today.date = '';
     if (typeof s.today.gained !== 'number' || !isFinite(s.today.gained) || s.today.gained < 0) s.today.gained = 0;
