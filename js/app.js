@@ -366,8 +366,7 @@ function setFace(face) {
     return;
   }
   currentFaceSrc = src;
-  markPortraitBroken(false); // 新表情图重新参与兜底判定
-  img.src = src;
+  img.src = src; // broken 态交给 load/error 事件撤：先清会在新图加载途中闪破图标
 }
 
 function buildRoomHotspots() {
@@ -444,6 +443,7 @@ function pickLine(kind) {
       if (!pool[j].needCat) cand.push(j);
     }
   }
+  if (!cand.length) return { text: '……嗯？', face: 'smile' }; // 数据全标 needCat 时的兜底，避免抽到 undefined 炸掉戳/聊
   var pick = cand[Math.floor(Math.random() * cand.length)];
   used.push(pick);
   return pool[pick];
@@ -460,6 +460,7 @@ function pickPokeLine(zone) {
     used = usedLines[key] = [];
     cand = idxs.filter(function (i) { return !pool[i].needCat; });
   }
+  if (!cand.length) return { text: '……嗯？', face: 'smile' }; // 同上：空池兜底，不让戳点击抛 TypeError
   var pick = cand[Math.floor(Math.random() * cand.length)];
   used.push(pick);
   return pool[pick];
@@ -563,8 +564,11 @@ function togglePanel(id) {
 /* ---------- 触发剧情：深夜送咖啡（每天限演一次；不限制真实时间） ---------- */
 function updateSceneEntry() {
   var playedToday = save.scenes.yunsheng_coffee === dateKeyOf(new Date());
+  var btn = byId('btn-together');
   byId('scene-entry').disabled = playedToday;
-  byId('btn-together').disabled = playedToday; // 圆钮当天演过就变暗停呼吸（CSS :disabled）
+  // 圆钮演过变暗停呼吸但保持可点：disable 会把「今天已经演过啦」这句解释永远关在面板外
+  btn.classList.toggle('unavailable', playedToday);
+  if (playedToday) btn.setAttribute('aria-disabled', 'true'); else btn.removeAttribute('aria-disabled');
   byId('scene-state').textContent = playedToday ? '今天已经演过啦' : '可以演';
 }
 

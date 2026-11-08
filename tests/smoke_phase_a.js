@@ -21,6 +21,7 @@ function makeEl(tag) {
     addEventListener(t, fn) { (this._listeners[t] = this._listeners[t] || []).push(fn); },
     getAttribute(n) { return this._attrs[n] || null; },
     setAttribute(n, v) { this._attrs[n] = String(v); },
+    removeAttribute(n) { delete this._attrs[n]; },
     getBoundingClientRect() { return { left: 0, top: 0, width: 100, height: 100 }; },
     fire(t, ev) { (this._listeners[t] || []).forEach(fn => fn({ stopPropagation() { }, ...ev })); }
   };
@@ -98,7 +99,7 @@ const files = [
   path.join(repo, 'js', 'app.js')
 ];
 const code = files.map(f => fs.readFileSync(f, 'utf8')).join('\n;\n')
-  + '\n;globalThis.__T = { save, rolls, usedLines, renderExterior, onWindowClick, showCard, closeCard, enterRoom, goExterior, doPoke, doFeed, doChat, gainAffection, startScene, advanceScene, chooseScene, finishScene, updateSceneEntry, writeSave, ensureToday, loadSave, setFace, lightOn, bandOf, yelanAsleep, patrolTonight, HOTSPOTS_401, PEOPLE, POKE_ZONES, pickPokeLine, applyZoneRects };';
+  + '\n;globalThis.__T = { save, rolls, usedLines, renderExterior, onWindowClick, showCard, closeCard, enterRoom, goExterior, doPoke, doFeed, doChat, gainAffection, startScene, advanceScene, chooseScene, finishScene, updateSceneEntry, writeSave, ensureToday, loadSave, setFace, lightOn, bandOf, yelanAsleep, patrolTonight, HOTSPOTS_401, PEOPLE, POKE_ZONES, pickPokeLine, pickLine, applyZoneRects };';
 (0, eval)(code);
 const T = globalThis.__T;
 if (!T || !T.doPoke) { console.error('FAIL: 无法从 app.js 取出函数'); process.exit(1); }
@@ -198,6 +199,24 @@ ok('键盘激活落点在该区中心', Math.abs(parseFloat(registry['char-tap']
   && Math.abs(parseFloat(registry['char-tap'].style.top) - 11.4) < 0.01);
 T.save.affection.yunsheng = affBeforeZones; T.save.today = todayBeforeZones; T.writeSave(); // 分区覆盖不影响后续数值断言
 
+// 5b+. 空池兜底：数据全标 needCat 时抽词不抛 TypeError（审查回归）
+const pPool = globalThis.LINES.yunsheng.neighbor.poke;
+const savedNeed = T.POKE_ZONES.head.lines.map(i => pPool[i].needCat);
+T.POKE_ZONES.head.lines.forEach(i => { pPool[i].needCat = true; });
+delete T.usedLines['poke_head'];
+let emptyPick = null;
+try { emptyPick = T.pickPokeLine('head'); } catch (e) { emptyPick = { threw: e }; }
+T.POKE_ZONES.head.lines.forEach((i, k) => { pPool[i].needCat = savedNeed[k]; });
+ok('分区空池兜底不炸', emptyPick && !emptyPick.threw && typeof emptyPick.text === 'string' && typeof emptyPick.face === 'string');
+const cPool = globalThis.LINES.yunsheng.neighbor.chat;
+const savedChat = cPool.map(l => l.needCat);
+cPool.forEach(l => { l.needCat = true; });
+delete T.usedLines['chat'];
+let emptyChat = null;
+try { emptyChat = T.pickLine('chat'); } catch (e) { emptyChat = { threw: e }; }
+cPool.forEach((l, k) => { l.needCat = savedChat[k]; });
+ok('整池空兜底不炸', emptyChat && !emptyChat.threw && typeof emptyChat.text === 'string');
+
 // —— 5c. ?debug=1 显示 5 个框（矩形与按钮同源下发） ——
 global.location = { search: '?debug=1' };
 T.applyZoneRects();
@@ -224,7 +243,7 @@ function appRects(aw, ah) { // 与 layoutStages + #char-wrap CSS 同一套几何
   };
 }
 function overlap(a, b) { return a.x < b.x + b.w && b.x < a.x + a.w && a.y < b.y + b.h && b.y < a.y + a.h; }
-for (const [aw, ah] of [[320, 568], [390, 844], [1280, 900]]) {
+for (const [aw, ah] of [[320, 568], [360, 640], [390, 844]]) { // #app 宽被 CSS 封顶 390，更宽的视口几何与 390 同构，改钉中间高度
   const r = appRects(aw, ah);
   ok(`${aw}×${ah}：5 点按区与 4 房间热点零相交`, r.zones.every(z => r.hots.every(h => !overlap(z, h))));
 }
@@ -281,8 +300,9 @@ ok('立绘报错出占位', visible('char-placeholder') && registry['room-char']
 ok('立绘报错时阴影与点击区一并撤掉', registry['char-wrap'].classList.contains('broken'));
 ok('立绘报错时 img 挂 .broken（否则露 alt 破图标）', registry['room-char'].classList.contains('broken'));
 T.setFace('smile');
-ok('setFace 重置 broken 并隐藏占位', registry['room-char'].dataset.broken === undefined && !visible('char-placeholder'));
-ok('setFace 恢复阴影与点击区', !registry['char-wrap'].classList.contains('broken') && !registry['room-char'].classList.contains('broken'));
+ok('setFace 加载途中保持兜底（不闪破图标）', visible('char-placeholder') && registry['room-char'].classList.contains('broken'));
+registry['room-char'].fire('load');
+ok('load 后撤占位并恢复阴影与点击区', !visible('char-placeholder') && registry['room-char'].dataset.broken === undefined && !registry['char-wrap'].classList.contains('broken') && !registry['room-char'].classList.contains('broken'));
 registry['room-char'].fire('error');
 ok('再次报错占位回来', visible('char-placeholder') && registry['char-wrap'].classList.contains('broken'));
 T.setFace('smile'); // 同 src：浏览器不会重发 load/error，清掉 broken 会露 alt 破图标（审查回归）
@@ -294,7 +314,7 @@ ok('load 成功撤占位', !visible('char-placeholder') && registry['room-char']
 T.save.scenes = {}; T.writeSave();
 T.updateSceneEntry();
 ok('剧情入口可演', registry['scene-entry'].disabled === false && txt('scene-state') === '可以演');
-ok('未演时「一起」圆钮可用', registry['btn-together'].disabled === false);
+ok('未演时「一起」圆钮可用', registry['btn-together'].disabled === false && !registry['btn-together'].classList.contains('unavailable'));
 T.startScene();
 ok('剧情开场：旁白', visible('scene-overlay') && txt('scene-speaker') === '旁白' && /深夜十一点/.test(txt('scene-text')));
 T.advanceScene();
@@ -317,7 +337,8 @@ ok('剧终：关闭 + 记档', visible('scene-overlay') === false && sceneMarked
 ok('剧情奖励入账（+8 计入管道）', aff() === affBeforeScene + 8 && T.save.today.gained === 18);
 T.updateSceneEntry();
 ok('演完当天灰掉', registry['scene-entry'].disabled === true && txt('scene-state') === '今天已经演过啦');
-ok('演完「一起」圆钮禁用（变暗不呼吸）', registry['btn-together'].disabled === true);
+ok('演完「一起」圆钮变暗停呼吸（unavailable + aria-disabled）', registry['btn-together'].classList.contains('unavailable') && registry['btn-together'].getAttribute('aria-disabled') === 'true');
+ok('演完圆钮仍可点开面板看「今天已经演过啦」', registry['btn-together'].disabled === false);
 
 // —— 12. 存档落盘 + 读档 + 坏档兜底 ——
 T.writeSave();
