@@ -23,13 +23,16 @@ function defaultSave() {
   };
 }
 
-/* 数值叶子自愈：按默认档的键集逐项校验（键集从 defaultSave 派生，阶段 B 加角色不用改这里），
-   非有限数补默认值，并夹取 0–100 */
+/* 数值叶子自愈：键集从 defaults 派生（阶段 B 加角色不用改这里）；
+   容器本身不是对象也一并兜住并返回新对象——将来任何调用点写 s.temper = healStats(s.temper, d.temper)
+   都不会因为忘了判容器而在 try/catch 里炸出「整档作废」 */
 function healStats(target, defaults) {
+  var t = isPlainObj(target) ? target : {};
   Object.keys(defaults).forEach(function (p) {
-    if (typeof target[p] !== 'number' || !isFinite(target[p])) target[p] = defaults[p];
-    target[p] = Math.max(0, Math.min(100, target[p]));
+    if (typeof t[p] !== 'number' || !isFinite(t[p])) t[p] = defaults[p];
+    t[p] = Math.max(0, Math.min(100, t[p]));
   });
+  return t;
 }
 
 function loadSave() {
@@ -40,10 +43,8 @@ function loadSave() {
     if (!s || s.v !== SAVE_V) return null;
     // 字段级自愈：容器和数值叶子逐项校验——半截或手改的存档不崩、不往数值管道里进 NaN/undefined
     var d = defaultSave();
-    if (!isPlainObj(s.affection)) s.affection = {};
-    if (!isPlainObj(s.mood)) s.mood = {};
-    healStats(s.affection, d.affection);
-    healStats(s.mood, d.mood);
+    s.affection = healStats(s.affection, d.affection);
+    s.mood = healStats(s.mood, d.mood);
     if (!isPlainObj(s.today)) s.today = {};
     if (typeof s.today.date !== 'string') s.today.date = '';
     if (typeof s.today.gained !== 'number' || !isFinite(s.today.gained) || s.today.gained < 0) s.today.gained = 0;
