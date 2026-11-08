@@ -28,9 +28,22 @@ function loadSave() {
     var raw = localStorage.getItem(SAVE_KEY);
     if (!raw) return null;
     var s = JSON.parse(raw);
-    if (!s || s.v !== SAVE_V || typeof s.affection !== 'object' || typeof s.mood !== 'object') return null;
+    if (!s || s.v !== SAVE_V) return null;
+    // 字段级自愈：部分字段缺失 / 类型不对时用默认值补齐（半截存档也不崩，见「坏了就用新档」契约）
+    if (!isPlainObj(s.affection)) s.affection = defaultSave().affection;
+    if (!isPlainObj(s.mood)) s.mood = defaultSave().mood;
+    if (!isPlainObj(s.today)) s.today = defaultSave().today;
+    if (!isPlainObj(s.scenes)) s.scenes = {};
+    if (typeof s.coaster !== 'boolean') s.coaster = false;
+    if (typeof s.today.gained !== 'number') s.today.gained = 0;
+    if (typeof s.today.pokes !== 'number') s.today.pokes = 0;
+    if (typeof s.today.capMsgShown !== 'boolean') s.today.capMsgShown = false;
     return s;
   } catch (e) { return null; } // 版本不对或坏了就用新档，不要崩
+}
+
+function isPlainObj(x) {
+  return !!x && typeof x === 'object' && !Array.isArray(x);
 }
 
 function writeSave() {
@@ -191,11 +204,13 @@ function buildExterior() {
       setRect(img, w.A);
       stage.appendChild(img);
     }
-    var mask = document.createElement('div');
-    mask.className = 'win-dark';
-    mask.id = 'mask-' + id;
-    setRect(mask, w.hotspot); // 灭窗遮罩 = hotspot 矩形
-    stage.appendChild(mask);
+    if (id !== '302') { // 302 始终亮，永远不需要灭窗遮罩
+      var mask = document.createElement('div');
+      mask.className = 'win-dark';
+      mask.id = 'mask-' + id;
+      setRect(mask, w.hotspot); // 灭窗遮罩 = hotspot 矩形
+      stage.appendChild(mask);
+    }
 
     var hot = document.createElement('div');
     hot.className = 'win-hot';
@@ -312,7 +327,10 @@ var ROOM_FACES = ['smile', 'shy', 'angry', 'eat', 'sleep']; // 只在 5 张表�
 
 function setFace(face) {
   if (ROOM_FACES.indexOf(face) < 0) face = 'smile';
-  byId('room-char').src = 'assets/characters/yunsheng_' + face + '.png';
+  var img = byId('room-char');
+  delete img.dataset.broken; // 新表情图重新参与兜底判定
+  byId('char-placeholder').classList.add('hidden');
+  img.src = 'assets/characters/yunsheng_' + face + '.png';
 }
 
 function buildRoomHotspots() {
@@ -421,7 +439,7 @@ function doPoke() {
 function doFeed(item) {
   ensureToday();
   var line = pickFeed(item);
-  if (!line) return;
+  if (!line) { toast('云笙没有回应。'); return; } // 台词数据缺该物品时的兜底，正常数据到不了这里
   setFace(line.face);
   showBubble(line.text);
   if (item === 'sweets') {
@@ -577,6 +595,12 @@ function bindPortraitFallback() {
       if (img.id === 'room-char') byId('char-placeholder').classList.remove('hidden');
       else img.style.display = 'none';
     });
+    if (img.id === 'room-char') { // 换到能正常加载的表情图后撤掉占位，不让它卡在立绘上面
+      img.addEventListener('load', function () {
+        delete img.dataset.broken;
+        byId('char-placeholder').classList.add('hidden');
+      });
+    }
     // 解析期就已失败的图（error 早于本监听挂上，双击 file:// 打开时可能发生）：同趟补扫
     if (isPortraitBroken(img)) {
       img.dataset.broken = '1';

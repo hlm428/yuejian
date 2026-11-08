@@ -17,8 +17,9 @@
   - 触发剧情：新文件 `data/scenes_yunsheng.js`「深夜送咖啡」（v3.2 §26 qi 已定的第一场）。房间里「一起」按钮 → 列表里这一场 → 每天限演一次（演完当天灰掉写「今天已经演过啦」，第二天恢复），不限制真实时间；画面 = 401 背景变暗 + 底部两个小人（`mc_side` 镜像翻转与 `yunsheng_side` 面对面）+ 对话框点一下继续 + 中途二选一；奖励亲密度 +8（计入当天软上限，心情倍率照常生效）+ 桌上杯垫（如果还没有）；剧本台词按给的脚本一个字没动
   - `tests/test_lights.js`：所有 `'b1'` 改 `'7f'`，文件头注释「任务 2/任务 7」改「阶段 B/阶段 C」，亮灯期望值一个字没动
   - 杯垫暂无美术资产，用 CSS 椭圆占位在桌面（qi 出图后替换）
-- 自测：ZCode 内嵌浏览器不可用（按 Aaron 说明），用 node 无头 DOM 桩按 index.html 真实 id 表驱动 js/app.js 全交互路径（外观构建 / 点窗卡片 / 房间三互动 / 数值管道 / 软上限 / 戳太多 / 剧情逐拍 / 存档读写 / 坏档兜底）48 条断言全过；`node tests/test_lights.js` 44 条断言全过。真机请按下面步骤试玩
+- 自测：ZCode 内嵌浏览器不可用（按 Aaron 说明），无头 DOM 冒烟测试**已入库 `tests/smoke_phase_a.js`**（`node tests/smoke_phase_a.js` 可复跑）：按 index.html 真实 id 表驱动 js/app.js 全交互路径（外观构建 / 点窗卡片 / 房间三互动 / 数值管道 / 软上限 / 戳太多 / 立绘兜底 / 剧情逐拍 / 存档读写 / 坏档自愈），52 条断言全过；`node tests/test_lights.js` 44 条断言全过。真机请按下面步骤试玩
 - 审查方式说明：`entire review general` 在双推之后跑会因 main == origin/main 而空转（0 commits 无可审），本次改为 commit 后、双推前用 `--base dd247bf` 定范围跑一次，同时覆盖「SPEC 改写」与「阶段 A」两条提交
+- **Entire 审查整改（5 条全修，结论 request changes → 已清零）**：① 302 窗误挂灭窗遮罩且永不隐藏——buildExterior 跳过 302 不建遮罩（302 始终亮）；② loadSave 缺 today/scenes 校验，半截存档会在 ensureToday 崩——改为字段级自愈（缺什么用默认值补什么）；③ CHANGELOG 声称的 48 条冒烟断言未入库——测试文件提交为 `tests/smoke_phase_a.js`（52 条）并补 4 条回归断言（302 无遮罩 / 半截存档自愈 / 占位卡死 / load 撤占位）；④ 表情图加载失败一次后占位块永久盖住立绘——setFace 重置 broken + 隐藏占位，room-char 挂 load 监听成功加载即撤占位；⑤ 台词数据缺某喂食物品时静默无反应——加兜底提示「云笙没有回应。」（正常数据到不了这分支，文案 qi 可改）
 
 **怎么试玩**：
 1. 资源管理器里双击 `index.html`（或右键 → 打开方式 → 选浏览器；不要用 ZCode 内嵌浏览器）
