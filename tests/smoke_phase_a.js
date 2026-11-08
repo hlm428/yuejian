@@ -253,6 +253,9 @@ ok('越界数值夹取 0–100', !!healed3 && healed3.affection.yunsheng === 100
 global.localStorage._s['yuejian_save_v1'] = JSON.stringify({ v: 1, today: { date: 123, gained: -5, pokes: '12', capMsgShown: 'yes' } }); // today 叶子校验（date 用非字符串钉住重置逻辑）
 const healed4 = T.loadSave();
 ok('today 叶子校验（date/gained/pokes/capMsg 归正）', !!healed4 && healed4.today.date === '' && healed4.today.gained === 0 && healed4.today.pokes === 0 && healed4.today.capMsgShown === false);
+global.localStorage._s['yuejian_save_v1'] = JSON.stringify({ v: 1, affection: 'junk', mood: 5, coaster: true }); // 容器本身不是对象：逐字段治愈而非整档作废
+const healed5 = T.loadSave();
+ok('容器非对象也逐字段治愈', !!healed5 && typeof healed5.affection === 'object' && healed5.affection.yunsheng === 0 && typeof healed5.mood === 'object' && healed5.mood.yunsheng === 60 && healed5.coaster === true);
 global.localStorage._s['yuejian_save_v1'] = '{bad json';
 ok('坏档不崩→新档', T.loadSave() === null);
 global.localStorage._s['yuejian_save_v1'] = JSON.stringify({ v: 99 });

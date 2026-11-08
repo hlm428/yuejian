@@ -23,9 +23,10 @@ function defaultSave() {
   };
 }
 
-/* 数值叶子自愈：键集从 defaults 派生（阶段 B 加角色不用改这里）；
-   容器本身不是对象也一并兜住并返回新对象——将来任何调用点写 s.temper = healStats(s.temper, d.temper)
-   都不会因为忘了判容器而在 try/catch 里炸出「整档作废」 */
+/* 数值叶子自愈：键集从 defaults 派生（阶段 B 加角色不用改这里），容器不是对象也在 helper 内兜住。
+   契约：必须接住返回值——s.temper = healStats(s.temper, d.temper)，不接返回值时治愈结果会被丢弃。
+   只用于 0–100 的数值组（affection / mood）；today / scenes 等非数值叶子仍走 loadSave 里的内联守卫，
+   不要套用本函数（0–100 夹取会弄坏字符串 / 布尔叶子）。 */
 function healStats(target, defaults) {
   var t = isPlainObj(target) ? target : {};
   Object.keys(defaults).forEach(function (p) {
