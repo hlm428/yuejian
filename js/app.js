@@ -169,7 +169,7 @@ function setRoomAction(name) {
   setRect(el, spot.rect);
   el.onload = function () { el.classList.remove('hidden'); };
   el.onerror = function () { el.classList.add('hidden'); };
-  if (el.src === spot.asset && el.complete && el.naturalWidth > 0) el.classList.remove('hidden');
+  if (el.getAttribute('src') === spot.asset && el.complete && el.naturalWidth > 0) el.classList.remove('hidden');
   else el.src = spot.asset;
 }
 
