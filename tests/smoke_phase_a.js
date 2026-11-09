@@ -287,6 +287,8 @@ for (const [aw, ah] of [[320, 568], [360, 640], [390, 844]]) { // #app 宽被 CS
 }
 const zoneRects = Object.values(T.POKE_ZONES).map(z => z.rect);
 ok('5 点按区彼此不重叠', zoneRects.every((a, i) => zoneRects.every((b, j) => i === j || !overlap(a, b))));
+const hotRects = T.HOTSPOTS_401.map(h => h.rect);
+ok('4 房间热点彼此不重叠（旧目测值咖啡压报告纸）', hotRects.every((a, i) => hotRects.every((b, j) => i === j || !overlap(a, b))));
 
 // —— 5b. 脚底线对齐：top 与 --sole 按各自实测脚底线下发，落点 FOOT_Y 全表情同一 ——
 ['smile', 'shy', 'angry', 'eat', 'sleep'].forEach(f => {
