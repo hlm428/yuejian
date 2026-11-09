@@ -154,6 +154,25 @@ var HOTSPOTS_401 = [
 
 var COASTER_RECT = { x: 0.245, y: 0.484, w: 0.062, h: 0.03 }; // 杯垫出现位置（桌上，报告纸前方）
 
+/* 动作小人挂载点（qi 的美术未到位）：rect 为舞台比例初值，图到位后微调；资产命名约定见 HANDOFF。
+   阶段 B 调 setRoomAction('report'|'sleep'|'feedcat'|'window'|null)；缺图 onerror 自动隐藏，不出破图。 */
+var ACTION_SPOTS_401 = {
+  report:  { asset: 'assets/chibi/yunsheng_report.png',  rect: { x: 0.10, y: 0.50, w: 0.22, h: 0.30 } }, // 赴桌写报告：桌前，脚落地板 0.80
+  sleep:   { asset: 'assets/chibi/yunsheng_sleep.png',   rect: { x: 0.70, y: 0.60, w: 0.26, h: 0.16 } }, // 缩床睡觉：躺床面
+  feedcat: { asset: 'assets/chibi/yunsheng_feedcat.png', rect: { x: 0.50, y: 0.46, w: 0.20, h: 0.22 } }, // 蹲地喂猫：猫窝左，脚落 0.68
+  window:  { asset: 'assets/chibi/yunsheng_window.png',  rect: { x: 0.17, y: 0.14, w: 0.20, h: 0.28 } }  // 窗边发呆：桌后，脚落窗台 0.42
+};
+function setRoomAction(name) {
+  var el = byId('room-action');
+  var spot = name && ACTION_SPOTS_401[name];
+  if (!spot) { el.classList.add('hidden'); return; }
+  setRect(el, spot.rect);
+  el.onload = function () { el.classList.remove('hidden'); };
+  el.onerror = function () { el.classList.add('hidden'); };
+  if (el.src === spot.asset && el.complete && el.naturalWidth > 0) el.classList.remove('hidden');
+  else el.src = spot.asset;
+}
+
 /* 云笙 5 个独立点按区（第一单第 3 步，第四单按 v4 立绘 1600×2450 像素复校）：
    矩形 = 相对立绘（#char-wrap 即立绘盒）的百分比；skin/轮廓取证：
    发顶 0.0086、脸 0.085–0.163、颈 0.20–0.22、垂手 skin 0.6138–0.6406 / 0.459–0.513、

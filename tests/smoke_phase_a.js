@@ -104,7 +104,7 @@ const files = [
   path.join(repo, 'js', 'app.js')
 ];
 const code = files.map(f => fs.readFileSync(f, 'utf8')).join('\n;\n')
-  + '\n;globalThis.__T = { save, rolls, usedLines, renderExterior, onWindowClick, showCard, closeCard, enterRoom, goExterior, doPoke, doFeed, doChat, gainAffection, startScene, advanceScene, chooseScene, finishScene, updateSceneEntry, writeSave, ensureToday, loadSave, setFace, lightOn, bandOf, yelanAsleep, patrolTonight, HOTSPOTS_401, PEOPLE, POKE_ZONES, pickPokeLine, pickLine, applyZoneRects, applyFootAlign, SOLE_LINE, FOOT_Y, FEET_GEOM, edgeBandRecolor };';
+  + '\n;globalThis.__T = { save, rolls, usedLines, renderExterior, onWindowClick, showCard, closeCard, enterRoom, goExterior, doPoke, doFeed, doChat, gainAffection, startScene, advanceScene, chooseScene, finishScene, updateSceneEntry, writeSave, ensureToday, loadSave, setFace, lightOn, bandOf, yelanAsleep, patrolTonight, HOTSPOTS_401, PEOPLE, POKE_ZONES, pickPokeLine, pickLine, applyZoneRects, applyFootAlign, SOLE_LINE, FOOT_Y, FEET_GEOM, edgeBandRecolor, ACTION_SPOTS_401, setRoomAction };';
 (0, eval)(code);
 const T = globalThis.__T;
 if (!T || !T.doPoke) { console.error('FAIL: 无法从 app.js 取出函数'); process.exit(1); }
@@ -289,6 +289,24 @@ const zoneRects = Object.values(T.POKE_ZONES).map(z => z.rect);
 ok('5 点按区彼此不重叠', zoneRects.every((a, i) => zoneRects.every((b, j) => i === j || !overlap(a, b))));
 const hotRects = T.HOTSPOTS_401.map(h => h.rect);
 ok('4 房间热点彼此不重叠（旧目测值咖啡压报告纸）', hotRects.every((a, i) => hotRects.every((b, j) => i === j || !overlap(a, b))));
+
+// —— 5e. 动作小人挂载点：定位跟表、缺图自动隐藏、null/未知名字撤 ——
+(function () {
+  const el = registry['room-action'];
+  T.setRoomAction(null);
+  ok('setRoomAction(null) 撤动作小人', el.classList.contains('hidden'));
+  T.setRoomAction('report');
+  const r = T.ACTION_SPOTS_401.report.rect;
+  ok('动作挂载点定位跟 ACTION_SPOTS_401', el.style.left === (r.x * 100) + '%' && el.style.top === (r.y * 100) + '%'
+    && el.style.width === (r.w * 100) + '%' && el.style.height === (r.h * 100) + '%');
+  ok('挂载点指向约定资产名', el.src === T.ACTION_SPOTS_401.report.asset);
+  el.onerror();
+  ok('qi 图未到位自动隐藏（不出破图）', el.classList.contains('hidden'));
+  el.onload();
+  ok('图加载完成才显示', !el.classList.contains('hidden'));
+  T.setRoomAction('nope');
+  ok('未知动作名按撤处理', el.classList.contains('hidden'));
+})();
 
 // —— 5b. 脚底线对齐：top 与 --sole 按各自实测脚底线下发，落点 FOOT_Y 全表情同一 ——
 ['smile', 'shy', 'angry', 'eat', 'sleep'].forEach(f => {

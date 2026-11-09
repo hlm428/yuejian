@@ -2,6 +2,13 @@
 
 每个任务完成后在此记一条，并附测试方法。
 
+## 动作小人挂载点与切换接线（等 qi 的 4 张动作 PNG）（2026-11-10）
+
+- 口径：小人美术仍 qi 手绘（禁令未解除），本单只做代码侧挂载：`ACTION_SPOTS_401` 四个舞台比例矩形（赴桌写报告=桌前脚落 0.80 / 缩床睡觉=躺床面 / 蹲地喂猫=猫窝左脚落 0.68 / 窗边发呆=桌后脚落窗台 0.42，初值图到位后微调）+ `index.html` 的 `#room-action` img（object-fit contain、底对齐、pointer-events none、z4 在站桩立绘 z6 之下）+ `setRoomAction(name|null)`：按表定位、onload 才显示、onerror 自动隐藏（qi 图未到位不出破图）、null/未知名字撤。
+- 资产约定：`assets/chibi/yunsheng_report.png / yunsheng_sleep.png / yunsheng_feedcat.png / yunsheng_window.png`，透明 RGBA、图底=脚底/躺底。
+- 测试：冒烟新增 6 条断言（撤/定位跟表/资产名/缺图隐藏/加载才显示/未知名字），163 通过 0 失败；亮灯 44/0。浏览器实测：进房间 `#room-action` hidden 且无 src（不发多余请求）；控制台调 `setRoomAction('report')` 缺图自动隐藏；`setRoomAction(null)` 撤。玩法入口留阶段 B，房间当前无可见变化。
+- 怎么测试：把任一透明 PNG 放到上述约定名字，控制台 `setRoomAction('report')` 小人出现在桌前挂载点；删掉文件再调自动隐藏不出破图；`setRoomAction(null)` 撤。
+
 ## 杯垫道具图出图并替换 CSS 椭圆占位（2026-11-10）
 
 - 禁令口径：用户仅对杯垫道具解除「禁止自己生成或重画图」，角色立绘与底图仍一个像素不动。ImageGen 返回 HTTP 403（配额）不可用，改程序绘制：PIL 4× 超采样后 LANCZOS 缩到 256×128 RGBA——靛蓝毡面 + 奶油色缝线环 + 月牙绣纹 + 侧壁厚度，透视椭圆与桌面物件同角度，alpha 干净无白边。

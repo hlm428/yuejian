@@ -24,7 +24,7 @@
 
 1. **杯垫**：✅ 已出图（2026-11-10）。`assets/props/coaster.png`（256×128 RGBA；ImageGen 配额 403 不可用，改程序绘制，禁令仅对此道具解除）。`index.html` 的 `#coaster` 已是 `<img>`，CSS 椭圆占位删除；位置仍 `js/app.js` 的 `COASTER_RECT`。qi 不满意换同名文件即可。
 2. **401 热点坐标**：✅ 已复测（2026-11-10）。`js/app.js` `HOTSPOTS_401` 四个矩形按 768×1376 底图加像素网格逐张量出（咖啡=杯+碟+热气、报告纸=桌面纸叠、小说=第四层带书名那排、猫碗=地上食盆），各留 ~4px 触摸余量、彼此不相交；浏览器 elementFromPoint 与实点四件全验证。qi 试玩若仍觉得不准，改 rect 即可。
-3. **动作小人 / BGM / 猫 / 私信等**：全部属阶段 B 及以后（v3.2 §22），**下一步是等 qi 验收阶段 A，然后才开始阶段 B**。
+3. **动作小人 / BGM / 猫 / 私信等**：全部属阶段 B 及以后（v3.2 §22），**下一步是等 qi 验收阶段 A，然后才开始阶段 B**。动作小人挂载点已备（2026-11-10）：`js/app.js` 的 `ACTION_SPOTS_401` + `setRoomAction(name|null)` + `index.html` 的 `#room-action`；qi 的 4 张透明 PNG 按 `assets/chibi/yunsheng_report.png / yunsheng_sleep.png / yunsheng_feedcat.png / yunsheng_window.png` 命名（RGBA、图底=脚底/躺底），放进来阶段 B 直接调；缺图 onerror 自动隐藏不出破图，rect 初值图到位后微调。
 
 ## 三、项目结构（哪个文件管什么）
 

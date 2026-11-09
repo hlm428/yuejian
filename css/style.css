@@ -185,6 +185,15 @@ body {
 }
 @keyframes coaster-pop { from { transform: scale(0.4); opacity: 0; } to { transform: scale(1); opacity: 0.95; } }
 
+/* 动作小人挂载点：qi 的 4 张动作 PNG 到位后由 setRoomAction 定位显示；缺图自动隐藏；z4 在站桩立绘 z6 之下 */
+#room-action {
+  position: absolute;
+  object-fit: contain;
+  object-position: 50% 100%;
+  pointer-events: none;
+  z-index: 4;
+}
+
 /* 云笙大立绘：底部对齐居中站桩，轻微呼吸起伏；只在 5 张表情图之间切换（_full 不用在房间里） */
 #char-wrap {
   position: absolute;
