@@ -186,7 +186,7 @@ ok('5 个分区按钮入库（整体点击区已拆）', ['poke-head', 'poke-fac
 ok('进房间飘戳引导', visible('poke-hint'));
 registry['poke-head'].fire('click');
 ok('点她本人触发戳', aff() === 1 && T.save.today.pokes === 1);
-ok('戳有落点反馈与小跳', registry['char-tap'].classList.contains('go') && registry['char-wrap'].classList.contains('hop'));
+ok('戳有落点反馈与轻微一缩', registry['char-tap'].classList.contains('go') && registry['char-wrap'].classList.contains('nudge'));
 ok('戳过引导消失', !visible('poke-hint'));
 registry['poke-face'].fire('click'); registry['poke-hand'].fire('click');
 ok('戳×3 亲密度=3', aff() === 3 && gained() === 3);
@@ -306,6 +306,17 @@ ok('4 房间热点彼此不重叠（旧目测值咖啡压报告纸）', hotRects
   ok('图加载完成才显示', !el.classList.contains('hidden'));
   T.setRoomAction('nope');
   ok('未知动作名按撤处理', el.classList.contains('hidden'));
+})();
+
+// —— 5f. 去弹簧化：呼吸 ≤1% / 4s、戳单次 ≤4px / 0.3s ease-out、阴影不随戳移动 ——
+(function () {
+  const css = fs.readFileSync(path.join(repo, 'css/style.css'), 'utf8');
+  ok('待机呼吸 4s 且缩放 ≤1%', /animation: breathe 4s ease-in-out infinite/.test(css) && /50% \{ transform: scaleY\(1\.008\); \}/.test(css));
+  ok('呼吸原点脚底', /transform-origin: 50% 100%;\s*\n\s*animation: breathe/.test(css));
+  ok('戳单次 0.3s ease-out 无重复', /#char-wrap\.nudge \{ animation: poke-nudge 0\.3s ease-out; \}/.test(css));
+  ok('戳位移 ≤4px（0.9916×472.8≈3.97）且无 translateY 跳', /scaleY\(0\.9916\)/.test(css) && !/translateY\(-14px\)/.test(css));
+  ok('阴影不随戳动画移动（shadow-hop 已删）', css.indexOf('shadow-hop') === -1);
+  ok('包裹层缩放原点钉脚底线', /transform-origin: 50% calc\(var\(--sole, 0\.96\) \* 100%\)/.test(css));
 })();
 
 // —— 5b. 脚底线对齐：top 与 --sole 按各自实测脚底线下发，落点 FOOT_Y 全表情同一 ——

@@ -201,6 +201,7 @@ body {
   top: 26.24%; /* 默认 smile：(FOOT_Y - 0.96*0.56)；js/app.js applyFootAlign 按表情覆写 */
   height: 56%;
   transform: translateX(-50%);
+  transform-origin: 50% calc(var(--sole, 0.96) * 100%); /* 缩放原点钉在脚底线：任何动画脚不离阴影 */
   z-index: 6;
   pointer-events: none;
 }
@@ -209,18 +210,18 @@ body {
   object-fit: contain;
   object-position: bottom;
   transform-origin: 50% 100%;
-  animation: breathe 3.4s ease-in-out infinite;
+  animation: breathe 4s ease-in-out infinite;
 }
 @keyframes breathe {
   0%, 100% { transform: scaleY(1); }
-  50% { transform: scaleY(1.014); }
+  50% { transform: scaleY(1.008); }
 }
 
 /* 脚下阴影三层，全叠在立绘下面（DOM 先影后人）。以各立绘实测脚底线为 0、w = 立绘盒宽（--wp）：
    外层大影 椭圆 左右 −0.153w..+0.162w（相对双脚中心 --fc）、上下 −0.081w..+0.025w，α0.55、blur 0.013w；
    内层核心 椭圆 左右 −0.099w..+0.126w、上下 −0.068w..+0.011w，α0.85、blur 0.013w（填暗两脚间露出的地毯）；
    接触线 沿每只鞋底轮廓 上 0.011w..下 0.013w，α0.95、blur 0.004w（JS 按每脚实测 x/sole 逐条下发）。
-   颜色 #10101A（不纯黑），层透明度走 rgba；hop 时元素 opacity 再整体变淡。
+   颜色 #10101A（不纯黑），层透明度走 rgba；阴影不随戳动画移动（脚不离地）。
    --sole/--fc 由 applyFootAlign 下发，--wp 由 layoutStages 下发，缩放/换视口不走位。 */
 #shadow-outer, #shadow-core, .contact-band {
   position: absolute;
@@ -312,22 +313,12 @@ body {
   100% { opacity: 0; transform: scale(1.25); }
 }
 
-/* 戳：小跳一下（挂在包裹层，不干扰呼吸动画） */
-#char-wrap.hop { animation: hop 0.45s ease; }
-@keyframes hop {
-  0% { transform: translateX(-50%) translateY(0); }
-  35% { transform: translateX(-50%) translateY(-14px); }
-  70% { transform: translateX(-50%) translateY(0); }
-  100% { transform: translateX(-50%) translateY(0); }
-}
-/* 三层阴影留在地上：反向位移抵消包裹层的小跳，同时收窄变淡表示离地。
-   关键帧百分比与时长必须和 hop 一致，否则抵消不干净；三层同进同退。 */
-#char-wrap.hop #shadow-outer, #char-wrap.hop #shadow-core, #char-wrap.hop .contact-band { animation: shadow-hop 0.45s ease; }
-@keyframes shadow-hop {
-  0% { transform: translateY(0) scale(1); opacity: 1; }
-  35% { transform: translateY(14px) scale(0.78); opacity: 0.55; }
-  70% { transform: translateY(0) scale(1); opacity: 1; }
-  100% { transform: translateY(0) scale(1); opacity: 1; }
+/* 戳：一次轻微一缩（挂包裹层，原点脚底线；0.3s ease-out 单次，无过冲不回弹不重复；顶点位移 ≤4px） */
+#char-wrap.nudge { animation: poke-nudge 0.3s ease-out; }
+@keyframes poke-nudge {
+  0% { transform: translateX(-50%) scaleY(1); }
+  40% { transform: translateX(-50%) scaleY(0.9916); }
+  100% { transform: translateX(-50%) scaleY(1); }
 }
 
 #btn-back {

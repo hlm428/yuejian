@@ -602,11 +602,11 @@ function updateStats() {
   byId('stat-aff').textContent = save.affection.yunsheng;
 }
 
-function hopChar() {
+function nudgeChar() {
   var el = byId('char-wrap');
-  el.classList.remove('hop');
+  el.classList.remove('nudge');
   void el.offsetWidth; // 重置动画
-  el.classList.add('hop');
+  el.classList.add('nudge');
 }
 
 /* 戳的落点反馈：鼠标/触摸落在指尖处（clientX/Y 换算到包裹层坐标），键盘激活（detail 0）落在该区中心 */
@@ -719,7 +719,7 @@ function doPoke(zone) {
   byId('poke-hint').classList.add('hidden');
   var line = zone ? pickPokeLine(zone) : pickLine('poke'); // 不带分区 = 全池（数值测试/兜底用）
   setFace(line.face);
-  hopChar(); // 小跳一下
+  nudgeChar(); // 轻微一缩（脚不离地）
   showBubble(line.text);
   if (save.today.pokes > POKE_DAILY_LIMIT) { // 戳太多：当天不再涨，不扣好感
     writeSave();
