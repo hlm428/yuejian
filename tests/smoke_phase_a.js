@@ -306,6 +306,11 @@ ok('4 房间热点彼此不重叠（旧目测值咖啡压报告纸）', hotRects
   ok('图加载完成才显示', !el.classList.contains('hidden'));
   T.setRoomAction('nope');
   ok('未知动作名按撤处理', el.classList.contains('hidden'));
+  ok('window 未接（自带白天窗等缪子重出）', T.ACTION_SPOTS_401.window === undefined);
+  T.setRoomAction('sleep');
+  ok('演动作时站桩让位（同角色不同时两个身影）', registry['char-wrap'].classList.contains('hidden'));
+  T.setRoomAction(null);
+  ok('撤动作恢复站桩', !registry['char-wrap'].classList.contains('hidden'));
 })();
 
 // —— 5f. 去弹簧化：呼吸 ≤1% / 4s、戳单次 ≤4px / 0.3s ease-out、阴影不随戳移动 ——
