@@ -376,12 +376,61 @@ function goExterior() {
 var ROOM_FACES = ['smile', 'shy', 'angry', 'eat', 'sleep']; // 只在 5 张表情图之间切换，_full 不用在房间里
 var currentFaceSrc = 'assets/characters/yunsheng_smile.png'; // 与 index.html 初始 src 一致
 
-/* 脚底线 = 5 张立绘脱本实测「alpha>200 最底行」+1 / 2450；FOOT_Y = 脚落点（舞台高度比例，
-   401 底图地毯实测 0.686–0.90 取地毯中部）。切表情按各自脚底线对齐同一落点：
-   脚踩地、人不跳位、大小不变；不用固定像素（舞台随视口缩放，固定 px 会让人悬空）。 */
-var SOLE_LINE = { smile: 0.9600, shy: 0.9600, angry: 0.9600, eat: 0.9588, sleep: 0.9600 };
+/* 脚部实测表（20 张立绘逐张脱本量得，只读图不改图）：sole = 脚底线（alpha>200 最底行 +1）/ 高；
+   fc = 双脚中心 x / 宽；feet = 每只脚 [x0, x1, 该脚底线] / 宽、/ 高（沿鞋底轮廓做接触线用）。
+   五位姑娘共用同一套三层阴影，脚底线按各自立绘实测；裙摆只量到一条落地的按一条算。 */
+var FEET_GEOM = {
+  yunsheng_smile: { sole: 0.9600, fc: 0.5103, feet: [[0.4437, 0.5181, 0.9600], [0.4913, 0.5881, 0.9420]] },
+  yunsheng_shy:   { sole: 0.9600, fc: 0.5103, feet: [[0.4437, 0.5181, 0.9600], [0.4913, 0.5881, 0.9420]] },
+  yunsheng_angry: { sole: 0.9600, fc: 0.5103, feet: [[0.4437, 0.5181, 0.9600], [0.4913, 0.5881, 0.9420]] },
+  yunsheng_eat:   { sole: 0.9588, fc: 0.5098, feet: [[0.4450, 0.5175, 0.9588], [0.4900, 0.5869, 0.9408]] },
+  yunsheng_sleep: { sole: 0.9600, fc: 0.5103, feet: [[0.4437, 0.5181, 0.9600], [0.4913, 0.5881, 0.9420]] },
+  zhixi_smile:    { sole: 0.9616, fc: 0.5176, feet: [[0.4431, 0.5256, 0.9616], [0.4781, 0.5769, 0.9555], [0.5225, 0.5794, 0.9514]] },
+  zhixi_shy:      { sole: 0.9616, fc: 0.5176, feet: [[0.4431, 0.5256, 0.9616], [0.4781, 0.5769, 0.9555], [0.5225, 0.5794, 0.9514]] },
+  zhixi_angry:    { sole: 0.9633, fc: 0.5064, feet: [[0.4425, 0.5262, 0.9633], [0.4781, 0.5787, 0.9567]] },
+  zhixi_eat:      { sole: 0.9633, fc: 0.5062, feet: [[0.4425, 0.5256, 0.9633], [0.4781, 0.5787, 0.9567]] },
+  zhixi_sleep:    { sole: 0.9633, fc: 0.5064, feet: [[0.4425, 0.5262, 0.9633], [0.4781, 0.5787, 0.9567]] },
+  xiyue_smile:    { sole: 0.9433, fc: 0.5037, feet: [[0.4506, 0.5569, 0.9433]] },
+  xiyue_shy:      { sole: 0.9433, fc: 0.5037, feet: [[0.4506, 0.5569, 0.9433]] },
+  xiyue_angry:    { sole: 0.9453, fc: 0.5050, feet: [[0.4506, 0.5594, 0.9453]] },
+  xiyue_eat:      { sole: 0.9449, fc: 0.5050, feet: [[0.4500, 0.5600, 0.9449]] },
+  xiyue_sleep:    { sole: 0.9453, fc: 0.5050, feet: [[0.4506, 0.5594, 0.9453]] },
+  yelan_smile:    { sole: 0.9596, fc: 0.5101, feet: [[0.4275, 0.4813, 0.9596], [0.5387, 0.5931, 0.9445]] },
+  yelan_shy:      { sole: 0.9596, fc: 0.5101, feet: [[0.4275, 0.4813, 0.9596], [0.5387, 0.5931, 0.9445]] },
+  yelan_angry:    { sole: 0.9600, fc: 0.5094, feet: [[0.4263, 0.4806, 0.9600], [0.5375, 0.5931, 0.9457]] },
+  yelan_eat:      { sole: 0.9600, fc: 0.5094, feet: [[0.4263, 0.4806, 0.9600], [0.5375, 0.5931, 0.9457]] },
+  yelan_sleep:    { sole: 0.9596, fc: 0.5092, feet: [[0.4263, 0.4806, 0.9596], [0.5375, 0.5925, 0.9457]] }
+};
+
+/* 脚底线 = 立绘实测「alpha>200 最底行」+1 / 2450（与 FEET_GEOM 同源，云笙五表情）；
+   FOOT_Y = 脚落点（舞台高度比例，401 底图地毯实测 0.686–0.90 取地毯中部）。切表情按各自脚底线
+   对齐同一落点：脚踩地、人不跳位、大小不变；不用固定像素（舞台随视口缩放，固定 px 会让人悬空）。 */
+var SOLE_LINE = {};
+Object.keys(FEET_GEOM).forEach(function (k) {
+  if (k.indexOf('yunsheng_') === 0) SOLE_LINE[k.slice(9)] = FEET_GEOM[k].sole;
+});
 var FOOT_Y = 0.80;
 var WRAP_H_FRAC = 0.56; // 与 #char-wrap height:56% 同源
+var currentChar = 'yunsheng'; // 房间内当前立绘角色（阴影/脚底线按 char_face 查 FEET_GEOM）
+
+function feetGeom(face) {
+  return FEET_GEOM[currentChar + '_' + face] || FEET_GEOM['yunsheng_' + face] || FEET_GEOM.yunsheng_smile;
+}
+
+/* 接触线：沿每只鞋底轮廓一条深带（sole 上 0.011w ~ 下 0.013w），条数 = 实测落地脚数 */
+function buildContactBands(face) {
+  var box = byId('char-contacts');
+  box.innerHTML = '';
+  feetGeom(face).feet.forEach(function (f) {
+    var d = document.createElement('div');
+    d.className = 'contact-band';
+    d.style.left = (f[0] * 100) + '%';
+    d.style.width = ((f[1] - f[0]) * 100) + '%';
+    d.style.top = 'calc(' + (f[2] * 100) + '% - 0.011 * var(--wp, 200px))';
+    d.style.height = 'calc(0.024 * var(--wp, 200px))';
+    box.appendChild(d);
+  });
+}
 
 function applyFootAlign(face) {
   var s = SOLE_LINE[face] || SOLE_LINE.smile;
@@ -389,13 +438,15 @@ function applyFootAlign(face) {
   wrap.style.top = ((FOOT_Y - s * WRAP_H_FRAC) * 100).toFixed(3) + '%';
   // 变量挂 screen-room：阴影（wrap 内）与戳戳提示（wrap 外）都要继承它
   byId('screen-room').style.setProperty('--sole', s);
+  byId('screen-room').style.setProperty('--fc', feetGeom(face).fc);
+  buildContactBands(face);
 }
 
 function setFace(face) {
   if (ROOM_FACES.indexOf(face) < 0) face = 'smile';
   applyFootAlign(face);
   var img = byId('room-char');
-  var src = 'assets/characters/yunsheng_' + face + '.png';
+  var src = 'assets/characters/' + currentChar + '_' + face + '.png';
   if (src === currentFaceSrc) { // 同 src 浏览器不会重发 load/error：清掉 broken 会露 alt 破图标，保持现状
     if (isPortraitBroken(img)) markPortraitBroken(true);
     return;
@@ -756,6 +807,10 @@ function layoutStages() {
     el.style.left = left + 'px';
     el.style.top = top + 'px';
   });
+  // --wp = 立绘盒宽（px）：阴影三层与模糊量以 w 为单位，随视口缩放。
+  // 用 stage 高度推算（隐藏时 getBoundingClientRect 为 0 不可靠）：盒高 = 56% stage 高，宽 = 盒高 × 1600/2450。
+  var sh = parseFloat(byId('room-stage').style.height) || 0;
+  byId('screen-room').style.setProperty('--wp', (sh * WRAP_H_FRAC * 1600 / 2450).toFixed(2) + 'px');
 }
 
 /* ---------- 启动 ---------- */

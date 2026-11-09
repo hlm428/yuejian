@@ -209,39 +209,38 @@ body {
   50% { transform: scaleY(1.014); }
 }
 
-/* 脚下阴影两层，上沿都压进鞋底线下 2px（被立绘盖住），鞋底与阴影之间不留缝：
-   接触阴影 = 双鞋合宽、硬边扁条，中间深两边淡（只横向 fade，上沿不 fade），只在鞋底正下方；
-   环境阴影 = 大椭圆往外晕。尺寸全相对 #char-wrap，缩放不走位。--sole 由 applyFootAlign 下发。 */
-#char-contact {
+/* 脚下阴影三层，全叠在立绘下面（DOM 先影后人）。以各立绘实测脚底线为 0、w = 立绘盒宽（--wp）：
+   外层大影 椭圆 左右 −0.153w..+0.162w（相对双脚中心 --fc）、上下 −0.081w..+0.025w，α0.55、blur 0.013w；
+   内层核心 椭圆 左右 −0.099w..+0.126w、上下 −0.068w..+0.011w，α0.85、blur 0.013w（填暗两脚间露出的地毯）；
+   接触线 沿每只鞋底轮廓 上 0.011w..下 0.013w，α0.95、blur 0.004w（JS 按每脚实测 x/sole 逐条下发）。
+   颜色 #10101A（不纯黑），层透明度走 rgba；hop 时元素 opacity 再整体变淡。
+   --sole/--fc 由 applyFootAlign 下发，--wp 由 layoutStages 下发，缩放/换视口不走位。 */
+#shadow-outer, #shadow-core, .contact-band {
   position: absolute;
-  left: 48.8%;
-  top: calc(var(--sole, 0.96) * 100% - 2px);
-  width: 11%;
-  height: 7px;
-  transform: translateX(-50%);
-  background: linear-gradient(to right,
-    rgba(10, 5, 20, 0) 0%,
-    rgba(10, 5, 20, 0.78) 22%,
-    rgba(10, 5, 20, 0.85) 50%,
-    rgba(10, 5, 20, 0.78) 78%,
-    rgba(10, 5, 20, 0) 100%);
-  border-radius: 0 0 4px 4px;
   pointer-events: none;
 }
-#char-shadow {
-  position: absolute;
-  left: 51.6%;
-  top: calc(var(--sole, 0.96) * 100% - 3px);
-  width: 30%;
-  height: 4.6%;
-  transform: translateX(-50%);
-  background: radial-gradient(ellipse at 50% 30%,
-    rgba(14, 16, 26, 0.3) 0%,
-    rgba(14, 16, 26, 0.24) 42%,
-    rgba(14, 16, 26, 0.12) 70%,
-    rgba(14, 16, 26, 0) 100%);
-  filter: blur(1px);
-  pointer-events: none;
+#shadow-outer {
+  left: calc((var(--fc, 0.51) - 0.153) * 100%);
+  width: 31.5%;
+  top: calc(var(--sole, 0.96) * 100% - 0.081 * var(--wp, 200px));
+  height: calc(0.106 * var(--wp, 200px));
+  background: rgba(16, 16, 26, 0.55);
+  filter: blur(calc(0.013 * var(--wp, 200px)));
+  border-radius: 50%;
+}
+#shadow-core {
+  left: calc((var(--fc, 0.51) - 0.099) * 100%);
+  width: 22.5%;
+  top: calc(var(--sole, 0.96) * 100% - 0.068 * var(--wp, 200px));
+  height: calc(0.079 * var(--wp, 200px));
+  background: rgba(16, 16, 26, 0.85);
+  filter: blur(calc(0.013 * var(--wp, 200px)));
+  border-radius: 50%;
+}
+.contact-band {
+  background: rgba(16, 16, 26, 0.95);
+  filter: blur(calc(0.004 * var(--wp, 200px)));
+  border-radius: 0 0 50% 50% / 0 0 100% 100%; /* 下缘半椭杯状，贴鞋底轮廓 */
 }
 
 /* 点她本人 = 戳：5 个独立点按区（头/脸/垂手/左肩/右肩），矩形由 POKE_ZONES 按 v3 立绘实测统一下发，
@@ -314,14 +313,14 @@ body {
   70% { transform: translateX(-50%) translateY(0); }
   100% { transform: translateX(-50%) translateY(0); }
 }
-/* 两层阴影留在地上：反向位移抵消包裹层的小跳，同时收窄变淡表示离地。
-   关键帧百分比与时长必须和 hop 一致，否则抵消不干净；接触/环境两层同进同退。 */
-#char-wrap.hop #char-shadow, #char-wrap.hop #char-contact { animation: shadow-hop 0.45s ease; }
+/* 三层阴影留在地上：反向位移抵消包裹层的小跳，同时收窄变淡表示离地。
+   关键帧百分比与时长必须和 hop 一致，否则抵消不干净；三层同进同退。 */
+#char-wrap.hop #shadow-outer, #char-wrap.hop #shadow-core, #char-wrap.hop .contact-band { animation: shadow-hop 0.45s ease; }
 @keyframes shadow-hop {
-  0% { transform: translateX(-50%) translateY(0) scale(1); opacity: 1; }
-  35% { transform: translateX(-50%) translateY(14px) scale(0.78); opacity: 0.55; }
-  70% { transform: translateX(-50%) translateY(0) scale(1); opacity: 1; }
-  100% { transform: translateX(-50%) translateY(0) scale(1); opacity: 1; }
+  0% { transform: translateY(0) scale(1); opacity: 1; }
+  35% { transform: translateY(14px) scale(0.78); opacity: 0.55; }
+  70% { transform: translateY(0) scale(1); opacity: 1; }
+  100% { transform: translateY(0) scale(1); opacity: 1; }
 }
 
 #btn-back {
@@ -614,7 +613,7 @@ body {
 /* 图片缺失兜底：贴片 / 立绘加载失败时不白屏（柔和占位由 JS 切 display，样式兜底透明） */
 .patch.broken, #room-char.broken { visibility: hidden; }
 /* 立绘没加载出来时，脚下阴影和点击区一并撤掉，不留凭空一圈影子或隐形按钮；引导也别再喊「点她」 */
-#char-wrap.broken #char-shadow, #char-wrap.broken #char-contact, #char-wrap.broken .poke-zone { display: none; }
+#char-wrap.broken #shadow-outer, #char-wrap.broken #shadow-core, #char-wrap.broken .contact-band, #char-wrap.broken .poke-zone { display: none; }
 #char-wrap.broken ~ #poke-hint { display: none; }
 
 /* 窄屏（真手机）：铺满 */

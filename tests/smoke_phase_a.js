@@ -47,6 +47,11 @@ function makeEl(tag) {
     get() { return _text; },
     set(v) { _text = String(v); }
   });
+  // innerHTML 置空 = 清空子节点（接触线每次重build 前会清容器）
+  Object.defineProperty(el, 'innerHTML', {
+    get() { return ''; },
+    set(v) { if (String(v) === '') el.children.length = 0; }
+  });
   Object.defineProperty(el, 'id', {
     get() { return el._id || ''; },
     set(v) { el._id = v; registry[v] = el; } // 建 id 即入注册表，getElementById 找不到就报错
@@ -99,7 +104,7 @@ const files = [
   path.join(repo, 'js', 'app.js')
 ];
 const code = files.map(f => fs.readFileSync(f, 'utf8')).join('\n;\n')
-  + '\n;globalThis.__T = { save, rolls, usedLines, renderExterior, onWindowClick, showCard, closeCard, enterRoom, goExterior, doPoke, doFeed, doChat, gainAffection, startScene, advanceScene, chooseScene, finishScene, updateSceneEntry, writeSave, ensureToday, loadSave, setFace, lightOn, bandOf, yelanAsleep, patrolTonight, HOTSPOTS_401, PEOPLE, POKE_ZONES, pickPokeLine, pickLine, applyZoneRects, applyFootAlign, SOLE_LINE, FOOT_Y };';
+  + '\n;globalThis.__T = { save, rolls, usedLines, renderExterior, onWindowClick, showCard, closeCard, enterRoom, goExterior, doPoke, doFeed, doChat, gainAffection, startScene, advanceScene, chooseScene, finishScene, updateSceneEntry, writeSave, ensureToday, loadSave, setFace, lightOn, bandOf, yelanAsleep, patrolTonight, HOTSPOTS_401, PEOPLE, POKE_ZONES, pickPokeLine, pickLine, applyZoneRects, applyFootAlign, SOLE_LINE, FOOT_Y, FEET_GEOM };';
 (0, eval)(code);
 const T = globalThis.__T;
 if (!T || !T.doPoke) { console.error('FAIL: 无法从 app.js 取出函数'); process.exit(1); }
@@ -177,7 +182,7 @@ ok('戳按钮已删除', !ids.includes('btn-poke') && !/id="btn-poke"/.test(html
 ok('底部只剩 喂/聊天/一起', ['btn-feed', 'btn-chat', 'btn-together'].every(id => ids.includes(id))
   && [...html.matchAll(/<button class="act[^"]*"/g)].length === 3);
 ok('5 个分区按钮入库（整体点击区已拆）', ['poke-head', 'poke-face', 'poke-hand', 'poke-shoulderL', 'poke-shoulderR'].every(id => ids.includes(id))
-  && !ids.includes('char-hit') && ids.includes('char-shadow') && ids.includes('char-contact') && ids.includes('char-tap'));
+  && !ids.includes('char-hit') && ids.includes('shadow-outer') && ids.includes('shadow-core') && ids.includes('char-contacts') && ids.includes('char-tap'));
 ok('进房间飘戳引导', visible('poke-hint'));
 registry['poke-head'].fire('click');
 ok('点她本人触发戳', aff() === 1 && T.save.today.pokes === 1);
@@ -291,6 +296,23 @@ ok('5 点按区彼此不重叠', zoneRects.every((a, i) => zoneRects.every((b, j
     && String(registry['screen-room'].style['--sole']) === String(s));
 });
 ok('脚落点在地毯区间（401 底图实测 0.686–0.90）', T.FOOT_Y > 0.686 && T.FOOT_Y < 0.90);
+// —— 5b+. 三层脚下阴影：先画影再画人；--fc 下发；接触线条数与几何 = 各立绘实测 ——
+ok('阴影三层都在立绘之前（先画影再画人）',
+  html.indexOf('id="shadow-outer"') < html.indexOf('id="room-char"')
+  && html.indexOf('id="shadow-core"') < html.indexOf('id="room-char"')
+  && html.indexOf('id="char-contacts"') < html.indexOf('id="room-char"'));
+['smile', 'shy', 'angry', 'eat', 'sleep'].forEach(f => {
+  T.applyFootAlign(f);
+  const g = T.FEET_GEOM['yunsheng_' + f];
+  const bands = registry['char-contacts'].children;
+  ok(`阴影 ${f}：--fc 下发且接触线条数 = 实测落地脚数`, String(registry['screen-room'].style['--fc']) === String(g.fc) && bands.length === g.feet.length);
+  const b = bands[0];
+  ok(`阴影 ${f}：首条接触线几何 = 实测脚 0（x/宽/sole 上下 0.011w/0.013w）`,
+    b.style.left === (g.feet[0][0] * 100) + '%'
+    && b.style.width === ((g.feet[0][1] - g.feet[0][0]) * 100) + '%'
+    && b.style.top === 'calc(' + (g.feet[0][2] * 100) + '% - 0.011 * var(--wp, 200px))'
+    && b.style.height === 'calc(0.024 * var(--wp, 200px))');
+});
 T.applyFootAlign('smile');
 
 // —— 6. 喂：黑咖啡 +3/心情+5/杯垫；甜食 0/-10 ——
