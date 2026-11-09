@@ -186,6 +186,18 @@ function setRect(el, r) {
   el.style.height = (r.h * 100) + '%';
 }
 
+/* 灭窗遮罩贴玻璃：rect 取多边形外接框，clip-path 百分比相对外接框 */
+function applyGlassClip(el, pts) {
+  var xs = pts.map(function (p) { return p[0]; });
+  var ys = pts.map(function (p) { return p[1]; });
+  var x0 = Math.min.apply(null, xs), y0 = Math.min.apply(null, ys);
+  var w = Math.max.apply(null, xs) - x0, h = Math.max.apply(null, ys) - y0;
+  setRect(el, { x: x0, y: y0, w: w, h: h });
+  el.style.clipPath = 'polygon(' + pts.map(function (p) {
+    return ((p[0] - x0) / w * 100).toFixed(2) + '% ' + ((p[1] - y0) / h * 100).toFixed(2) + '%';
+  }).join(', ') + ')';
+}
+
 function fmtClock(d) {
   var wk = ['日', '一', '二', '三', '四', '五', '六'][d.getDay()];
   function p(n) { return (n < 10 ? '0' : '') + n; }
@@ -238,7 +250,7 @@ function buildExterior() {
       var mask = document.createElement('div');
       mask.className = 'win-dark';
       mask.id = 'mask-' + id;
-      setRect(mask, w.hotspot); // 灭窗遮罩 = hotspot 矩形
+      applyGlassClip(mask, w.glass); // 灭窗只压暗窗玻璃多边形，不盖墙/框/栏杆/天空
       stage.appendChild(mask);
     }
 
