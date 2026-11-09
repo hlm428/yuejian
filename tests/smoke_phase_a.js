@@ -116,22 +116,28 @@ function gained() { return T.save.today.gained; }
 const stageKids = registry['stage'].children;
 ok('外观：4 张贴片', stageKids.filter(e => e.tagName === 'IMG').length === 4);
 ok('外观：贴片 src 指向 assets/exterior', stageKids.filter(e => e.tagName === 'IMG' && /assets\/exterior\/win_/.test(e.src)).length === 4);
-ok('外观：4 个遮罩（302 始终亮不需要）+ 5 个点按区', stageKids.filter(e => e.classList.contains('win-dark')).length === 4 && stageKids.filter(e => e.classList.contains('win-hot')).length === 5);
+ok('外观：7 个遮罩（7f 单面、其余每窗 2 块玻璃开口，302 始终亮不需要）+ 5 个点按区', stageKids.filter(e => e.classList.contains('win-dark')).length === 7 && stageKids.filter(e => e.classList.contains('win-hot')).length === 5);
 ok('外观：302 无贴片无遮罩', !registry['patch-302'] && !registry['mask-302']);
 ok('外观：layoutStages 尺寸', /px$/.test(registry['stage'].style.width) && /px$/.test(registry['stage'].style.height));
 
-// —— 1b. 灭窗遮罩贴玻璃（审查回归：曾整块盖 hotspot，连墙体/窗框/栏杆/天空一起压暗）——
+// —— 1b. 灭窗遮罩贴玻璃（审查回归：曾整块盖 hotspot，连墙体/窗框/栏杆/天空一起压暗；
+//        验收回归：301/7f 下边界曾漏到花箱/栏杆。每块玻璃开口一个遮罩，窗棂不压）——
+const GLASS_VERTS = { '7f': [4], '501': [5, 4], '401': [5, 4], '301': [5, 4] };
 ['7f', '501', '401', '301'].forEach(id => {
-  const g = window.WINDOWS[id].glass;
-  const xs = g.map(p => p[0]), ys = g.map(p => p[1]);
-  const x0 = Math.min(...xs), y0 = Math.min(...ys);
-  const gw = Math.max(...xs) - x0, gh = Math.max(...ys) - y0;
-  const m = registry['mask-' + id];
-  ok(`灭窗 ${id}：遮罩 clip-path 裁到玻璃 4 顶点多边形`, /^polygon\(/.test(m.style.clipPath || '') && (m.style.clipPath.match(/%/g) || []).length === 8);
-  ok(`灭窗 ${id}：遮罩 rect = glass 外接框（非整块 hotspot）`, m.style.left === (x0 * 100) + '%' && m.style.top === (y0 * 100) + '%'
-    && m.style.width === (gw * 100) + '%' && m.style.height === (gh * 100) + '%');
-  ok(`灭窗 ${id}：glass 坐标合法（4 点、0~1、正面积）`, g.length === 4 && g.every(p => p[0] >= 0 && p[0] <= 1 && p[1] >= 0 && p[1] <= 1) && gw > 0 && gh > 0);
+  window.WINDOWS[id].glass.forEach((g, i) => {
+    const xs = g.map(p => p[0]), ys = g.map(p => p[1]);
+    const x0 = Math.min(...xs), y0 = Math.min(...ys);
+    const gw = Math.max(...xs) - x0, gh = Math.max(...ys) - y0;
+    const m = registry['mask-' + id + (i ? '-' + i : '')];
+    ok(`灭窗 ${id}#${i}：遮罩 clip-path 裁到玻璃 ${GLASS_VERTS[id][i]} 顶点多边形`, !!m && /^polygon\(/.test(m.style.clipPath || '') && (m.style.clipPath.match(/%/g) || []).length === 2 * GLASS_VERTS[id][i]);
+    ok(`灭窗 ${id}#${i}：遮罩 rect = glass 外接框（非整块 hotspot）`, m.style.left === (x0 * 100) + '%' && m.style.top === (y0 * 100) + '%'
+      && m.style.width === (gw * 100) + '%' && m.style.height === (gh * 100) + '%');
+    ok(`灭窗 ${id}#${i}：glass 坐标合法（${GLASS_VERTS[id][i]} 点、0~1、正面积）`, g.length === GLASS_VERTS[id][i] && g.every(p => p[0] >= 0 && p[0] <= 1 && p[1] >= 0 && p[1] <= 1) && gw > 0 && gh > 0);
+  });
 });
+ok('灭窗 301：右半玻璃底 = 玫瑰顶（<0.62），左半底仍窗框内（<0.65），花箱栏杆不压',
+  Math.max(...window.WINDOWS['301'].glass[1].map(p => p[1])) < 0.62
+  && Math.max(...window.WINDOWS['301'].glass[0].map(p => p[1])) < 0.65);
 
 T.renderExterior();
 ok('外观：时钟渲染', /\d+月\d+日/.test(txt('clock-chip')));

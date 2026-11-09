@@ -168,6 +168,7 @@ var POKE_ZONES = {
 
 /* ---------- 运行状态 ---------- */
 var rolls = {};       // 每人本次打开游戏抽到的动作套：'7f'/'501'/'401'/'301' → 0/1/2（A/B/C），不存档
+var MASK_ELS = {};    // '7f'/… → 该窗所有玻璃遮罩元素（每块开口一个）
 var usedLines = {};   // 同一会话台词不重复：{ poke: [下标], chat: [下标] }
 var bubbleTimer = null;
 var toastTimer = null;
@@ -247,11 +248,14 @@ function buildExterior() {
       stage.appendChild(img);
     }
     if (id !== '302') { // 302 始终亮，永远不需要灭窗遮罩
-      var mask = document.createElement('div');
-      mask.className = 'win-dark';
-      mask.id = 'mask-' + id;
-      applyGlassClip(mask, w.glass); // 灭窗只压暗窗玻璃多边形，不盖墙/框/栏杆/天空
-      stage.appendChild(mask);
+      MASK_ELS[id] = w.glass.map(function (poly, i) {
+        var mask = document.createElement('div');
+        mask.className = 'win-dark';
+        mask.id = 'mask-' + id + (i ? '-' + i : ''); // 每块玻璃开口一个遮罩，窗棂/墙体不被压暗
+        applyGlassClip(mask, poly); // 灭窗只压暗窗玻璃多边形，不盖墙/框/栏杆/天空
+        stage.appendChild(mask);
+        return mask;
+      });
     }
 
     var hot = document.createElement('div');
@@ -275,8 +279,8 @@ function renderExterior() {
     var on = lightOn(id, band, opts);
     var patch = byId('patch-' + id);
     if (patch) patch.style.display = (on && patch.dataset.broken !== '1') ? '' : 'none'; // 窗亮显示抽到的贴片（挂掉的贴片保持隐藏）
-    var mask = byId('mask-' + id);
-    if (mask) mask.style.display = on ? 'none' : '';   // 窗灭盖深蓝灰遮罩
+    var mask = MASK_ELS[id];
+    if (mask) mask.forEach(function (m) { m.style.display = on ? 'none' : ''; });   // 窗灭盖深蓝遮罩
   });
 }
 

@@ -11,7 +11,6 @@
   --ink-soft: #8a8071;
   --night: #2c3550;
   --lamp-warm: #ffd98a; /* 亮窗光晕；派生 rgba 由此而来 */
-  --dark-blue: rgba(34, 42, 60, 0.88); /* 灭窗深蓝灰遮罩（约 0.88） */
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -65,8 +64,14 @@ body {
   pointer-events: none;
 }
 
-/* 灭窗遮罩：盖在 hotspot 矩形上 */
-.win-dark { position: absolute; background: var(--dark-blue); }
+/* 灭窗遮罩：只盖玻璃多边形（clip-path 由 JS 按 glass 裁）。
+   关灯的房间：深蓝、0.6–0.7 透、上深下浅，斜向一道淡淡玻璃反光。 */
+.win-dark {
+  position: absolute;
+  background:
+    linear-gradient(112deg, rgba(214, 230, 255, 0) 40%, rgba(214, 230, 255, 0.10) 46%, rgba(214, 230, 255, 0.03) 53%, rgba(214, 230, 255, 0) 60%),
+    linear-gradient(to bottom, rgba(12, 19, 42, 0.70), rgba(23, 33, 62, 0.65) 55%, rgba(34, 47, 82, 0.60));
+}
 
 /* 点按区：整扇窗 + 光晕都能点（SPEC §25 补强②） */
 .win-hot {
