@@ -167,7 +167,7 @@ body {
 /* ---------- 401 房间 ---------- */
 #room-stage .room-bg { position: absolute; inset: 0; }
 
-/* 房间热点：黑咖啡 / 报告纸 / 推理小说 / 猫碗（坐标为 app.js 里的实现层估计值，可调） */
+/* 房间热点：黑咖啡 / 报告纸 / 推理小说 / 猫碗（坐标 2026-11-10 按底图逐像素复测，见 app.js HOTSPOTS_401） */
 .room-hot {
   position: absolute;
   cursor: pointer;
