@@ -154,16 +154,19 @@ var HOTSPOTS_401 = [
 
 var COASTER_RECT = { x: 0.245, y: 0.484, w: 0.062, h: 0.03 }; // 杯垫出现位置（桌上，报告纸前方）
 
-/* 云笙 5 个独立点按区（第一单第 3 步）：矩形按 v3 立绘实测 anatomy（相对 #char-wrap），
+/* 云笙 5 个独立点按区（第一单第 3 步，第四单按 v4 立绘 1600×2450 像素复校）：
+   矩形 = 相对立绘（#char-wrap 即立绘盒）的百分比；skin/轮廓取证：
+   发顶 0.0086、脸 0.085–0.163、颈 0.20–0.22、垂手 skin 0.6138–0.6406 / 0.459–0.513、
+   肩线行 0.19 轮廓 0.358–0.649。eat 抬手持食无垂手，垂手区按其余四表情实测。
    lines 是 data/lines_yunsheng.js poke 池的下标——5 区互不重叠、合起来恰好覆盖 qi 定稿 10 句，
    表情随台词 face 走：头/垂手 shy、脸/右肩 angry、左肩 smile/angry。左右肩以她本人左右为准（左肩在画面右侧）。
    ?debug=1 时 5 个框直接画在按钮上（CSS .debug-zones），qi 试玩后可调矩形。 */
 var POKE_ZONES = {
-  head:      { label: '头',   rect: { x: 0.41,  y: 0.009, w: 0.18,  h: 0.071 }, lines: [2, 8] },
-  face:      { label: '脸',   rect: { x: 0.435, y: 0.08,  w: 0.125, h: 0.068 }, lines: [0, 4] },
-  hand:      { label: '垂手', rect: { x: 0.605, y: 0.445, w: 0.062, h: 0.085 }, lines: [5, 6] },
-  shoulderL: { label: '左肩', rect: { x: 0.56,  y: 0.163, w: 0.10,  h: 0.055 }, lines: [9, 7] },
-  shoulderR: { label: '右肩', rect: { x: 0.35,  y: 0.163, w: 0.105, h: 0.055 }, lines: [1, 3] }
+  head:      { label: '头',   rect: { x: 0.415, y: 0.009, w: 0.17,  h: 0.071 }, lines: [2, 8] },
+  face:      { label: '脸',   rect: { x: 0.44,  y: 0.085, w: 0.13,  h: 0.078 }, lines: [0, 4] },
+  hand:      { label: '垂手', rect: { x: 0.606, y: 0.452, w: 0.045, h: 0.068 }, lines: [5, 6] },
+  shoulderL: { label: '左肩', rect: { x: 0.545, y: 0.168, w: 0.095, h: 0.047 }, lines: [9, 7] },
+  shoulderR: { label: '右肩', rect: { x: 0.362, y: 0.168, w: 0.093, h: 0.047 }, lines: [1, 3] }
 };
 
 /* ---------- 运行状态 ---------- */

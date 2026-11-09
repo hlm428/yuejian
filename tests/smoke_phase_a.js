@@ -215,8 +215,8 @@ for (const [z, cfg] of Object.entries(T.POKE_ZONES)) {
 registry['poke-head'].fire('click', { detail: 1, clientX: 180, clientY: 300 });
 ok('鼠标/触摸落点反馈在指尖处', registry['char-tap'].style.left === '180px' && registry['char-tap'].style.top === '300px');
 registry['poke-face'].fire('click');
-ok('键盘激活落点在该区中心', Math.abs(parseFloat(registry['char-tap'].style.left) - 49.75) < 0.01
-  && Math.abs(parseFloat(registry['char-tap'].style.top) - 11.4) < 0.01);
+ok('键盘激活落点在该区中心', Math.abs(parseFloat(registry['char-tap'].style.left) - 50.5) < 0.01
+  && Math.abs(parseFloat(registry['char-tap'].style.top) - 12.4) < 0.01);
 T.save.affection.yunsheng = affBeforeZones; T.save.today = todayBeforeZones; T.writeSave(); // 分区覆盖不影响后续数值断言
 
 // 5b+. 空池兜底：数据全标 needCat 时抽词不抛 TypeError（审查回归）
@@ -241,9 +241,21 @@ ok('整池空兜底不炸', emptyChat && !emptyChat.threw && typeof emptyChat.te
 global.location = { search: '?debug=1' };
 T.applyZoneRects();
 ok('debug=1 挂 debug-zones（5 框可见）', registry['char-wrap'].classList.contains('debug-zones'));
-ok('5 区矩形已下发到按钮', Math.abs(parseFloat(registry['poke-head'].style.left) - 41) < 0.01
-  && Math.abs(parseFloat(registry['poke-hand'].style.width) - 6.2) < 0.01
+ok('5 区矩形已下发到按钮', Math.abs(parseFloat(registry['poke-head'].style.left) - 41.5) < 0.01
+  && Math.abs(parseFloat(registry['poke-hand'].style.width) - 4.5) < 0.01
   && /%$/.test(registry['poke-shoulderL'].style.height));
+// 校准回归：5 区两两不重叠（第四单逐表情点测的前提）
+{
+  const zs = Object.keys(T.POKE_ZONES);
+  let overlap = null;
+  for (let i = 0; i < zs.length && !overlap; i++) {
+    for (let j = i + 1; j < zs.length && !overlap; j++) {
+      const a = T.POKE_ZONES[zs[i]].rect, b = T.POKE_ZONES[zs[j]].rect;
+      if (a.x < b.x + b.w && b.x < a.x + a.w && a.y < b.y + b.h && b.y < a.y + a.h) overlap = zs[i] + '/' + zs[j];
+    }
+  }
+  ok('5 区两两不重叠', overlap === null);
+}
 global.location = { search: '?debug=1&x=2' };
 T.applyZoneRects();
 ok('debug=1 带其他参数也识别', registry['char-wrap'].classList.contains('debug-zones'));
