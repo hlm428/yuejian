@@ -22,7 +22,7 @@
 
 阶段 A 内**没有半截代码**——所有已开工的东西都是做完、测过、提交的。遗留事项（均等 qi 素材/决定，不是烂尾）：
 
-1. **杯垫占位**：无美术资产，CSS 椭圆顶替。位置在 `js/app.js` 的 `COASTER_RECT`（约 153 行），样式在 `css/style.css` 的 `#coaster`。qi 出图后：加 `<img>` 换掉 div 即可。
+1. **杯垫**：✅ 已出图（2026-11-10）。`assets/props/coaster.png`（256×128 RGBA；ImageGen 配额 403 不可用，改程序绘制，禁令仅对此道具解除）。`index.html` 的 `#coaster` 已是 `<img>`，CSS 椭圆占位删除；位置仍 `js/app.js` 的 `COASTER_RECT`。qi 不满意换同名文件即可。
 2. **401 热点坐标**：✅ 已复测（2026-11-10）。`js/app.js` `HOTSPOTS_401` 四个矩形按 768×1376 底图加像素网格逐张量出（咖啡=杯+碟+热气、报告纸=桌面纸叠、小说=第四层带书名那排、猫碗=地上食盆），各留 ~4px 触摸余量、彼此不相交；浏览器 elementFromPoint 与实点四件全验证。qi 试玩若仍觉得不准，改 rect 即可。
 3. **动作小人 / BGM / 猫 / 私信等**：全部属阶段 B 及以后（v3.2 §22），**下一步是等 qi 验收阶段 A，然后才开始阶段 B**。
 
@@ -62,7 +62,7 @@ node tests/smoke_phase_a.js   → 冒烟测试：131 通过，0 失败
 ## 五、已知 bug 与占位
 
 - **已知功能性 bug：无**（5 轮 entire review，轨迹 5→4→2→2→3 条，后三轮均 approve with nits，全部修复；测试 175 条断言全绿（亮灯 44 + 冒烟 131）。2026-11-09 顺手修掉一个旧缺陷：立绘加载失败时 JS 只写 `dataset.broken` 没挂 `.broken` 类，CSS 的 `#room-char.broken { visibility: hidden }` 一直是死规则，浏览器会露出 alt 破图标——现在 `markPortraitBroken()` 统一挂类。
-- **占位（qi 素材到位即替换）**：杯垫 CSS 椭圆。
+- **占位（qi 素材到位即替换）**：动作小人（qi 出图）；杯垫已用程序绘制道具图顶替，qi 可换 `assets/props/coaster.png` 同名文件。
 - **有意为之的阶段 A 限制（不是 bug）**：路人窗常亮不随机（passerby.js 阶段 C 用）；便利店只走规则函数无视觉遮罩；除 401 外三人「拜访」灰掉；302 卡片无按钮；云笙出警概率是实现层定的 1/7（`patrolTonight`，qi 可改）。
 - 内嵌浏览器（ZCode）打不开是已知环境问题：试玩用系统浏览器双击 `index.html`，或起本地静态服务器。
 

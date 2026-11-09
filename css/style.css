@@ -176,12 +176,10 @@ body {
 }
 .room-hot:hover { box-shadow: 0 0 10px rgba(255, 217, 138, 0.4) inset; }
 
-/* 杯垫：喂黑咖啡后出现在桌上（暂无美术资产，CSS 椭圆占位，qi 出图后替换同名元素） */
+/* 杯垫：喂黑咖啡后出现在桌上（道具图 assets/props/coaster.png；2026-11-10 禁令仅对此道具解除、程序绘制，qi 不满意换同名文件即可） */
 #coaster {
   position: absolute;
-  border-radius: 50%;
-  background: radial-gradient(ellipse at 50% 42%, #b98a6a 0%, #8a5f43 55%, #74492f 100%);
-  box-shadow: 0 2px 4px rgba(30, 24, 18, 0.45), inset 0 0 0 2px rgba(255, 236, 210, 0.35);
+  object-fit: contain;
   opacity: 0.95;
   animation: coaster-pop 0.4s ease;
 }
