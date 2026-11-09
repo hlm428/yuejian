@@ -104,7 +104,7 @@ const files = [
   path.join(repo, 'js', 'app.js')
 ];
 const code = files.map(f => fs.readFileSync(f, 'utf8')).join('\n;\n')
-  + '\n;globalThis.__T = { save, rolls, usedLines, renderExterior, onWindowClick, showCard, closeCard, enterRoom, goExterior, doPoke, doFeed, doChat, gainAffection, startScene, advanceScene, chooseScene, finishScene, updateSceneEntry, writeSave, ensureToday, loadSave, setFace, lightOn, bandOf, yelanAsleep, patrolTonight, HOTSPOTS_401, PEOPLE, POKE_ZONES, pickPokeLine, pickLine, applyZoneRects, applyFootAlign, SOLE_LINE, FOOT_Y, FEET_GEOM };';
+  + '\n;globalThis.__T = { save, rolls, usedLines, renderExterior, onWindowClick, showCard, closeCard, enterRoom, goExterior, doPoke, doFeed, doChat, gainAffection, startScene, advanceScene, chooseScene, finishScene, updateSceneEntry, writeSave, ensureToday, loadSave, setFace, lightOn, bandOf, yelanAsleep, patrolTonight, HOTSPOTS_401, PEOPLE, POKE_ZONES, pickPokeLine, pickLine, applyZoneRects, applyFootAlign, SOLE_LINE, FOOT_Y, FEET_GEOM, edgeBandRecolor };';
 (0, eval)(code);
 const T = globalThis.__T;
 if (!T || !T.doPoke) { console.error('FAIL: 无法从 app.js 取出函数'); process.exit(1); }
@@ -314,6 +314,26 @@ ok('阴影三层都在立绘之前（先画影再画人）',
     && b.style.height === 'calc(0.024 * var(--wp, 200px))');
 });
 T.applyFootAlign('smile');
+
+// —— 5c. 渲染期去白边：只压外沿浅色描边的颜色，alpha 与内层本色一律不动 ——
+(function () {
+  const w = 7, h = 7;
+  const p = new Uint8ClampedArray(w * h * 4);
+  for (let y = 0; y < h; y++) for (let x = 0; x < w; x++) {
+    const i = (y * w + x) * 4;
+    const inside = x >= 1 && x <= 5 && y >= 1 && y <= 5;
+    const ring = inside && (x === 1 || x === 5 || y === 1 || y === 5);
+    const c = ring ? 200 : 40; // 外沿一圈浅色描边，内层深色本色
+    p[i] = c; p[i + 1] = c; p[i + 2] = c; p[i + 3] = inside ? 255 : 0;
+  }
+  const alphaBefore = Array.from(p).filter((_, i) => i % 4 === 3);
+  T.edgeBandRecolor(p, w, h);
+  const r = (1 * w + 1) * 4;
+  ok('去白边：外沿浅色描边压成内层深色', p[r] < 60 && p[r + 1] < 60 && p[r + 2] < 60);
+  ok('去白边：alpha 一个像素都不动（轮廓不变硬不变粗）',
+    Array.from(p).filter((_, i) => i % 4 === 3).every((v, i) => v === alphaBefore[i]));
+  ok('去白边：内层本色像素不被改', p[(3 * w + 3) * 4] === 40 && p[(3 * w + 3) * 4 + 3] === 255);
+})();
 
 // —— 6. 喂：黑咖啡 +3/心情+5/杯垫；甜食 0/-10 ——
 T.doFeed('black_coffee');

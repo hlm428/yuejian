@@ -442,6 +442,107 @@ function applyFootAlign(face) {
   buildContactBands(face);
 }
 
+/* ---------- 渲染期去白边：立绘外沿一圈浅色描边压成内层本色 ----------
+   立绘 PNG 一个像素不动；只在加载后过一遍 canvas：把贴着透明区的外沿一圈像素
+   （不透明描边 + 它外侧的半透明像素）的颜色压到 min(自身, 内层不透明像素均值)，
+   alpha 一律不动 —— 轮廓的软硬和粗细完全不变，只是白圈变成鞋子/衣服自己的深色。
+   file:// 下画布会被污染，取不到像素就放弃处理，退回原图显示。 */
+var EDGE_FX_CACHE = {};
+var EDGE_FX_BUSY = {};
+var EDGE_FX_OK = (function () {
+  try {
+    var c = document.createElement('canvas');
+    return !!(c.getContext && c.getContext('2d'));
+  } catch (e) { return false; }
+})();
+
+function edgeBandRecolor(p, w, h) {
+  var n = w * h, i, x, y, dx, dy, xx, yy, j;
+  var T = new Uint8Array(n), R1 = new Uint8Array(n), BD = new Uint8Array(n);
+  for (i = 0; i < n; i++) T[i] = p[i * 4 + 3] < 8 ? 1 : 0;
+  for (y = 0; y < h; y++) {
+    for (x = 0; x < w; x++) {
+      i = y * w + x;
+      if (T[i] || p[i * 4 + 3] === 0) continue;
+      for (dy = -1; dy <= 1 && !R1[i]; dy++) {
+        yy = y + dy; if (yy < 0 || yy >= h) continue;
+        for (dx = -1; dx <= 1; dx++) {
+          xx = x + dx; if (xx < 0 || xx >= w) continue;
+          if (T[yy * w + xx]) { R1[i] = 1; BD[i] = 1; break; }
+        }
+      }
+    }
+  }
+  for (y = 0; y < h; y++) { // 描边内侧再收一圈（半透明或不透明的浅色第二像素同属白边）
+    for (x = 0; x < w; x++) {
+      i = y * w + x;
+      if (BD[i] || p[i * 4 + 3] === 0) continue;
+      for (dy = -1; dy <= 1 && !BD[i]; dy++) {
+        yy = y + dy; if (yy < 0 || yy >= h) continue;
+        for (dx = -1; dx <= 1; dx++) {
+          xx = x + dx; if (xx < 0 || xx >= w) continue;
+          if (R1[yy * w + xx]) { BD[i] = 1; break; }
+        }
+      }
+    }
+  }
+  for (y = 0; y < h; y++) {
+    for (x = 0; x < w; x++) {
+      i = y * w + x;
+      if (!BD[i]) continue;
+      var sr = 0, sg = 0, sb = 0, cnt = 0, r;
+      for (r = 2; r <= 3 && !cnt; r++) { // 内层参考色：非白边圈的不透明像素
+        for (dy = -r; dy <= r; dy++) {
+          yy = y + dy; if (yy < 0 || yy >= h) continue;
+          for (dx = -r; dx <= r; dx++) {
+            xx = x + dx; if (xx < 0 || xx >= w) continue;
+            j = yy * w + xx;
+            if (BD[j] || p[j * 4 + 3] < 255) continue;
+            sr += p[j * 4]; sg += p[j * 4 + 1]; sb += p[j * 4 + 2]; cnt++;
+          }
+        }
+      }
+      if (!cnt) continue; // 细发丝这类找不到内层的，原样留着
+      if (sr / cnt < p[i * 4]) p[i * 4] = sr / cnt;
+      if (sg / cnt < p[i * 4 + 1]) p[i * 4 + 1] = sg / cnt;
+      if (sb / cnt < p[i * 4 + 2]) p[i * 4 + 2] = sb / cnt;
+    }
+  }
+}
+
+function swapEdgeFx(assetSrc) {
+  if (currentFaceSrc !== assetSrc) return;
+  var img = byId('room-char');
+  if (isPortraitBroken(img)) return;
+  var url = EDGE_FX_CACHE[assetSrc];
+  if (url && img.src !== url) img.src = url;
+}
+
+function applyEdgeFx(assetSrc) {
+  if (!EDGE_FX_OK) return;
+  if (EDGE_FX_CACHE[assetSrc]) { swapEdgeFx(assetSrc); return; }
+  if (EDGE_FX_BUSY[assetSrc]) return;
+  EDGE_FX_BUSY[assetSrc] = 1;
+  var probe = new Image();
+  probe.onload = function () {
+    delete EDGE_FX_BUSY[assetSrc];
+    var w = probe.naturalWidth, h = probe.naturalHeight;
+    var cv = document.createElement('canvas');
+    cv.width = w; cv.height = h;
+    var ctx = cv.getContext('2d');
+    ctx.drawImage(probe, 0, 0);
+    var id;
+    try { id = ctx.getImageData(0, 0, w, h); } catch (e) { return; } // 画布被污染
+    edgeBandRecolor(id.data, w, h);
+    ctx.putImageData(id, 0, 0);
+    var use = function (url) { EDGE_FX_CACHE[assetSrc] = url; swapEdgeFx(assetSrc); };
+    if (cv.toBlob) cv.toBlob(function (b) { use(URL.createObjectURL(b)); }, 'image/png');
+    else use(cv.toDataURL('image/png'));
+  };
+  probe.onerror = function () { delete EDGE_FX_BUSY[assetSrc]; };
+  probe.src = assetSrc;
+}
+
 function setFace(face) {
   if (ROOM_FACES.indexOf(face) < 0) face = 'smile';
   applyFootAlign(face);
@@ -449,10 +550,12 @@ function setFace(face) {
   var src = 'assets/characters/' + currentChar + '_' + face + '.png';
   if (src === currentFaceSrc) { // 同 src 浏览器不会重发 load/error：清掉 broken 会露 alt 破图标，保持现状
     if (isPortraitBroken(img)) markPortraitBroken(true);
+    applyEdgeFx(src); // 首帧走这里：初始表情的白边也要去
     return;
   }
   currentFaceSrc = src;
   img.src = src; // broken 态交给 load/error 事件撤：先清会在新图加载途中闪破图标
+  applyEdgeFx(src);
 }
 
 function buildRoomHotspots() {
