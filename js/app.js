@@ -369,8 +369,24 @@ function goExterior() {
 var ROOM_FACES = ['smile', 'shy', 'angry', 'eat', 'sleep']; // 只在 5 张表情图之间切换，_full 不用在房间里
 var currentFaceSrc = 'assets/characters/yunsheng_smile.png'; // 与 index.html 初始 src 一致
 
+/* 脚底线 = 5 张立绘脱本实测「alpha>200 最底行」+1 / 2450；FOOT_Y = 脚落点（舞台高度比例，
+   401 底图地毯实测 0.686–0.90 取地毯中部）。切表情按各自脚底线对齐同一落点：
+   脚踩地、人不跳位、大小不变；不用固定像素（舞台随视口缩放，固定 px 会让人悬空）。 */
+var SOLE_LINE = { smile: 0.9600, shy: 0.9600, angry: 0.9600, eat: 0.9588, sleep: 0.9600 };
+var FOOT_Y = 0.80;
+var WRAP_H_FRAC = 0.56; // 与 #char-wrap height:56% 同源
+
+function applyFootAlign(face) {
+  var s = SOLE_LINE[face] || SOLE_LINE.smile;
+  var wrap = byId('char-wrap');
+  wrap.style.top = ((FOOT_Y - s * WRAP_H_FRAC) * 100).toFixed(3) + '%';
+  // 变量挂 screen-room：阴影（wrap 内）与戳戳提示（wrap 外）都要继承它
+  byId('screen-room').style.setProperty('--sole', s);
+}
+
 function setFace(face) {
   if (ROOM_FACES.indexOf(face) < 0) face = 'smile';
+  applyFootAlign(face);
   var img = byId('room-char');
   var src = 'assets/characters/yunsheng_' + face + '.png';
   if (src === currentFaceSrc) { // 同 src 浏览器不会重发 load/error：清掉 broken 会露 alt 破图标，保持现状
@@ -783,6 +799,7 @@ function init() {
   bindPortraitFallback();
   bindEvents();
   layoutStages();
+  applyFootAlign('smile'); // 初始表情也对齐，不等第一次 setFace
   window.addEventListener('resize', layoutStages);
   renderExterior();
   setInterval(renderExterior, 30000); // 半分钟同步一次真实时间，跨过时段灯会自动变

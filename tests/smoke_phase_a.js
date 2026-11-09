@@ -15,7 +15,7 @@ if (!ids.includes('app') || !ids.includes('room-char')) { console.error('FAIL: i
 function makeEl(tag) {
   const el = {
     tagName: (tag || 'div').toUpperCase(),
-    style: {}, dataset: {}, children: [], parent: null,
+    style: { setProperty(k, v) { this[k] = v; } }, dataset: {}, children: [], parent: null,
     src: '', alt: '', disabled: false, offsetWidth: 10, title: '', _attrs: {}, _listeners: {},
     appendChild(ch) { this.children.push(ch); ch.parent = this; return ch; },
     addEventListener(t, fn) { (this._listeners[t] = this._listeners[t] || []).push(fn); },
@@ -99,7 +99,7 @@ const files = [
   path.join(repo, 'js', 'app.js')
 ];
 const code = files.map(f => fs.readFileSync(f, 'utf8')).join('\n;\n')
-  + '\n;globalThis.__T = { save, rolls, usedLines, renderExterior, onWindowClick, showCard, closeCard, enterRoom, goExterior, doPoke, doFeed, doChat, gainAffection, startScene, advanceScene, chooseScene, finishScene, updateSceneEntry, writeSave, ensureToday, loadSave, setFace, lightOn, bandOf, yelanAsleep, patrolTonight, HOTSPOTS_401, PEOPLE, POKE_ZONES, pickPokeLine, pickLine, applyZoneRects };';
+  + '\n;globalThis.__T = { save, rolls, usedLines, renderExterior, onWindowClick, showCard, closeCard, enterRoom, goExterior, doPoke, doFeed, doChat, gainAffection, startScene, advanceScene, chooseScene, finishScene, updateSceneEntry, writeSave, ensureToday, loadSave, setFace, lightOn, bandOf, yelanAsleep, patrolTonight, HOTSPOTS_401, PEOPLE, POKE_ZONES, pickPokeLine, pickLine, applyZoneRects, applyFootAlign, SOLE_LINE, FOOT_Y };';
 (0, eval)(code);
 const T = globalThis.__T;
 if (!T || !T.doPoke) { console.error('FAIL: 无法从 app.js 取出函数'); process.exit(1); }
@@ -233,10 +233,11 @@ ok('无 debug 参数框撤掉', !registry['char-wrap'].classList.contains('debug
 delete global.location;
 
 // —— 5d. 点按区与房间热点零相交（审查回归：整体命中区曾压住报告纸/小说热点，抢点击）——
-function appRects(aw, ah) { // 与 layoutStages + #char-wrap CSS 同一套几何：舞台 cover 768×1376，立绘高 56%、宽按 1600/2450
+function appRects(aw, ah) { // 与 layoutStages + #char-wrap CSS 同一套几何：舞台 cover 768×1376，立绘高 56%、宽按 1600/2450，top 按脚底线
   const s = Math.max(aw / 768, ah / 1376);
   const sw = 768 * s, sh = 1376 * s, sl = (aw - sw) / 2, st = (ah - sh) / 2;
-  const wh = ah * 0.56, ww = wh * 1600 / 2450, wl = (aw - ww) / 2, wt = ah - 96 - wh;
+  const wh = sh * 0.56, ww = wh * 1600 / 2450, wl = sl + (sw - ww) / 2;
+  const wt = st + (T.FOOT_Y - T.SOLE_LINE.smile * 0.56) * sh;
   return {
     zones: Object.values(T.POKE_ZONES).map(z => ({ x: wl + z.rect.x * ww, y: wt + z.rect.y * wh, w: z.rect.w * ww, h: z.rect.h * wh })),
     hots: T.HOTSPOTS_401.map(h => ({ x: sl + h.rect.x * sw, y: st + h.rect.y * sh, w: h.rect.w * sw, h: h.rect.h * sh }))
@@ -249,6 +250,16 @@ for (const [aw, ah] of [[320, 568], [360, 640], [390, 844]]) { // #app 宽被 CS
 }
 const zoneRects = Object.values(T.POKE_ZONES).map(z => z.rect);
 ok('5 点按区彼此不重叠', zoneRects.every((a, i) => zoneRects.every((b, j) => i === j || !overlap(a, b))));
+
+// —— 5b. 脚底线对齐：top 与 --sole 按各自实测脚底线下发，落点 FOOT_Y 全表情同一 ——
+['smile', 'shy', 'angry', 'eat', 'sleep'].forEach(f => {
+  T.applyFootAlign(f);
+  const s = T.SOLE_LINE[f];
+  ok(`脚底对齐 ${f}：top=(FOOT_Y-sole*0.56) 且 --sole 下发`, registry['char-wrap'].style.top === ((T.FOOT_Y - s * 0.56) * 100).toFixed(3) + '%'
+    && String(registry['screen-room'].style['--sole']) === String(s));
+});
+ok('脚落点在地毯区间（401 底图实测 0.686–0.90）', T.FOOT_Y > 0.686 && T.FOOT_Y < 0.90);
+T.applyFootAlign('smile');
 
 // —— 6. 喂：黑咖啡 +3/心情+5/杯垫；甜食 0/-10 ——
 T.doFeed('black_coffee');

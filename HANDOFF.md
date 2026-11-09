@@ -12,11 +12,11 @@
 | 一起剧情动画 | 🟡 基础版做完 | 「一起」→「深夜送咖啡」全流程可演：背景变暗 + 底部两小人（mc_side 镜像 + yunsheng_side，透明 PNG 直接叠）+ 对话框点一下继续 + 中途二选一 + 奖励（+8 计软上限、杯垫）+ 当天灰掉。小人没有动作动画（三视图站桩，动作小人 qi 未出图，姿势参考 v3.2 §6） |
 | 401 整图 | ✅ 做完 | `assets/bg/room_401_yunsheng.png` 全屏 cover + 云笙大立绘底部对齐站桩（5 表情切换、呼吸动画、戳小跳） |
 | BGM | ❌ 没做 | v3.2 §20 声音放后期，阶段 A 任务清单里没有，未实现、未放 `<audio>` |
-| 换修好的立绘 | ✅ 做完（2026-11-09） | 已换 v4 透明版：云笙 5 张表情走 `gh/art/yunsheng-v4` 分支（去掉左右发丝白边，逐像素校验边缘 0 残留），其余 26 张为 v3 高清清边版：`assets/characters/` 27 张（1600×2450）+ `assets/chibi/` 4 张（1280×1984），共 31 张，全部 RGBA 带 alpha。`css/style.css` 三处 `mix-blend-mode: multiply` 与 `#room-char`/`#scene-chibis img` 的 `brightness` 补偿已删，代码无其他改动 |
-| 脚下阴影 | ✅ 做完（2026-11-09） | 两层，中心都压在实测鞋底线（画布 95.88% 高、51.6% 宽，5 张表情一致）：`#char-contact` 接触阴影（双鞋合宽 15%、6px 高、rgba(10,5,20,0.7)、blur 2px，上半被鞋面盖住，鞋底与阴影零缝隙）+ `#char-shadow` 环境阴影（原大椭圆，透明度降到 0.3）。尺寸全相对 `#char-wrap`，缩放不走位。小跳时两层同用 `shadow-hop` 反向位移留在地上并收窄变淡（关键帧与 `hop` 同时长同百分比）。立绘加载失败时阴影/点按区/引导一起撤 |
+| 换修好的立绘 | ✅ 做完（2026-11-09） | 已换 v4 透明版：云笙 5 张表情走 `gh/art/yunsheng-v4` 分支（去掉左右发丝白边，逐像素校验边缘 0 残留），其余 26 张为 v3 高清清边版：`assets/characters/` 27 张（1600×2450）+ `assets/chibi/` 4 张（1280×1984），共 31 张，全部 RGBA 带 alpha。**第三单又补 6 张女主 saira 新画风**（`zhixi_smile/shy`、`xiyue_smile/shy`、`yelan_smile/shy`，走 `gh/art/heroines-saira` 分支 ff-merge 8f9400d，均 RGBA 1600×2450、透明无白边，其余 21 张 blob 不变）。`css/style.css` 三处 `mix-blend-mode: multiply` 与 `#room-char`/`#scene-chibis img` 的 `brightness` 补偿已删，代码无其他改动 |
+| 脚下阴影 | ✅ 做完（2026-11-09，第三单改逐张脚底线对齐） | 弃用固定 95.88%：`SOLE_LINE` 逐张记各表情「最下一行 alpha>200」脚底线（smile/shy/angry/sleep=0.9600、eat=0.9588），地板落点 `FOOT_Y=0.80`（401 地毯实测 0.686–0.90 内）。`applyFootAlign(face)` 按 `top=(FOOT_Y-sole*0.56)*100%` 定位包裹层，切表情脚底对齐地板同一点（不跳位、大小不变）；`--sole` 挂 `#screen-room`，两层阴影（`bottom:calc((1-var(--sole))*100%)`）与戳戳气泡都随脚底线联动。两层：`#char-contact` 接触阴影（双鞋合宽 15%、6px 高、rgba(10,5,20,0.7)、blur 2px，上半被鞋面盖住，鞋底与阴影零缝隙）+ `#char-shadow` 环境阴影（原大椭圆，透明度 0.3）。小跳时两层同用 `shadow-hop` 反向位移留在地上并收窄变淡。立绘加载失败时阴影/点按区/引导一起撤 |
 | 底部互动条 | ✅ 做完（2026-11-09） | 喂 / 聊天 / 一起 = 三个 56px 磨砂玻璃圆钮（rgba(18,14,32,0.55) + blur(10px) + 金细边），内联 SVG 细线图标（线宽 1.5、#F3E6CF：冒热气咖啡杯 / 对话气泡 / 月牙小星），文字在钮下 6px。悬停边亮、按下 0.94 弹回 120ms；「一起」暖金边 + 3s 呼吸柔光，当天演过挂 `unavailable` + aria-disabled 变暗停呼吸（钮仍可点开面板看「今天已经演过啦」）。房间底部 120px 压暗渐变铺在 `#screen-room::after`（z 5，立绘 z 6 之下），不挡脚和阴影；右上「心情·亲密度」芯片同款磨砂 + 金细边 |
 
-其余阶段 A 内容（任务全部要求项）均完成并经 5 轮 entire review：外观主界面（底图 + 12 贴片 + 每次打开随机抽 A/B/C + §8.1 亮灯 + 灭窗遮罩 + 卡片 + 灭窗提示）、401 房间（戳/喂/聊天 + 杯垫 + 数值管道：心情倍率/软上限 20/单日戳 >10 不涨）、存档（`yuejian_save_v1`，半截/手改/坏档全部自愈不崩）、深夜送咖啡（每天限演一次）。
+其余阶段 A 内容（任务全部要求项）均完成并经 5 轮 entire review：外观主界面（底图 + 12 贴片 + 每次打开随机抽 A/B/C + §8.1 亮灯 + 灭窗遮罩 + 卡片 + 灭窗提示）、401 房间（戳/喂/聊天 + 杯垫 + 数值管道：心情倍率/软上限 20/单日戳 >10 不涨）、存档（`yuejian_save_v1`，半截/手改/坏档全部自愈不崩）、深夜送咖啡（每天限演一次）。**第三单：灭窗遮罩改只压暗窗玻璃**——`data/windows.js` 每扇窗新增 `glass` 玻璃多边形（7f/501/401/301 四扇，302 常亮无遮罩），`applyGlassClip()` 取外接框定位 + `clip-path: polygon()` 裁到玻璃范围，不再连墙体/窗框/栏杆/天空一起盖（外景底图与其他房间未动）。
 
 ## 二、没做完的（具体到文件/函数）与下一步
 
@@ -54,14 +54,14 @@ docs/GAME_SPEC.md     唯一设定依据（优先级：美术资产 > 定稿设�
 
 ```
 node tests/test_lights.js     → 亮灯规则断言：44 通过，0 失败
-node tests/smoke_phase_a.js   → 冒烟测试：113 通过，0 失败
+node tests/smoke_phase_a.js   → 冒烟测试：119 通过，0 失败
 ```
 
 改 `js/app.js` 的纯函数或任何互动/存档逻辑后必须两个都重跑。改台词/剧本/窗位不用跑（但改 data 后建议跑一遍冒烟防 id/令牌拼错——冒烟里有 data-item ↔ 台词令牌一致性断言）。
 
 ## 五、已知 bug 与占位
 
-- **已知功能性 bug：无**（5 轮 entire review，轨迹 5→4→2→2→3 条，后三轮均 approve with nits，全部修复；测试 157 条断言全绿（亮灯 44 + 冒烟 113）。2026-11-09 顺手修掉一个旧缺陷：立绘加载失败时 JS 只写 `dataset.broken` 没挂 `.broken` 类，CSS 的 `#room-char.broken { visibility: hidden }` 一直是死规则，浏览器会露出 alt 破图标——现在 `markPortraitBroken()` 统一挂类。
+- **已知功能性 bug：无**（5 轮 entire review，轨迹 5→4→2→2→3 条，后三轮均 approve with nits，全部修复；测试 163 条断言全绿（亮灯 44 + 冒烟 119）。2026-11-09 顺手修掉一个旧缺陷：立绘加载失败时 JS 只写 `dataset.broken` 没挂 `.broken` 类，CSS 的 `#room-char.broken { visibility: hidden }` 一直是死规则，浏览器会露出 alt 破图标——现在 `markPortraitBroken()` 统一挂类。
 - **占位（qi 素材到位即替换）**：杯垫 CSS 椭圆；401 热点目测坐标。
 - **有意为之的阶段 A 限制（不是 bug）**：路人窗常亮不随机（passerby.js 阶段 C 用）；便利店只走规则函数无视觉遮罩；除 401 外三人「拜访」灰掉；302 卡片无按钮；云笙出警概率是实现层定的 1/7（`patrolTonight`，qi 可改）。
 - 内嵌浏览器（ZCode）打不开是已知环境问题：试玩用系统浏览器双击 `index.html`，或起本地静态服务器。

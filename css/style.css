@@ -186,7 +186,7 @@ body {
 #char-wrap {
   position: absolute;
   left: 50%;
-  bottom: 96px;
+  top: 26.24%; /* 默认 smile：(FOOT_Y - 0.96*0.56)；js/app.js applyFootAlign 按表情覆写 */
   height: 56%;
   transform: translateX(-50%);
   z-index: 6;
@@ -204,13 +204,14 @@ body {
   50% { transform: scaleY(1.014); }
 }
 
-/* 脚下阴影两层，中心都压在实测鞋底线上（画布 95.88% 高 → 距包裹盒底 4.12%），鞋底与阴影之间不留缝：
+/* 脚下阴影两层，中心都压在各表情实测脚底线上（--sole 由 applyFootAlign 下发，bottom = 1 - sole），
+   鞋底与阴影之间不留缝：
    接触阴影 = 双鞋合宽、6px 高，上半被鞋面盖住，负责「踩在地上」；
    环境阴影 = 原来的大椭圆，透明度降到 0.3，只负责往外晕开。尺寸全相对 #char-wrap，缩放不走位。 */
 #char-contact {
   position: absolute;
   left: 51.6%;
-  bottom: 4.12%;
+  bottom: calc((1 - var(--sole, 0.96)) * 100%);
   width: 15%;
   height: 6px;
   transform: translate(-50%, 50%);
@@ -222,7 +223,7 @@ body {
 #char-shadow {
   position: absolute;
   left: 51.6%;
-  bottom: 4.12%;
+  bottom: calc((1 - var(--sole, 0.96)) * 100%);
   width: 30%;
   height: 5.2%;
   transform: translate(-50%, 50%);
@@ -367,7 +368,8 @@ body {
 #poke-hint {
   position: absolute;
   left: 50%;
-  bottom: calc(96px + 56% + 12px);
+  /* 贴在头顶上方 12px：wrap top = FOOT_Y - sole*0.56，气泡底 = 100% - wrap top + 12px */
+  bottom: calc((0.2 + var(--sole, 0.96) * 0.56) * 100% + 12px);
   transform: translateX(-50%);
   z-index: 7;
   display: flex;
