@@ -350,7 +350,8 @@ body {
 #bubble {
   position: absolute;
   left: 50%;
-  bottom: calc(96px + 56% * 0.62);
+  /* 贴在立绘自脚底 62% 高处：head 锚点 (0.2 + sole*0.56) 再往下 38%×56%=21.28%，随 --sole 走、不用固定 px（与 #poke-hint 同源，立绘移位后气泡跟着移） */
+  bottom: calc((0.2 + var(--sole, 0.96) * 0.56) * 100% - 21.28%);
   transform: translateX(-50%);
   max-width: 78%;
   z-index: 9;

@@ -54,14 +54,14 @@ docs/GAME_SPEC.md     唯一设定依据（优先级：美术资产 > 定稿设�
 
 ```
 node tests/test_lights.js     → 亮灯规则断言：44 通过，0 失败
-node tests/smoke_phase_a.js   → 冒烟测试：119 通过，0 失败
+node tests/smoke_phase_a.js   → 冒烟测试：131 通过，0 失败
 ```
 
 改 `js/app.js` 的纯函数或任何互动/存档逻辑后必须两个都重跑。改台词/剧本/窗位不用跑（但改 data 后建议跑一遍冒烟防 id/令牌拼错——冒烟里有 data-item ↔ 台词令牌一致性断言）。
 
 ## 五、已知 bug 与占位
 
-- **已知功能性 bug：无**（5 轮 entire review，轨迹 5→4→2→2→3 条，后三轮均 approve with nits，全部修复；测试 163 条断言全绿（亮灯 44 + 冒烟 119）。2026-11-09 顺手修掉一个旧缺陷：立绘加载失败时 JS 只写 `dataset.broken` 没挂 `.broken` 类，CSS 的 `#room-char.broken { visibility: hidden }` 一直是死规则，浏览器会露出 alt 破图标——现在 `markPortraitBroken()` 统一挂类。
+- **已知功能性 bug：无**（5 轮 entire review，轨迹 5→4→2→2→3 条，后三轮均 approve with nits，全部修复；测试 175 条断言全绿（亮灯 44 + 冒烟 131）。2026-11-09 顺手修掉一个旧缺陷：立绘加载失败时 JS 只写 `dataset.broken` 没挂 `.broken` 类，CSS 的 `#room-char.broken { visibility: hidden }` 一直是死规则，浏览器会露出 alt 破图标——现在 `markPortraitBroken()` 统一挂类。
 - **占位（qi 素材到位即替换）**：杯垫 CSS 椭圆；401 热点目测坐标。
 - **有意为之的阶段 A 限制（不是 bug）**：路人窗常亮不随机（passerby.js 阶段 C 用）；便利店只走规则函数无视觉遮罩；除 401 外三人「拜访」灰掉；302 卡片无按钮；云笙出警概率是实现层定的 1/7（`patrolTonight`，qi 可改）。
 - 内嵌浏览器（ZCode）打不开是已知环境问题：试玩用系统浏览器双击 `index.html`，或起本地静态服务器。
