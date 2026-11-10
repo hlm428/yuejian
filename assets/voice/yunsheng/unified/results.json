@@ -1,5 +1,5 @@
 {
-  "status": "remaining_generated_awaiting_listening",
+  "status": "pronunciation_redub_awaiting_listening",
   "previous_audio": "obsolete_not_included",
   "pilot_listening_approved": true,
   "model": "mimo-v2.5-tts-voiceclone",
@@ -42,6 +42,52 @@
       "assistant": "(小声 有点不好意思)无聊。",
       "han_count": 2,
       "attempts": [
+        {
+          "duration_s": 0.97,
+          "cps": 2.061855670103093,
+          "head_s": 0.14,
+          "tail_s": 0.15,
+          "max_pause_s": 0.0,
+          "internal_pauses": [],
+          "passed": false,
+          "reasons": [
+            "语速偏慢"
+          ],
+          "raw_duration_s": 1.12,
+          "trim_start_s": 0.0,
+          "trim_end_s": 0.97,
+          "attempt": 1,
+          "asr_heard": "無聊",
+          "asr_han": "无聊",
+          "asr_exact": true,
+          "asr_lenient": true
+        }
+      ],
+      "status": "out_of_range",
+      "listening_approved": false,
+      "file": "poke_head_1.mp3",
+      "sha256": "c62715a86eb751f9f97bfd4c6b85eda790e846c2cd6c0ec4a0ce32c1aafd2e62",
+      "selected": {
+        "duration_s": 0.97,
+        "cps": 2.061855670103093,
+        "head_s": 0.14,
+        "tail_s": 0.15,
+        "max_pause_s": 0.0,
+        "internal_pauses": [],
+        "passed": false,
+        "reasons": [
+          "语速偏慢"
+        ],
+        "raw_duration_s": 1.12,
+        "trim_start_s": 0.0,
+        "trim_end_s": 0.97,
+        "attempt": 1,
+        "asr_heard": "無聊",
+        "asr_han": "无聊",
+        "asr_exact": true,
+        "asr_lenient": true
+      },
+      "previous_attempts": [
         {
           "duration_s": 1.13,
           "cps": 1.7699115044247788,
@@ -108,25 +154,12 @@
           "attempt": 4
         }
       ],
-      "status": "out_of_range",
-      "listening_approved": false,
-      "file": "poke_head_1.mp3",
-      "sha256": "0ac2d69418dce5bcc94578d3c588ee1b259b79f162c78c725e7b1de982ca0855",
-      "selected": {
-        "duration_s": 0.82,
-        "cps": 2.4390243902439024,
-        "head_s": 0.15,
-        "tail_s": 0.15,
-        "max_pause_s": 0.0,
-        "internal_pauses": [],
-        "passed": false,
-        "reasons": [
-          "语速偏慢"
-        ],
-        "raw_duration_s": 1.12,
-        "trim_start_s": 0.03,
-        "trim_end_s": 0.85,
-        "attempt": 4
+      "redub": {
+        "date": "2026-11-11",
+        "reason": "无聊 被读成 我来（small+medium 一致）",
+        "old_sha256": "0ac2d69418dce5bcc94578d3c588ee1b259b79f162c78c725e7b1de982ca0855",
+        "old_listening_approved": false,
+        "asr_gate": "whisper-medium"
       }
     },
     {
@@ -263,6 +296,64 @@
       "han_count": 2,
       "attempts": [
         {
+          "duration_s": 1.12,
+          "cps": 1.7857142857142856,
+          "head_s": 0.15,
+          "tail_s": 0.15,
+          "max_pause_s": 0.01,
+          "internal_pauses": [
+            {
+              "start_s": 0.38,
+              "end_s": 0.39,
+              "duration_s": 0.01
+            }
+          ],
+          "passed": false,
+          "reasons": [
+            "语速偏慢"
+          ],
+          "raw_duration_s": 1.28,
+          "trim_start_s": 0.01,
+          "trim_end_s": 1.13,
+          "attempt": 1,
+          "asr_heard": "别戳",
+          "asr_han": "别戳",
+          "asr_exact": true,
+          "asr_lenient": true
+        }
+      ],
+      "status": "out_of_range",
+      "listening_approved": false,
+      "file": "poke_face_1.mp3",
+      "sha256": "5d40bf07c1932bd4542956cd688cbea334c66e849dbd00e3dcb5418ec2910c3a",
+      "selected": {
+        "duration_s": 1.12,
+        "cps": 1.7857142857142856,
+        "head_s": 0.15,
+        "tail_s": 0.15,
+        "max_pause_s": 0.01,
+        "internal_pauses": [
+          {
+            "start_s": 0.38,
+            "end_s": 0.39,
+            "duration_s": 0.01
+          }
+        ],
+        "passed": false,
+        "reasons": [
+          "语速偏慢"
+        ],
+        "raw_duration_s": 1.28,
+        "trim_start_s": 0.01,
+        "trim_end_s": 1.13,
+        "attempt": 1,
+        "asr_heard": "别戳",
+        "asr_han": "别戳",
+        "asr_exact": true,
+        "asr_lenient": true
+      },
+      "previous_attempts": [
+        {
           "duration_s": 1.39,
           "cps": 1.4388489208633095,
           "head_s": 0.15,
@@ -356,31 +447,12 @@
           "attempt": 4
         }
       ],
-      "status": "out_of_range",
-      "listening_approved": false,
-      "file": "poke_face_1.mp3",
-      "sha256": "517889bff5e0708bdd99a7173136e8751098a6d4ffa0d756f213d68473dfd71a",
-      "selected": {
-        "duration_s": 0.96,
-        "cps": 2.0833333333333335,
-        "head_s": 0.11,
-        "tail_s": 0.08,
-        "max_pause_s": 0.02,
-        "internal_pauses": [
-          {
-            "start_s": 0.85,
-            "end_s": 0.87,
-            "duration_s": 0.02
-          }
-        ],
-        "passed": false,
-        "reasons": [
-          "语速偏慢"
-        ],
-        "raw_duration_s": 0.96,
-        "trim_start_s": 0.0,
-        "trim_end_s": 0.96,
-        "attempt": 4
+      "redub": {
+        "date": "2026-11-11",
+        "reason": "别戳 两模型均无法识别（短音频，戳字疑似错读）",
+        "old_sha256": "517889bff5e0708bdd99a7173136e8751098a6d4ffa0d756f213d68473dfd71a",
+        "old_listening_approved": false,
+        "asr_gate": "whisper-medium"
       }
     },
     {
@@ -395,6 +467,74 @@
       "assistant": "(有点恼)再戳我就关门了。",
       "han_count": 7,
       "attempts": [
+        {
+          "duration_s": 2.26,
+          "cps": 3.097345132743363,
+          "head_s": 0.11,
+          "tail_s": 0.15,
+          "max_pause_s": 0.05,
+          "internal_pauses": [
+            {
+              "start_s": 0.45,
+              "end_s": 0.49,
+              "duration_s": 0.04
+            },
+            {
+              "start_s": 1.31,
+              "end_s": 1.36,
+              "duration_s": 0.05
+            }
+          ],
+          "passed": false,
+          "reasons": [
+            "语速偏慢"
+          ],
+          "raw_duration_s": 2.4,
+          "trim_start_s": 0.0,
+          "trim_end_s": 2.26,
+          "attempt": 1,
+          "asr_heard": "再戳我就关门了",
+          "asr_han": "再戳我就关门了",
+          "asr_exact": true,
+          "asr_lenient": true
+        }
+      ],
+      "status": "out_of_range",
+      "listening_approved": false,
+      "file": "poke_face_2.mp3",
+      "sha256": "aaf19b987a92bc39e966671de017e83145bee7ffd25fa335d916e738d063afaf",
+      "selected": {
+        "duration_s": 2.26,
+        "cps": 3.097345132743363,
+        "head_s": 0.11,
+        "tail_s": 0.15,
+        "max_pause_s": 0.05,
+        "internal_pauses": [
+          {
+            "start_s": 0.45,
+            "end_s": 0.49,
+            "duration_s": 0.04
+          },
+          {
+            "start_s": 1.31,
+            "end_s": 1.36,
+            "duration_s": 0.05
+          }
+        ],
+        "passed": false,
+        "reasons": [
+          "语速偏慢"
+        ],
+        "raw_duration_s": 2.4,
+        "trim_start_s": 0.0,
+        "trim_end_s": 2.26,
+        "attempt": 1,
+        "asr_heard": "再戳我就关门了",
+        "asr_han": "再戳我就关门了",
+        "asr_exact": true,
+        "asr_lenient": true
+      },
+      "previous_attempts": [
         {
           "duration_s": 2.21,
           "cps": 3.167420814479638,
@@ -484,33 +624,13 @@
           "attempt": 4
         }
       ],
-      "status": "out_of_range",
-      "listening_approved": true,
-      "file": "poke_face_2.mp3",
-      "sha256": "47f51e6b67cacce2abee3d0f4a8c4f9ed7612d8f35922b58a547cf41499d53d0",
-      "selected": {
-        "duration_s": 1.73,
-        "cps": 4.046242774566474,
-        "head_s": 0.12,
-        "tail_s": 0.15,
-        "max_pause_s": 0.02,
-        "internal_pauses": [
-          {
-            "start_s": 0.82,
-            "end_s": 0.84,
-            "duration_s": 0.02
-          }
-        ],
-        "passed": false,
-        "reasons": [
-          "语速偏慢"
-        ],
-        "raw_duration_s": 1.92,
-        "trim_start_s": 0.0,
-        "trim_end_s": 1.73,
-        "attempt": 2
-      },
-      "reused_from": "assets/voice/yunsheng/unified_trial/poke_face_2.mp3"
+      "redub": {
+        "date": "2026-11-11",
+        "reason": "戳 chuō 读成 cuò（small:挫 medium:错）",
+        "old_sha256": "47f51e6b67cacce2abee3d0f4a8c4f9ed7612d8f35922b58a547cf41499d53d0",
+        "old_listening_approved": true,
+        "asr_gate": "whisper-medium"
+      }
     },
     {
       "id": "poke_hand_1",
@@ -524,6 +644,136 @@
       "assistant": "(小声 有点不好意思)痒。",
       "han_count": 1,
       "attempts": [
+        {
+          "duration_s": 1.03,
+          "cps": 0.970873786407767,
+          "head_s": 0.14,
+          "tail_s": 0.15,
+          "max_pause_s": 0.11,
+          "internal_pauses": [
+            {
+              "start_s": 0.76,
+              "end_s": 0.87,
+              "duration_s": 0.11
+            }
+          ],
+          "passed": false,
+          "reasons": [
+            "语速偏慢"
+          ],
+          "raw_duration_s": 1.12,
+          "trim_start_s": 0.0,
+          "trim_end_s": 1.03,
+          "attempt": 1,
+          "asr_heard": "一樣",
+          "asr_han": "一样",
+          "asr_exact": false,
+          "asr_lenient": false
+        },
+        {
+          "duration_s": 0.96,
+          "cps": 1.0416666666666667,
+          "head_s": 0.15,
+          "tail_s": 0.0,
+          "max_pause_s": 0.2,
+          "internal_pauses": [
+            {
+              "start_s": 0.55,
+              "end_s": 0.75,
+              "duration_s": 0.2
+            },
+            {
+              "start_s": 0.77,
+              "end_s": 0.84,
+              "duration_s": 0.07
+            },
+            {
+              "start_s": 0.85,
+              "end_s": 0.86,
+              "duration_s": 0.01
+            }
+          ],
+          "passed": false,
+          "reasons": [
+            "语速偏慢"
+          ],
+          "raw_duration_s": 0.96,
+          "trim_start_s": 0.0,
+          "trim_end_s": 0.96,
+          "attempt": 2,
+          "asr_heard": "一樣",
+          "asr_han": "一样",
+          "asr_exact": false,
+          "asr_lenient": false
+        },
+        {
+          "duration_s": 0.91,
+          "cps": 1.0989010989010988,
+          "head_s": 0.15,
+          "tail_s": 0.15,
+          "max_pause_s": 0.0,
+          "internal_pauses": [],
+          "passed": false,
+          "reasons": [
+            "语速偏慢"
+          ],
+          "raw_duration_s": 1.28,
+          "trim_start_s": 0.03,
+          "trim_end_s": 0.94,
+          "attempt": 3,
+          "asr_heard": "羊",
+          "asr_han": "羊",
+          "asr_exact": false,
+          "asr_lenient": false
+        },
+        {
+          "duration_s": 0.7,
+          "cps": 1.4285714285714286,
+          "head_s": 0.15,
+          "tail_s": 0.15,
+          "max_pause_s": 0.0,
+          "internal_pauses": [],
+          "passed": false,
+          "reasons": [
+            "语速偏慢"
+          ],
+          "raw_duration_s": 0.96,
+          "trim_start_s": 0.04,
+          "trim_end_s": 0.74,
+          "attempt": 4,
+          "asr_heard": "羊",
+          "asr_han": "羊",
+          "asr_exact": false,
+          "asr_lenient": false
+        }
+      ],
+      "status": "out_of_range",
+      "listening_approved": false,
+      "file": "poke_hand_1.mp3",
+      "sha256": "5b4e0a53ea7f1f292cfc933edbde1f7a9ab370b9d8d81dff93a7049e819d2792",
+      "selected": {
+        "duration_s": 0.93,
+        "cps": 1.075268817204301,
+        "head_s": 0.15,
+        "tail_s": 0.15,
+        "max_pause_s": 0.02,
+        "internal_pauses": [
+          {
+            "start_s": 0.75,
+            "end_s": 0.77,
+            "duration_s": 0.02
+          }
+        ],
+        "passed": false,
+        "reasons": [
+          "语速偏慢"
+        ],
+        "raw_duration_s": 1.12,
+        "trim_start_s": 0.01,
+        "trim_end_s": 0.94,
+        "attempt": 2
+      },
+      "previous_attempts": [
         {
           "duration_s": 1.05,
           "cps": 0.9523809523809523,
@@ -595,31 +845,9 @@
           "attempt": 4
         }
       ],
-      "status": "out_of_range",
-      "listening_approved": false,
-      "file": "poke_hand_1.mp3",
-      "sha256": "5b4e0a53ea7f1f292cfc933edbde1f7a9ab370b9d8d81dff93a7049e819d2792",
-      "selected": {
-        "duration_s": 0.93,
-        "cps": 1.075268817204301,
-        "head_s": 0.15,
-        "tail_s": 0.15,
-        "max_pause_s": 0.02,
-        "internal_pauses": [
-          {
-            "start_s": 0.75,
-            "end_s": 0.77,
-            "duration_s": 0.02
-          }
-        ],
-        "passed": false,
-        "reasons": [
-          "语速偏慢"
-        ],
-        "raw_duration_s": 1.12,
-        "trim_start_s": 0.01,
-        "trim_end_s": 0.94,
-        "attempt": 2
+      "redub_failed": {
+        "date": "2026-11-11",
+        "reason": "痒 yǎng 读成 yō（哟）"
       }
     },
     {
@@ -2420,6 +2648,104 @@
       "han_count": 13,
       "attempts": [
         {
+          "duration_s": 3.9,
+          "cps": 3.3333333333333335,
+          "head_s": 0.15,
+          "tail_s": 0.15,
+          "max_pause_s": 0.27,
+          "internal_pauses": [
+            {
+              "start_s": 1.17,
+              "end_s": 1.18,
+              "duration_s": 0.01
+            },
+            {
+              "start_s": 1.74,
+              "end_s": 1.78,
+              "duration_s": 0.04
+            },
+            {
+              "start_s": 2.09,
+              "end_s": 2.36,
+              "duration_s": 0.27
+            },
+            {
+              "start_s": 2.86,
+              "end_s": 2.88,
+              "duration_s": 0.02
+            },
+            {
+              "start_s": 3.43,
+              "end_s": 3.46,
+              "duration_s": 0.03
+            }
+          ],
+          "passed": false,
+          "reasons": [
+            "语速偏慢"
+          ],
+          "raw_duration_s": 4.16,
+          "trim_start_s": 0.06,
+          "trim_end_s": 3.96,
+          "attempt": 1,
+          "asr_heard": "推理小說看到一半,兇手太蠢了",
+          "asr_han": "推理小说看到一半凶手太蠢了",
+          "asr_exact": true,
+          "asr_lenient": true
+        }
+      ],
+      "status": "out_of_range",
+      "listening_approved": false,
+      "file": "chat_08.mp3",
+      "sha256": "24339290c65e3396f3c57db89bbd04e01f0fc2375ed5b6b7d4cd1b9ac9d7a277",
+      "selected": {
+        "duration_s": 3.9,
+        "cps": 3.3333333333333335,
+        "head_s": 0.15,
+        "tail_s": 0.15,
+        "max_pause_s": 0.27,
+        "internal_pauses": [
+          {
+            "start_s": 1.17,
+            "end_s": 1.18,
+            "duration_s": 0.01
+          },
+          {
+            "start_s": 1.74,
+            "end_s": 1.78,
+            "duration_s": 0.04
+          },
+          {
+            "start_s": 2.09,
+            "end_s": 2.36,
+            "duration_s": 0.27
+          },
+          {
+            "start_s": 2.86,
+            "end_s": 2.88,
+            "duration_s": 0.02
+          },
+          {
+            "start_s": 3.43,
+            "end_s": 3.46,
+            "duration_s": 0.03
+          }
+        ],
+        "passed": false,
+        "reasons": [
+          "语速偏慢"
+        ],
+        "raw_duration_s": 4.16,
+        "trim_start_s": 0.06,
+        "trim_end_s": 3.96,
+        "attempt": 1,
+        "asr_heard": "推理小說看到一半,兇手太蠢了",
+        "asr_han": "推理小说看到一半凶手太蠢了",
+        "asr_exact": true,
+        "asr_lenient": true
+      },
+      "previous_attempts": [
+        {
           "duration_s": 4.64,
           "cps": 2.8017241379310347,
           "head_s": 0.14,
@@ -2626,56 +2952,12 @@
           "attempt": 4
         }
       ],
-      "status": "out_of_range",
-      "listening_approved": false,
-      "file": "chat_08.mp3",
-      "sha256": "ab77b5825c95127b0555ee92d5e7c4ce9b219f71dd1df1e280d38ef7ca173dff",
-      "selected": {
-        "duration_s": 3.79,
-        "cps": 3.430079155672823,
-        "head_s": 0.15,
-        "tail_s": 0.15,
-        "max_pause_s": 0.4,
-        "internal_pauses": [
-          {
-            "start_s": 1.07,
-            "end_s": 1.08,
-            "duration_s": 0.01
-          },
-          {
-            "start_s": 1.57,
-            "end_s": 1.61,
-            "duration_s": 0.04
-          },
-          {
-            "start_s": 1.94,
-            "end_s": 2.34,
-            "duration_s": 0.4
-          },
-          {
-            "start_s": 2.78,
-            "end_s": 2.79,
-            "duration_s": 0.01
-          },
-          {
-            "start_s": 2.8,
-            "end_s": 2.81,
-            "duration_s": 0.01
-          },
-          {
-            "start_s": 3.3,
-            "end_s": 3.34,
-            "duration_s": 0.04
-          }
-        ],
-        "passed": false,
-        "reasons": [
-          "语速偏慢"
-        ],
-        "raw_duration_s": 4.0,
-        "trim_start_s": 0.01,
-        "trim_end_s": 3.8,
-        "attempt": 4
+      "redub": {
+        "date": "2026-11-11",
+        "reason": "推 tuī 读成 tuǐ（腿）",
+        "old_sha256": "ab77b5825c95127b0555ee92d5e7c4ce9b219f71dd1df1e280d38ef7ca173dff",
+        "old_listening_approved": false,
+        "asr_gate": "whisper-medium"
       }
     },
     {
@@ -3049,6 +3331,106 @@
       "han_count": 4,
       "attempts": [
         {
+          "duration_s": 3.18,
+          "cps": 1.2578616352201257,
+          "head_s": 0.1,
+          "tail_s": 0.15,
+          "max_pause_s": 1.15,
+          "internal_pauses": [
+            {
+              "start_s": 0.64,
+              "end_s": 0.65,
+              "duration_s": 0.01
+            },
+            {
+              "start_s": 0.83,
+              "end_s": 1.98,
+              "duration_s": 1.15
+            },
+            {
+              "start_s": 2.54,
+              "end_s": 2.55,
+              "duration_s": 0.01
+            },
+            {
+              "start_s": 3.01,
+              "end_s": 3.02,
+              "duration_s": 0.01
+            }
+          ],
+          "passed": false,
+          "reasons": [
+            "语速偏慢",
+            "句中停顿超过0.5秒"
+          ],
+          "raw_duration_s": 3.36,
+          "trim_start_s": 0.0,
+          "trim_end_s": 3.18,
+          "attempt": 1,
+          "asr_heard": "放那儿吧看了一靠",
+          "asr_han": "放那儿吧看了一靠",
+          "asr_exact": false,
+          "asr_lenient": false
+        },
+        {
+          "duration_s": 1.12,
+          "cps": 3.571428571428571,
+          "head_s": 0.11,
+          "tail_s": 0.15,
+          "max_pause_s": 0.03,
+          "internal_pauses": [
+            {
+              "start_s": 0.64,
+              "end_s": 0.67,
+              "duration_s": 0.03
+            }
+          ],
+          "passed": false,
+          "reasons": [
+            "语速偏慢"
+          ],
+          "raw_duration_s": 1.28,
+          "trim_start_s": 0.0,
+          "trim_end_s": 1.12,
+          "attempt": 2,
+          "asr_heard": "放那儿吧",
+          "asr_han": "放那儿吧",
+          "asr_exact": true,
+          "asr_lenient": true
+        }
+      ],
+      "status": "out_of_range",
+      "listening_approved": false,
+      "file": "feed_coffee_1.mp3",
+      "sha256": "e4a1c47397563522030b4ab7fcfe75606e389ae65955c33d4fd4383d9ee0f17b",
+      "selected": {
+        "duration_s": 1.12,
+        "cps": 3.571428571428571,
+        "head_s": 0.11,
+        "tail_s": 0.15,
+        "max_pause_s": 0.03,
+        "internal_pauses": [
+          {
+            "start_s": 0.64,
+            "end_s": 0.67,
+            "duration_s": 0.03
+          }
+        ],
+        "passed": false,
+        "reasons": [
+          "语速偏慢"
+        ],
+        "raw_duration_s": 1.28,
+        "trim_start_s": 0.0,
+        "trim_end_s": 1.12,
+        "attempt": 2,
+        "asr_heard": "放那儿吧",
+        "asr_han": "放那儿吧",
+        "asr_exact": true,
+        "asr_lenient": true
+      },
+      "previous_attempts": [
+        {
           "duration_s": 1.02,
           "cps": 3.9215686274509802,
           "head_s": 0.1,
@@ -3126,31 +3508,12 @@
           "attempt": 4
         }
       ],
-      "status": "out_of_range",
-      "listening_approved": false,
-      "file": "feed_coffee_1.mp3",
-      "sha256": "ff6751ec64926f2ab3c7218ed94585424aaa2eb9b7f543b370d60556e72413e8",
-      "selected": {
-        "duration_s": 0.93,
-        "cps": 4.301075268817204,
-        "head_s": 0.09,
-        "tail_s": 0.15,
-        "max_pause_s": 0.01,
-        "internal_pauses": [
-          {
-            "start_s": 0.75,
-            "end_s": 0.76,
-            "duration_s": 0.01
-          }
-        ],
-        "passed": false,
-        "reasons": [
-          "语速偏慢"
-        ],
-        "raw_duration_s": 1.12,
-        "trim_start_s": 0.0,
-        "trim_end_s": 0.93,
-        "attempt": 3
+      "redub": {
+        "date": "2026-11-11",
+        "reason": "那儿 儿化丢失（放那吧）",
+        "old_sha256": "ff6751ec64926f2ab3c7218ed94585424aaa2eb9b7f543b370d60556e72413e8",
+        "old_listening_approved": false,
+        "asr_gate": "whisper-medium"
       }
     },
     {
@@ -3464,6 +3827,84 @@
       "han_count": 7,
       "attempts": [
         {
+          "duration_s": 2.66,
+          "cps": 2.631578947368421,
+          "head_s": 0.15,
+          "tail_s": 0.15,
+          "max_pause_s": 0.27,
+          "internal_pauses": [
+            {
+              "start_s": 1.47,
+              "end_s": 1.74,
+              "duration_s": 0.27
+            },
+            {
+              "start_s": 1.77,
+              "end_s": 1.79,
+              "duration_s": 0.02
+            },
+            {
+              "start_s": 2.08,
+              "end_s": 2.1,
+              "duration_s": 0.02
+            }
+          ],
+          "passed": false,
+          "reasons": [
+            "语速偏慢"
+          ],
+          "raw_duration_s": 3.04,
+          "trim_start_s": 0.03,
+          "trim_end_s": 2.69,
+          "attempt": 1,
+          "asr_heard": "楼道那只猫,会吃",
+          "asr_han": "楼道那只猫会吃",
+          "asr_exact": true,
+          "asr_lenient": true
+        }
+      ],
+      "status": "out_of_range",
+      "listening_approved": false,
+      "file": "feed_catcan_2.mp3",
+      "sha256": "db10d08068964327c071be34ddd3de27a9a6a9e16d97dddd1f0260a8954bdeba",
+      "selected": {
+        "duration_s": 2.66,
+        "cps": 2.631578947368421,
+        "head_s": 0.15,
+        "tail_s": 0.15,
+        "max_pause_s": 0.27,
+        "internal_pauses": [
+          {
+            "start_s": 1.47,
+            "end_s": 1.74,
+            "duration_s": 0.27
+          },
+          {
+            "start_s": 1.77,
+            "end_s": 1.79,
+            "duration_s": 0.02
+          },
+          {
+            "start_s": 2.08,
+            "end_s": 2.1,
+            "duration_s": 0.02
+          }
+        ],
+        "passed": false,
+        "reasons": [
+          "语速偏慢"
+        ],
+        "raw_duration_s": 3.04,
+        "trim_start_s": 0.03,
+        "trim_end_s": 2.69,
+        "attempt": 1,
+        "asr_heard": "楼道那只猫,会吃",
+        "asr_han": "楼道那只猫会吃",
+        "asr_exact": true,
+        "asr_lenient": true
+      },
+      "previous_attempts": [
+        {
           "duration_s": 3.73,
           "cps": 1.876675603217158,
           "head_s": 0.15,
@@ -3594,31 +4035,12 @@
           "attempt": 4
         }
       ],
-      "status": "out_of_range",
-      "listening_approved": false,
-      "file": "feed_catcan_2.mp3",
-      "sha256": "5c90937ad5c2310c209a297c4c852567b0d8177a206ebbff828359a0608d236b",
-      "selected": {
-        "duration_s": 2.21,
-        "cps": 3.167420814479638,
-        "head_s": 0.15,
-        "tail_s": 0.15,
-        "max_pause_s": 0.06,
-        "internal_pauses": [
-          {
-            "start_s": 1.63,
-            "end_s": 1.69,
-            "duration_s": 0.06
-          }
-        ],
-        "passed": false,
-        "reasons": [
-          "语速偏慢"
-        ],
-        "raw_duration_s": 2.56,
-        "trim_start_s": 0.05,
-        "trim_end_s": 2.26,
-        "attempt": 4
+      "redub": {
+        "date": "2026-11-11",
+        "reason": "楼 lóu 声调错（搂/捞）",
+        "old_sha256": "5c90937ad5c2310c209a297c4c852567b0d8177a206ebbff828359a0608d236b",
+        "old_listening_approved": false,
+        "asr_gate": "whisper-medium"
       }
     },
     {
@@ -3755,6 +4177,64 @@
       "han_count": 4,
       "attempts": [
         {
+          "duration_s": 1.91,
+          "cps": 2.094240837696335,
+          "head_s": 0.15,
+          "tail_s": 0.15,
+          "max_pause_s": 0.44,
+          "internal_pauses": [
+            {
+              "start_s": 0.74,
+              "end_s": 1.18,
+              "duration_s": 0.44
+            }
+          ],
+          "passed": false,
+          "reasons": [
+            "语速偏慢"
+          ],
+          "raw_duration_s": 2.24,
+          "trim_start_s": 0.03,
+          "trim_end_s": 1.94,
+          "attempt": 1,
+          "asr_heard": "拿走 无聊",
+          "asr_han": "拿走无聊",
+          "asr_exact": true,
+          "asr_lenient": true
+        }
+      ],
+      "status": "out_of_range",
+      "listening_approved": false,
+      "file": "feed_sweets_2.mp3",
+      "sha256": "9e9eb45311baeed8b6635ee62059b82ab4acef8bd8c5f41a69eaab8d3e28d71b",
+      "selected": {
+        "duration_s": 1.91,
+        "cps": 2.094240837696335,
+        "head_s": 0.15,
+        "tail_s": 0.15,
+        "max_pause_s": 0.44,
+        "internal_pauses": [
+          {
+            "start_s": 0.74,
+            "end_s": 1.18,
+            "duration_s": 0.44
+          }
+        ],
+        "passed": false,
+        "reasons": [
+          "语速偏慢"
+        ],
+        "raw_duration_s": 2.24,
+        "trim_start_s": 0.03,
+        "trim_end_s": 1.94,
+        "attempt": 1,
+        "asr_heard": "拿走 无聊",
+        "asr_han": "拿走无聊",
+        "asr_exact": true,
+        "asr_lenient": true
+      },
+      "previous_attempts": [
+        {
           "duration_s": 2.13,
           "cps": 1.8779342723004695,
           "head_s": 0.15,
@@ -3845,31 +4325,12 @@
           "attempt": 4
         }
       ],
-      "status": "out_of_range",
-      "listening_approved": false,
-      "file": "feed_sweets_2.mp3",
-      "sha256": "ef02aa1799ec8f3ea50095b58611cc84673970f7936411d1bc17b9d220683ee7",
-      "selected": {
-        "duration_s": 2.03,
-        "cps": 1.9704433497536948,
-        "head_s": 0.15,
-        "tail_s": 0.15,
-        "max_pause_s": 0.38,
-        "internal_pauses": [
-          {
-            "start_s": 0.97,
-            "end_s": 1.35,
-            "duration_s": 0.38
-          }
-        ],
-        "passed": false,
-        "reasons": [
-          "语速偏慢"
-        ],
-        "raw_duration_s": 2.24,
-        "trim_start_s": 0.05,
-        "trim_end_s": 2.08,
-        "attempt": 4
+      "redub": {
+        "date": "2026-11-11",
+        "reason": "走 zǒu 读成 shǒu（手）",
+        "old_sha256": "ef02aa1799ec8f3ea50095b58611cc84673970f7936411d1bc17b9d220683ee7",
+        "old_listening_approved": false,
+        "asr_gate": "whisper-medium"
       }
     },
     {
@@ -4977,7 +5438,19 @@
     ],
     "generation_failed": [],
     "pending": [],
-    "reused_pilot": 5,
-    "new_attempts": 116
+    "reused_pilot": 4,
+    "new_attempts": 100,
+    "redubbed": [
+      "poke_head_1",
+      "poke_face_1",
+      "poke_face_2",
+      "chat_08",
+      "feed_coffee_1",
+      "feed_catcan_2",
+      "feed_sweets_2"
+    ],
+    "redub_failed": [
+      "poke_hand_1"
+    ]
   }
 }

@@ -77,7 +77,7 @@
       "emotion": "angry",
       "tts_text": "再戳我就关门了。",
       "assistant": "(有点恼)再戳我就关门了。",
-      "listening_approved": true,
+      "listening_approved": false,
       "status": "out_of_range",
       "audio": "assets/voice/yunsheng/unified/poke_face_2.mp3"
     },
