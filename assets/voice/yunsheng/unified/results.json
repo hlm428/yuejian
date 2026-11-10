@@ -1,0 +1,4983 @@
+{
+  "status": "remaining_generated_awaiting_listening",
+  "previous_audio": "obsolete_not_included",
+  "pilot_listening_approved": true,
+  "model": "mimo-v2.5-tts-voiceclone",
+  "voice_desc": "年轻女研究生，声音清冷、偏低，语气淡淡的。正常语速，像平时跟熟人说话，一句话连着说，不拖音、不一字一顿。标准普通话，声音实，不要气声、气泡音、夹子音、撒娇。",
+  "emotion_tags": {
+    "calm": "平淡",
+    "angry": "有点恼",
+    "shy": "小声 有点不好意思",
+    "smile": "轻松"
+  },
+  "seed": "assets/voice/seed/yunsheng.wav",
+  "seed_sha256": "b4239d47a8ae112fe131b082931928fbdfb9b451138ec971bed0e83992e22922",
+  "source_hashes": {
+    "data/lines_yunsheng.js": "18cc2de7c69516898539475ae5f3d0d635ba9e9d1eaed52710a905ef59988b75",
+    "data/scenes_yunsheng.js": "40172efd70458623642f842bff2af586840fae2162393193456f2407c6a43442",
+    "js/app.js": "9d61961b36c66c154b4b0fb90689fee64210b25a60f6256b3366bb8c0e0d48da"
+  },
+  "measurement": {
+    "duration": "ffmpeg decoded PCM samples / sample rate, after trim",
+    "cps": "Han characters only / decoded duration; punctuation and tags excluded",
+    "silence_threshold_db": -50,
+    "window_s": 0.01,
+    "edge_keep_s": 0.15,
+    "cps_min": 4.5,
+    "cps_max": 5.5,
+    "max_internal_pause_s": 0.5,
+    "max_attempts": 4,
+    "trim": "atrim only at edges; no padding, no internal edits, no atempo"
+  },
+  "lines": [
+    {
+      "id": "poke_head_1",
+      "kind": "poke",
+      "zone": "head",
+      "pool_index": 2,
+      "face": "shy",
+      "emotion": "shy",
+      "text": "无聊。",
+      "tts_text": "无聊。",
+      "assistant": "(小声 有点不好意思)无聊。",
+      "han_count": 2,
+      "attempts": [
+        {
+          "duration_s": 1.13,
+          "cps": 1.7699115044247788,
+          "head_s": 0.06,
+          "tail_s": 0.15,
+          "max_pause_s": 0.0,
+          "internal_pauses": [],
+          "passed": false,
+          "reasons": [
+            "语速偏慢"
+          ],
+          "raw_duration_s": 1.28,
+          "trim_start_s": 0.0,
+          "trim_end_s": 1.13,
+          "attempt": 1
+        },
+        {
+          "duration_s": 1.51,
+          "cps": 1.3245033112582782,
+          "head_s": 0.15,
+          "tail_s": 0.15,
+          "max_pause_s": 0.0,
+          "internal_pauses": [],
+          "passed": false,
+          "reasons": [
+            "语速偏慢"
+          ],
+          "raw_duration_s": 1.6,
+          "trim_start_s": 0.02,
+          "trim_end_s": 1.53,
+          "attempt": 2
+        },
+        {
+          "duration_s": 1.25,
+          "cps": 1.6,
+          "head_s": 0.14,
+          "tail_s": 0.17,
+          "max_pause_s": 0.0,
+          "internal_pauses": [],
+          "passed": false,
+          "reasons": [
+            "语速偏慢",
+            "首尾静音超限"
+          ],
+          "raw_duration_s": 1.44,
+          "trim_start_s": 0.0,
+          "trim_end_s": 1.25,
+          "attempt": 3
+        },
+        {
+          "duration_s": 0.82,
+          "cps": 2.4390243902439024,
+          "head_s": 0.15,
+          "tail_s": 0.15,
+          "max_pause_s": 0.0,
+          "internal_pauses": [],
+          "passed": false,
+          "reasons": [
+            "语速偏慢"
+          ],
+          "raw_duration_s": 1.12,
+          "trim_start_s": 0.03,
+          "trim_end_s": 0.85,
+          "attempt": 4
+        }
+      ],
+      "status": "out_of_range",
+      "listening_approved": false,
+      "file": "poke_head_1.mp3",
+      "sha256": "0ac2d69418dce5bcc94578d3c588ee1b259b79f162c78c725e7b1de982ca0855",
+      "selected": {
+        "duration_s": 0.82,
+        "cps": 2.4390243902439024,
+        "head_s": 0.15,
+        "tail_s": 0.15,
+        "max_pause_s": 0.0,
+        "internal_pauses": [],
+        "passed": false,
+        "reasons": [
+          "语速偏慢"
+        ],
+        "raw_duration_s": 1.12,
+        "trim_start_s": 0.03,
+        "trim_end_s": 0.85,
+        "attempt": 4
+      }
+    },
+    {
+      "id": "poke_head_2",
+      "kind": "poke",
+      "zone": "head",
+      "pool_index": 8,
+      "face": "shy",
+      "emotion": "shy",
+      "text": "……随便你。",
+      "tts_text": "随便你。",
+      "assistant": "(小声 有点不好意思)随便你。",
+      "han_count": 3,
+      "attempts": [
+        {
+          "duration_s": 1.18,
+          "cps": 2.5423728813559325,
+          "head_s": 0.15,
+          "tail_s": 0.15,
+          "max_pause_s": 0.02,
+          "internal_pauses": [
+            {
+              "start_s": 0.48,
+              "end_s": 0.5,
+              "duration_s": 0.02
+            },
+            {
+              "start_s": 1.01,
+              "end_s": 1.02,
+              "duration_s": 0.01
+            }
+          ],
+          "passed": false,
+          "reasons": [
+            "语速偏慢"
+          ],
+          "raw_duration_s": 1.44,
+          "trim_start_s": 0.02,
+          "trim_end_s": 1.2,
+          "attempt": 1
+        },
+        {
+          "duration_s": 0.97,
+          "cps": 3.0927835051546393,
+          "head_s": 0.15,
+          "tail_s": 0.15,
+          "max_pause_s": 0.0,
+          "internal_pauses": [],
+          "passed": false,
+          "reasons": [
+            "语速偏慢"
+          ],
+          "raw_duration_s": 1.12,
+          "trim_start_s": 0.01,
+          "trim_end_s": 0.98,
+          "attempt": 2
+        },
+        {
+          "duration_s": 1.21,
+          "cps": 2.479338842975207,
+          "head_s": 0.13,
+          "tail_s": 0.15,
+          "max_pause_s": 0.03,
+          "internal_pauses": [
+            {
+              "start_s": 0.55,
+              "end_s": 0.58,
+              "duration_s": 0.03
+            }
+          ],
+          "passed": false,
+          "reasons": [
+            "语速偏慢"
+          ],
+          "raw_duration_s": 1.6,
+          "trim_start_s": 0.0,
+          "trim_end_s": 1.21,
+          "attempt": 3
+        },
+        {
+          "duration_s": 1.06,
+          "cps": 2.830188679245283,
+          "head_s": 0.14,
+          "tail_s": 0.15,
+          "max_pause_s": 0.02,
+          "internal_pauses": [
+            {
+              "start_s": 0.42,
+              "end_s": 0.44,
+              "duration_s": 0.02
+            }
+          ],
+          "passed": false,
+          "reasons": [
+            "语速偏慢"
+          ],
+          "raw_duration_s": 1.44,
+          "trim_start_s": 0.02,
+          "trim_end_s": 1.08,
+          "attempt": 4
+        }
+      ],
+      "status": "out_of_range",
+      "listening_approved": false,
+      "file": "poke_head_2.mp3",
+      "sha256": "f8f5d7f354437e376ce098bc9d8a2664f48ad1bbdec00473f292a975675bc516",
+      "selected": {
+        "duration_s": 0.97,
+        "cps": 3.0927835051546393,
+        "head_s": 0.15,
+        "tail_s": 0.15,
+        "max_pause_s": 0.0,
+        "internal_pauses": [],
+        "passed": false,
+        "reasons": [
+          "语速偏慢"
+        ],
+        "raw_duration_s": 1.12,
+        "trim_start_s": 0.01,
+        "trim_end_s": 0.98,
+        "attempt": 2
+      }
+    },
+    {
+      "id": "poke_face_1",
+      "kind": "poke",
+      "zone": "face",
+      "pool_index": 0,
+      "face": "angry",
+      "emotion": "angry",
+      "text": "别戳。",
+      "tts_text": "别戳。",
+      "assistant": "(有点恼)别戳。",
+      "han_count": 2,
+      "attempts": [
+        {
+          "duration_s": 1.39,
+          "cps": 1.4388489208633095,
+          "head_s": 0.15,
+          "tail_s": 0.15,
+          "max_pause_s": 0.01,
+          "internal_pauses": [
+            {
+              "start_s": 0.44,
+              "end_s": 0.45,
+              "duration_s": 0.01
+            }
+          ],
+          "passed": false,
+          "reasons": [
+            "语速偏慢"
+          ],
+          "raw_duration_s": 1.6,
+          "trim_start_s": 0.01,
+          "trim_end_s": 1.4,
+          "attempt": 1
+        },
+        {
+          "duration_s": 3.95,
+          "cps": 0.5063291139240506,
+          "head_s": 0.15,
+          "tail_s": 0.14,
+          "max_pause_s": 2.02,
+          "internal_pauses": [
+            {
+              "start_s": 0.36,
+              "end_s": 0.38,
+              "duration_s": 0.02
+            },
+            {
+              "start_s": 0.97,
+              "end_s": 2.99,
+              "duration_s": 2.02
+            },
+            {
+              "start_s": 3.23,
+              "end_s": 3.24,
+              "duration_s": 0.01
+            }
+          ],
+          "passed": false,
+          "reasons": [
+            "语速偏慢",
+            "句中停顿超过0.5秒"
+          ],
+          "raw_duration_s": 4.0,
+          "trim_start_s": 0.05,
+          "trim_end_s": 4.0,
+          "attempt": 2
+        },
+        {
+          "duration_s": 1.06,
+          "cps": 1.8867924528301885,
+          "head_s": 0.15,
+          "tail_s": 0.15,
+          "max_pause_s": 0.0,
+          "internal_pauses": [],
+          "passed": false,
+          "reasons": [
+            "语速偏慢"
+          ],
+          "raw_duration_s": 1.44,
+          "trim_start_s": 0.03,
+          "trim_end_s": 1.09,
+          "attempt": 3
+        },
+        {
+          "duration_s": 0.96,
+          "cps": 2.0833333333333335,
+          "head_s": 0.11,
+          "tail_s": 0.08,
+          "max_pause_s": 0.02,
+          "internal_pauses": [
+            {
+              "start_s": 0.85,
+              "end_s": 0.87,
+              "duration_s": 0.02
+            }
+          ],
+          "passed": false,
+          "reasons": [
+            "语速偏慢"
+          ],
+          "raw_duration_s": 0.96,
+          "trim_start_s": 0.0,
+          "trim_end_s": 0.96,
+          "attempt": 4
+        }
+      ],
+      "status": "out_of_range",
+      "listening_approved": false,
+      "file": "poke_face_1.mp3",
+      "sha256": "517889bff5e0708bdd99a7173136e8751098a6d4ffa0d756f213d68473dfd71a",
+      "selected": {
+        "duration_s": 0.96,
+        "cps": 2.0833333333333335,
+        "head_s": 0.11,
+        "tail_s": 0.08,
+        "max_pause_s": 0.02,
+        "internal_pauses": [
+          {
+            "start_s": 0.85,
+            "end_s": 0.87,
+            "duration_s": 0.02
+          }
+        ],
+        "passed": false,
+        "reasons": [
+          "语速偏慢"
+        ],
+        "raw_duration_s": 0.96,
+        "trim_start_s": 0.0,
+        "trim_end_s": 0.96,
+        "attempt": 4
+      }
+    },
+    {
+      "id": "poke_face_2",
+      "kind": "poke",
+      "zone": "face",
+      "pool_index": 4,
+      "face": "angry",
+      "emotion": "angry",
+      "text": "再戳我就关门了。",
+      "tts_text": "再戳我就关门了。",
+      "assistant": "(有点恼)再戳我就关门了。",
+      "han_count": 7,
+      "attempts": [
+        {
+          "duration_s": 2.21,
+          "cps": 3.167420814479638,
+          "head_s": 0.15,
+          "tail_s": 0.15,
+          "max_pause_s": 0.04,
+          "internal_pauses": [
+            {
+              "start_s": 1.1,
+              "end_s": 1.14,
+              "duration_s": 0.04
+            }
+          ],
+          "passed": false,
+          "reasons": [
+            "语速偏慢"
+          ],
+          "raw_duration_s": 2.4,
+          "trim_start_s": 0.01,
+          "trim_end_s": 2.22,
+          "attempt": 1
+        },
+        {
+          "duration_s": 1.73,
+          "cps": 4.046242774566474,
+          "head_s": 0.12,
+          "tail_s": 0.15,
+          "max_pause_s": 0.02,
+          "internal_pauses": [
+            {
+              "start_s": 0.82,
+              "end_s": 0.84,
+              "duration_s": 0.02
+            }
+          ],
+          "passed": false,
+          "reasons": [
+            "语速偏慢"
+          ],
+          "raw_duration_s": 1.92,
+          "trim_start_s": 0.0,
+          "trim_end_s": 1.73,
+          "attempt": 2
+        },
+        {
+          "duration_s": 2.29,
+          "cps": 3.056768558951965,
+          "head_s": 0.15,
+          "tail_s": 0.15,
+          "max_pause_s": 0.18,
+          "internal_pauses": [
+            {
+              "start_s": 1.04,
+              "end_s": 1.22,
+              "duration_s": 0.18
+            }
+          ],
+          "passed": false,
+          "reasons": [
+            "语速偏慢"
+          ],
+          "raw_duration_s": 2.4,
+          "trim_start_s": 0.01,
+          "trim_end_s": 2.3,
+          "attempt": 3
+        },
+        {
+          "duration_s": 2.13,
+          "cps": 3.286384976525822,
+          "head_s": 0.15,
+          "tail_s": 0.15,
+          "max_pause_s": 0.04,
+          "internal_pauses": [
+            {
+              "start_s": 1.1,
+              "end_s": 1.14,
+              "duration_s": 0.04
+            }
+          ],
+          "passed": false,
+          "reasons": [
+            "语速偏慢"
+          ],
+          "raw_duration_s": 2.4,
+          "trim_start_s": 0.03,
+          "trim_end_s": 2.16,
+          "attempt": 4
+        }
+      ],
+      "status": "out_of_range",
+      "listening_approved": true,
+      "file": "poke_face_2.mp3",
+      "sha256": "47f51e6b67cacce2abee3d0f4a8c4f9ed7612d8f35922b58a547cf41499d53d0",
+      "selected": {
+        "duration_s": 1.73,
+        "cps": 4.046242774566474,
+        "head_s": 0.12,
+        "tail_s": 0.15,
+        "max_pause_s": 0.02,
+        "internal_pauses": [
+          {
+            "start_s": 0.82,
+            "end_s": 0.84,
+            "duration_s": 0.02
+          }
+        ],
+        "passed": false,
+        "reasons": [
+          "语速偏慢"
+        ],
+        "raw_duration_s": 1.92,
+        "trim_start_s": 0.0,
+        "trim_end_s": 1.73,
+        "attempt": 2
+      },
+      "reused_from": "assets/voice/yunsheng/unified_trial/poke_face_2.mp3"
+    },
+    {
+      "id": "poke_hand_1",
+      "kind": "poke",
+      "zone": "hand",
+      "pool_index": 5,
+      "face": "shy",
+      "emotion": "shy",
+      "text": "……痒。",
+      "tts_text": "痒。",
+      "assistant": "(小声 有点不好意思)痒。",
+      "han_count": 1,
+      "attempts": [
+        {
+          "duration_s": 1.05,
+          "cps": 0.9523809523809523,
+          "head_s": 0.15,
+          "tail_s": 0.15,
+          "max_pause_s": 0.0,
+          "internal_pauses": [],
+          "passed": false,
+          "reasons": [
+            "语速偏慢"
+          ],
+          "raw_duration_s": 1.12,
+          "trim_start_s": 0.03,
+          "trim_end_s": 1.08,
+          "attempt": 1
+        },
+        {
+          "duration_s": 0.93,
+          "cps": 1.075268817204301,
+          "head_s": 0.15,
+          "tail_s": 0.15,
+          "max_pause_s": 0.02,
+          "internal_pauses": [
+            {
+              "start_s": 0.75,
+              "end_s": 0.77,
+              "duration_s": 0.02
+            }
+          ],
+          "passed": false,
+          "reasons": [
+            "语速偏慢"
+          ],
+          "raw_duration_s": 1.12,
+          "trim_start_s": 0.01,
+          "trim_end_s": 0.94,
+          "attempt": 2
+        },
+        {
+          "duration_s": 1.15,
+          "cps": 0.8695652173913044,
+          "head_s": 0.15,
+          "tail_s": 0.15,
+          "max_pause_s": 0.0,
+          "internal_pauses": [],
+          "passed": false,
+          "reasons": [
+            "语速偏慢"
+          ],
+          "raw_duration_s": 1.44,
+          "trim_start_s": 0.01,
+          "trim_end_s": 1.16,
+          "attempt": 3
+        },
+        {
+          "duration_s": 1.06,
+          "cps": 0.9433962264150942,
+          "head_s": 0.15,
+          "tail_s": 0.15,
+          "max_pause_s": 0.0,
+          "internal_pauses": [],
+          "passed": false,
+          "reasons": [
+            "语速偏慢"
+          ],
+          "raw_duration_s": 1.28,
+          "trim_start_s": 0.02,
+          "trim_end_s": 1.08,
+          "attempt": 4
+        }
+      ],
+      "status": "out_of_range",
+      "listening_approved": false,
+      "file": "poke_hand_1.mp3",
+      "sha256": "5b4e0a53ea7f1f292cfc933edbde1f7a9ab370b9d8d81dff93a7049e819d2792",
+      "selected": {
+        "duration_s": 0.93,
+        "cps": 1.075268817204301,
+        "head_s": 0.15,
+        "tail_s": 0.15,
+        "max_pause_s": 0.02,
+        "internal_pauses": [
+          {
+            "start_s": 0.75,
+            "end_s": 0.77,
+            "duration_s": 0.02
+          }
+        ],
+        "passed": false,
+        "reasons": [
+          "语速偏慢"
+        ],
+        "raw_duration_s": 1.12,
+        "trim_start_s": 0.01,
+        "trim_end_s": 0.94,
+        "attempt": 2
+      }
+    },
+    {
+      "id": "poke_hand_2",
+      "kind": "poke",
+      "zone": "hand",
+      "pool_index": 6,
+      "face": "shy",
+      "emotion": "shy",
+      "text": "戳够了就走。",
+      "tts_text": "戳够了就走。",
+      "assistant": "(小声 有点不好意思)戳够了就走。",
+      "han_count": 5,
+      "attempts": [
+        {
+          "duration_s": 1.52,
+          "cps": 3.289473684210526,
+          "head_s": 0.15,
+          "tail_s": 0.15,
+          "max_pause_s": 0.0,
+          "internal_pauses": [],
+          "passed": false,
+          "reasons": [
+            "语速偏慢"
+          ],
+          "raw_duration_s": 1.76,
+          "trim_start_s": 0.04,
+          "trim_end_s": 1.56,
+          "attempt": 1
+        },
+        {
+          "duration_s": 1.71,
+          "cps": 2.9239766081871346,
+          "head_s": 0.13,
+          "tail_s": 0.15,
+          "max_pause_s": 0.03,
+          "internal_pauses": [
+            {
+              "start_s": 0.47,
+              "end_s": 0.5,
+              "duration_s": 0.03
+            },
+            {
+              "start_s": 0.97,
+              "end_s": 0.99,
+              "duration_s": 0.02
+            }
+          ],
+          "passed": false,
+          "reasons": [
+            "语速偏慢"
+          ],
+          "raw_duration_s": 1.76,
+          "trim_start_s": 0.0,
+          "trim_end_s": 1.71,
+          "attempt": 2
+        },
+        {
+          "duration_s": 1.55,
+          "cps": 3.225806451612903,
+          "head_s": 0.1,
+          "tail_s": 0.14,
+          "max_pause_s": 0.03,
+          "internal_pauses": [
+            {
+              "start_s": 0.93,
+              "end_s": 0.96,
+              "duration_s": 0.03
+            },
+            {
+              "start_s": 1.21,
+              "end_s": 1.22,
+              "duration_s": 0.01
+            }
+          ],
+          "passed": false,
+          "reasons": [
+            "语速偏慢"
+          ],
+          "raw_duration_s": 1.76,
+          "trim_start_s": 0.0,
+          "trim_end_s": 1.55,
+          "attempt": 3
+        },
+        {
+          "duration_s": 1.56,
+          "cps": 3.205128205128205,
+          "head_s": 0.12,
+          "tail_s": 0.13,
+          "max_pause_s": 0.01,
+          "internal_pauses": [
+            {
+              "start_s": 1.41,
+              "end_s": 1.42,
+              "duration_s": 0.01
+            }
+          ],
+          "passed": false,
+          "reasons": [
+            "语速偏慢"
+          ],
+          "raw_duration_s": 1.76,
+          "trim_start_s": 0.0,
+          "trim_end_s": 1.56,
+          "attempt": 4
+        }
+      ],
+      "status": "out_of_range",
+      "listening_approved": false,
+      "file": "poke_hand_2.mp3",
+      "sha256": "0da6bc02bfe2706ee048e0972a90490f68fe275cd2949baf008ca0697ea544ef",
+      "selected": {
+        "duration_s": 1.52,
+        "cps": 3.289473684210526,
+        "head_s": 0.15,
+        "tail_s": 0.15,
+        "max_pause_s": 0.0,
+        "internal_pauses": [],
+        "passed": false,
+        "reasons": [
+          "语速偏慢"
+        ],
+        "raw_duration_s": 1.76,
+        "trim_start_s": 0.04,
+        "trim_end_s": 1.56,
+        "attempt": 1
+      }
+    },
+    {
+      "id": "poke_shoulder_l_1",
+      "kind": "poke",
+      "zone": "shoulder_l",
+      "pool_index": 9,
+      "face": "smile",
+      "emotion": "smile",
+      "text": "下次记得敲门。",
+      "tts_text": "下次记得敲门。",
+      "assistant": "(轻松)下次记得敲门。",
+      "han_count": 6,
+      "attempts": [
+        {
+          "duration_s": 1.72,
+          "cps": 3.488372093023256,
+          "head_s": 0.15,
+          "tail_s": 0.15,
+          "max_pause_s": 0.01,
+          "internal_pauses": [
+            {
+              "start_s": 1.55,
+              "end_s": 1.56,
+              "duration_s": 0.01
+            }
+          ],
+          "passed": false,
+          "reasons": [
+            "语速偏慢"
+          ],
+          "raw_duration_s": 1.92,
+          "trim_start_s": 0.01,
+          "trim_end_s": 1.73,
+          "attempt": 1
+        },
+        {
+          "duration_s": 1.91,
+          "cps": 3.141361256544503,
+          "head_s": 0.15,
+          "tail_s": 0.15,
+          "max_pause_s": 0.01,
+          "internal_pauses": [
+            {
+              "start_s": 1.73,
+              "end_s": 1.74,
+              "duration_s": 0.01
+            }
+          ],
+          "passed": false,
+          "reasons": [
+            "语速偏慢"
+          ],
+          "raw_duration_s": 2.24,
+          "trim_start_s": 0.04,
+          "trim_end_s": 1.95,
+          "attempt": 2
+        },
+        {
+          "duration_s": 1.69,
+          "cps": 3.5502958579881656,
+          "head_s": 0.15,
+          "tail_s": 0.15,
+          "max_pause_s": 0.01,
+          "internal_pauses": [
+            {
+              "start_s": 0.69,
+              "end_s": 0.7,
+              "duration_s": 0.01
+            }
+          ],
+          "passed": false,
+          "reasons": [
+            "语速偏慢"
+          ],
+          "raw_duration_s": 1.92,
+          "trim_start_s": 0.04,
+          "trim_end_s": 1.73,
+          "attempt": 3
+        },
+        {
+          "duration_s": 1.83,
+          "cps": 3.278688524590164,
+          "head_s": 0.15,
+          "tail_s": 0.15,
+          "max_pause_s": 0.02,
+          "internal_pauses": [
+            {
+              "start_s": 0.46,
+              "end_s": 0.47,
+              "duration_s": 0.01
+            },
+            {
+              "start_s": 0.69,
+              "end_s": 0.71,
+              "duration_s": 0.02
+            },
+            {
+              "start_s": 1.65,
+              "end_s": 1.66,
+              "duration_s": 0.01
+            }
+          ],
+          "passed": false,
+          "reasons": [
+            "语速偏慢"
+          ],
+          "raw_duration_s": 2.08,
+          "trim_start_s": 0.02,
+          "trim_end_s": 1.85,
+          "attempt": 4
+        }
+      ],
+      "status": "out_of_range",
+      "listening_approved": false,
+      "file": "poke_shoulder_l_1.mp3",
+      "sha256": "24b8c4ad7eaac6f6cc988f3e031a2bbe954e0ab7478c7e10ad60848c649617f0",
+      "selected": {
+        "duration_s": 1.69,
+        "cps": 3.5502958579881656,
+        "head_s": 0.15,
+        "tail_s": 0.15,
+        "max_pause_s": 0.01,
+        "internal_pauses": [
+          {
+            "start_s": 0.69,
+            "end_s": 0.7,
+            "duration_s": 0.01
+          }
+        ],
+        "passed": false,
+        "reasons": [
+          "语速偏慢"
+        ],
+        "raw_duration_s": 1.92,
+        "trim_start_s": 0.04,
+        "trim_end_s": 1.73,
+        "attempt": 3
+      }
+    },
+    {
+      "id": "poke_shoulder_l_2",
+      "kind": "poke",
+      "zone": "shoulder_l",
+      "pool_index": 7,
+      "face": "angry",
+      "emotion": "angry",
+      "text": "你每天都这么闲？",
+      "tts_text": "你每天都这么闲？",
+      "assistant": "(有点恼)你每天都这么闲？",
+      "han_count": 7,
+      "attempts": [
+        {
+          "duration_s": 1.87,
+          "cps": 3.7433155080213902,
+          "head_s": 0.15,
+          "tail_s": 0.15,
+          "max_pause_s": 0.04,
+          "internal_pauses": [
+            {
+              "start_s": 0.56,
+              "end_s": 0.6,
+              "duration_s": 0.04
+            }
+          ],
+          "passed": false,
+          "reasons": [
+            "语速偏慢"
+          ],
+          "raw_duration_s": 2.08,
+          "trim_start_s": 0.04,
+          "trim_end_s": 1.91,
+          "attempt": 1
+        },
+        {
+          "duration_s": 2.14,
+          "cps": 3.2710280373831773,
+          "head_s": 0.15,
+          "tail_s": 0.15,
+          "max_pause_s": 0.06,
+          "internal_pauses": [
+            {
+              "start_s": 0.63,
+              "end_s": 0.69,
+              "duration_s": 0.06
+            },
+            {
+              "start_s": 1.14,
+              "end_s": 1.16,
+              "duration_s": 0.02
+            }
+          ],
+          "passed": false,
+          "reasons": [
+            "语速偏慢"
+          ],
+          "raw_duration_s": 2.4,
+          "trim_start_s": 0.04,
+          "trim_end_s": 2.18,
+          "attempt": 2
+        },
+        {
+          "duration_s": 1.9,
+          "cps": 3.68421052631579,
+          "head_s": 0.15,
+          "tail_s": 0.15,
+          "max_pause_s": 0.01,
+          "internal_pauses": [
+            {
+              "start_s": 0.59,
+              "end_s": 0.6,
+              "duration_s": 0.01
+            }
+          ],
+          "passed": false,
+          "reasons": [
+            "语速偏慢"
+          ],
+          "raw_duration_s": 2.24,
+          "trim_start_s": 0.04,
+          "trim_end_s": 1.94,
+          "attempt": 3
+        },
+        {
+          "duration_s": 2.19,
+          "cps": 3.1963470319634704,
+          "head_s": 0.15,
+          "tail_s": 0.15,
+          "max_pause_s": 0.01,
+          "internal_pauses": [
+            {
+              "start_s": 1.97,
+              "end_s": 1.98,
+              "duration_s": 0.01
+            },
+            {
+              "start_s": 1.99,
+              "end_s": 2.0,
+              "duration_s": 0.01
+            }
+          ],
+          "passed": false,
+          "reasons": [
+            "语速偏慢"
+          ],
+          "raw_duration_s": 2.4,
+          "trim_start_s": 0.03,
+          "trim_end_s": 2.22,
+          "attempt": 4
+        }
+      ],
+      "status": "out_of_range",
+      "listening_approved": false,
+      "file": "poke_shoulder_l_2.mp3",
+      "sha256": "1c148ddcf98a34882b3edb4e7c50010ff3706e4e3382ab827e7899eb168274a5",
+      "selected": {
+        "duration_s": 1.87,
+        "cps": 3.7433155080213902,
+        "head_s": 0.15,
+        "tail_s": 0.15,
+        "max_pause_s": 0.04,
+        "internal_pauses": [
+          {
+            "start_s": 0.56,
+            "end_s": 0.6,
+            "duration_s": 0.04
+          }
+        ],
+        "passed": false,
+        "reasons": [
+          "语速偏慢"
+        ],
+        "raw_duration_s": 2.08,
+        "trim_start_s": 0.04,
+        "trim_end_s": 1.91,
+        "attempt": 1
+      }
+    },
+    {
+      "id": "poke_shoulder_r_1",
+      "kind": "poke",
+      "zone": "shoulder_r",
+      "pool_index": 1,
+      "face": "angry",
+      "emotion": "angry",
+      "text": "……你手很闲？",
+      "tts_text": "你手很闲？",
+      "assistant": "(有点恼)你手很闲？",
+      "han_count": 4,
+      "attempts": [
+        {
+          "duration_s": 2.37,
+          "cps": 1.6877637130801686,
+          "head_s": 0.15,
+          "tail_s": 0.15,
+          "max_pause_s": 0.05,
+          "internal_pauses": [
+            {
+              "start_s": 0.63,
+              "end_s": 0.68,
+              "duration_s": 0.05
+            }
+          ],
+          "passed": false,
+          "reasons": [
+            "语速偏慢"
+          ],
+          "raw_duration_s": 2.72,
+          "trim_start_s": 0.06,
+          "trim_end_s": 2.43,
+          "attempt": 1
+        },
+        {
+          "duration_s": 1.91,
+          "cps": 2.094240837696335,
+          "head_s": 0.15,
+          "tail_s": 0.15,
+          "max_pause_s": 0.0,
+          "internal_pauses": [],
+          "passed": false,
+          "reasons": [
+            "语速偏慢"
+          ],
+          "raw_duration_s": 2.08,
+          "trim_start_s": 0.02,
+          "trim_end_s": 1.93,
+          "attempt": 2
+        },
+        {
+          "duration_s": 1.7,
+          "cps": 2.3529411764705883,
+          "head_s": 0.15,
+          "tail_s": 0.15,
+          "max_pause_s": 0.0,
+          "internal_pauses": [],
+          "passed": false,
+          "reasons": [
+            "语速偏慢"
+          ],
+          "raw_duration_s": 1.92,
+          "trim_start_s": 0.03,
+          "trim_end_s": 1.73,
+          "attempt": 3
+        },
+        {
+          "duration_s": 1.45,
+          "cps": 2.7586206896551726,
+          "head_s": 0.15,
+          "tail_s": 0.15,
+          "max_pause_s": 0.0,
+          "internal_pauses": [],
+          "passed": false,
+          "reasons": [
+            "语速偏慢"
+          ],
+          "raw_duration_s": 1.76,
+          "trim_start_s": 0.02,
+          "trim_end_s": 1.47,
+          "attempt": 4
+        }
+      ],
+      "status": "out_of_range",
+      "listening_approved": false,
+      "file": "poke_shoulder_r_1.mp3",
+      "sha256": "9456516896c740f18cd5ab12c31dd9d2dc4db071f28f4d959920dcd94c01c4e8",
+      "selected": {
+        "duration_s": 1.45,
+        "cps": 2.7586206896551726,
+        "head_s": 0.15,
+        "tail_s": 0.15,
+        "max_pause_s": 0.0,
+        "internal_pauses": [],
+        "passed": false,
+        "reasons": [
+          "语速偏慢"
+        ],
+        "raw_duration_s": 1.76,
+        "trim_start_s": 0.02,
+        "trim_end_s": 1.47,
+        "attempt": 4
+      }
+    },
+    {
+      "id": "poke_shoulder_r_2",
+      "kind": "poke",
+      "zone": "shoulder_r",
+      "pool_index": 3,
+      "face": "angry",
+      "emotion": "angry",
+      "text": "我在看报告。",
+      "tts_text": "我在看报告。",
+      "assistant": "(有点恼)我在看报告。",
+      "han_count": 5,
+      "attempts": [
+        {
+          "duration_s": 1.33,
+          "cps": 3.7593984962406015,
+          "head_s": 0.15,
+          "tail_s": 0.15,
+          "max_pause_s": 0.02,
+          "internal_pauses": [
+            {
+              "start_s": 0.79,
+              "end_s": 0.81,
+              "duration_s": 0.02
+            }
+          ],
+          "passed": false,
+          "reasons": [
+            "语速偏慢"
+          ],
+          "raw_duration_s": 1.6,
+          "trim_start_s": 0.02,
+          "trim_end_s": 1.35,
+          "attempt": 1
+        },
+        {
+          "duration_s": 1.22,
+          "cps": 4.098360655737705,
+          "head_s": 0.15,
+          "tail_s": 0.15,
+          "max_pause_s": 0.01,
+          "internal_pauses": [
+            {
+              "start_s": 0.42,
+              "end_s": 0.43,
+              "duration_s": 0.01
+            },
+            {
+              "start_s": 1.05,
+              "end_s": 1.06,
+              "duration_s": 0.01
+            }
+          ],
+          "passed": false,
+          "reasons": [
+            "语速偏慢"
+          ],
+          "raw_duration_s": 1.44,
+          "trim_start_s": 0.02,
+          "trim_end_s": 1.24,
+          "attempt": 2
+        },
+        {
+          "duration_s": 1.36,
+          "cps": 3.676470588235294,
+          "head_s": 0.15,
+          "tail_s": 0.15,
+          "max_pause_s": 0.0,
+          "internal_pauses": [],
+          "passed": false,
+          "reasons": [
+            "语速偏慢"
+          ],
+          "raw_duration_s": 1.6,
+          "trim_start_s": 0.04,
+          "trim_end_s": 1.4,
+          "attempt": 3
+        },
+        {
+          "duration_s": 1.42,
+          "cps": 3.5211267605633805,
+          "head_s": 0.14,
+          "tail_s": 0.15,
+          "max_pause_s": 0.03,
+          "internal_pauses": [
+            {
+              "start_s": 0.15,
+              "end_s": 0.16,
+              "duration_s": 0.01
+            },
+            {
+              "start_s": 0.94,
+              "end_s": 0.97,
+              "duration_s": 0.03
+            }
+          ],
+          "passed": false,
+          "reasons": [
+            "语速偏慢"
+          ],
+          "raw_duration_s": 1.6,
+          "trim_start_s": 0.0,
+          "trim_end_s": 1.42,
+          "attempt": 4
+        }
+      ],
+      "status": "out_of_range",
+      "listening_approved": false,
+      "file": "poke_shoulder_r_2.mp3",
+      "sha256": "fafc48761c9fba3189d64257fab828c5c02f7fb49abd58596ed69221f0be7942",
+      "selected": {
+        "duration_s": 1.22,
+        "cps": 4.098360655737705,
+        "head_s": 0.15,
+        "tail_s": 0.15,
+        "max_pause_s": 0.01,
+        "internal_pauses": [
+          {
+            "start_s": 0.42,
+            "end_s": 0.43,
+            "duration_s": 0.01
+          },
+          {
+            "start_s": 1.05,
+            "end_s": 1.06,
+            "duration_s": 0.01
+          }
+        ],
+        "passed": false,
+        "reasons": [
+          "语速偏慢"
+        ],
+        "raw_duration_s": 1.44,
+        "trim_start_s": 0.02,
+        "trim_end_s": 1.24,
+        "attempt": 2
+      }
+    },
+    {
+      "id": "chat_01",
+      "kind": "chat",
+      "pool_index": 0,
+      "face": "smile",
+      "emotion": "smile",
+      "text": "今天的报告写了六千字。",
+      "tts_text": "今天的报告写了六千字。",
+      "assistant": "(轻松)今天的报告写了六千字。",
+      "han_count": 10,
+      "attempts": [
+        {
+          "duration_s": 4.96,
+          "cps": 2.0161290322580645,
+          "head_s": 0.15,
+          "tail_s": 0.15,
+          "max_pause_s": 1.51,
+          "internal_pauses": [
+            {
+              "start_s": 0.63,
+              "end_s": 0.64,
+              "duration_s": 0.01
+            },
+            {
+              "start_s": 0.88,
+              "end_s": 0.89,
+              "duration_s": 0.01
+            },
+            {
+              "start_s": 2.54,
+              "end_s": 2.55,
+              "duration_s": 0.01
+            },
+            {
+              "start_s": 2.56,
+              "end_s": 4.07,
+              "duration_s": 1.51
+            }
+          ],
+          "passed": false,
+          "reasons": [
+            "语速偏慢",
+            "句中停顿超过0.5秒"
+          ],
+          "raw_duration_s": 5.12,
+          "trim_start_s": 0.02,
+          "trim_end_s": 4.98,
+          "attempt": 1
+        },
+        {
+          "duration_s": 2.98,
+          "cps": 3.3557046979865772,
+          "head_s": 0.15,
+          "tail_s": 0.15,
+          "max_pause_s": 0.16,
+          "internal_pauses": [
+            {
+              "start_s": 1.33,
+              "end_s": 1.49,
+              "duration_s": 0.16
+            },
+            {
+              "start_s": 2.13,
+              "end_s": 2.15,
+              "duration_s": 0.02
+            },
+            {
+              "start_s": 2.79,
+              "end_s": 2.81,
+              "duration_s": 0.02
+            }
+          ],
+          "passed": false,
+          "reasons": [
+            "语速偏慢"
+          ],
+          "raw_duration_s": 3.2,
+          "trim_start_s": 0.02,
+          "trim_end_s": 3.0,
+          "attempt": 2
+        },
+        {
+          "duration_s": 9.2,
+          "cps": 1.0869565217391306,
+          "head_s": 0.15,
+          "tail_s": 0.15,
+          "max_pause_s": 2.4,
+          "internal_pauses": [
+            {
+              "start_s": 1.18,
+              "end_s": 1.22,
+              "duration_s": 0.04
+            },
+            {
+              "start_s": 1.42,
+              "end_s": 1.46,
+              "duration_s": 0.04
+            },
+            {
+              "start_s": 2.65,
+              "end_s": 2.72,
+              "duration_s": 0.07
+            },
+            {
+              "start_s": 3.49,
+              "end_s": 5.89,
+              "duration_s": 2.4
+            },
+            {
+              "start_s": 5.91,
+              "end_s": 5.94,
+              "duration_s": 0.03
+            },
+            {
+              "start_s": 7.04,
+              "end_s": 7.14,
+              "duration_s": 0.1
+            },
+            {
+              "start_s": 7.31,
+              "end_s": 7.37,
+              "duration_s": 0.06
+            },
+            {
+              "start_s": 7.82,
+              "end_s": 7.86,
+              "duration_s": 0.04
+            }
+          ],
+          "passed": false,
+          "reasons": [
+            "语速偏慢",
+            "句中停顿超过0.5秒"
+          ],
+          "raw_duration_s": 9.6,
+          "trim_start_s": 0.08,
+          "trim_end_s": 9.28,
+          "attempt": 3
+        },
+        {
+          "duration_s": 3.7,
+          "cps": 2.7027027027027026,
+          "head_s": 0.15,
+          "tail_s": 0.15,
+          "max_pause_s": 0.22,
+          "internal_pauses": [
+            {
+              "start_s": 0.8,
+              "end_s": 0.82,
+              "duration_s": 0.02
+            },
+            {
+              "start_s": 1.09,
+              "end_s": 1.12,
+              "duration_s": 0.03
+            },
+            {
+              "start_s": 1.75,
+              "end_s": 1.97,
+              "duration_s": 0.22
+            }
+          ],
+          "passed": false,
+          "reasons": [
+            "语速偏慢"
+          ],
+          "raw_duration_s": 4.0,
+          "trim_start_s": 0.06,
+          "trim_end_s": 3.76,
+          "attempt": 4
+        }
+      ],
+      "status": "out_of_range",
+      "listening_approved": false,
+      "file": "chat_01.mp3",
+      "sha256": "0f05a424e313d55d69a733fb63b2976af32a77f942a56f5738ef99ec23c7b535",
+      "selected": {
+        "duration_s": 2.98,
+        "cps": 3.3557046979865772,
+        "head_s": 0.15,
+        "tail_s": 0.15,
+        "max_pause_s": 0.16,
+        "internal_pauses": [
+          {
+            "start_s": 1.33,
+            "end_s": 1.49,
+            "duration_s": 0.16
+          },
+          {
+            "start_s": 2.13,
+            "end_s": 2.15,
+            "duration_s": 0.02
+          },
+          {
+            "start_s": 2.79,
+            "end_s": 2.81,
+            "duration_s": 0.02
+          }
+        ],
+        "passed": false,
+        "reasons": [
+          "语速偏慢"
+        ],
+        "raw_duration_s": 3.2,
+        "trim_start_s": 0.02,
+        "trim_end_s": 3.0,
+        "attempt": 2
+      }
+    },
+    {
+      "id": "chat_02",
+      "kind": "chat",
+      "needCat": true,
+      "pool_index": 1,
+      "face": "shy",
+      "emotion": "shy",
+      "text": "楼道那只猫又来了。",
+      "tts_text": "楼道那只猫又来了。",
+      "assistant": "(小声 有点不好意思)楼道那只猫又来了。",
+      "han_count": 8,
+      "attempts": [
+        {
+          "duration_s": 3.1,
+          "cps": 2.5806451612903225,
+          "head_s": 0.15,
+          "tail_s": 0.15,
+          "max_pause_s": 0.4,
+          "internal_pauses": [
+            {
+              "start_s": 1.78,
+              "end_s": 2.18,
+              "duration_s": 0.4
+            }
+          ],
+          "passed": false,
+          "reasons": [
+            "语速偏慢"
+          ],
+          "raw_duration_s": 3.36,
+          "trim_start_s": 0.05,
+          "trim_end_s": 3.15,
+          "attempt": 1
+        },
+        {
+          "duration_s": 3.02,
+          "cps": 2.6490066225165565,
+          "head_s": 0.15,
+          "tail_s": 0.15,
+          "max_pause_s": 0.18,
+          "internal_pauses": [
+            {
+              "start_s": 1.63,
+              "end_s": 1.81,
+              "duration_s": 0.18
+            },
+            {
+              "start_s": 1.83,
+              "end_s": 2.0,
+              "duration_s": 0.17
+            }
+          ],
+          "passed": false,
+          "reasons": [
+            "语速偏慢"
+          ],
+          "raw_duration_s": 3.36,
+          "trim_start_s": 0.04,
+          "trim_end_s": 3.06,
+          "attempt": 2
+        },
+        {
+          "duration_s": 2.85,
+          "cps": 2.807017543859649,
+          "head_s": 0.15,
+          "tail_s": 0.15,
+          "max_pause_s": 0.02,
+          "internal_pauses": [
+            {
+              "start_s": 0.17,
+              "end_s": 0.18,
+              "duration_s": 0.01
+            },
+            {
+              "start_s": 0.54,
+              "end_s": 0.55,
+              "duration_s": 0.01
+            },
+            {
+              "start_s": 1.01,
+              "end_s": 1.03,
+              "duration_s": 0.02
+            }
+          ],
+          "passed": false,
+          "reasons": [
+            "语速偏慢"
+          ],
+          "raw_duration_s": 3.04,
+          "trim_start_s": 0.0,
+          "trim_end_s": 2.85,
+          "attempt": 3
+        },
+        {
+          "duration_s": 4.12,
+          "cps": 1.941747572815534,
+          "head_s": 0.15,
+          "tail_s": 0.0,
+          "max_pause_s": 1.83,
+          "internal_pauses": [
+            {
+              "start_s": 1.15,
+              "end_s": 1.17,
+              "duration_s": 0.02
+            },
+            {
+              "start_s": 1.18,
+              "end_s": 1.23,
+              "duration_s": 0.05
+            },
+            {
+              "start_s": 1.92,
+              "end_s": 3.75,
+              "duration_s": 1.83
+            }
+          ],
+          "passed": false,
+          "reasons": [
+            "语速偏慢",
+            "句中停顿超过0.5秒"
+          ],
+          "raw_duration_s": 4.16,
+          "trim_start_s": 0.04,
+          "trim_end_s": 4.16,
+          "attempt": 4
+        }
+      ],
+      "status": "out_of_range",
+      "listening_approved": false,
+      "file": "chat_02.mp3",
+      "sha256": "ba6a5abbb3e9506114d4e5d09e46081e0c435748ee8c591ce0a84508914f62c4",
+      "selected": {
+        "duration_s": 2.85,
+        "cps": 2.807017543859649,
+        "head_s": 0.15,
+        "tail_s": 0.15,
+        "max_pause_s": 0.02,
+        "internal_pauses": [
+          {
+            "start_s": 0.17,
+            "end_s": 0.18,
+            "duration_s": 0.01
+          },
+          {
+            "start_s": 0.54,
+            "end_s": 0.55,
+            "duration_s": 0.01
+          },
+          {
+            "start_s": 1.01,
+            "end_s": 1.03,
+            "duration_s": 0.02
+          }
+        ],
+        "passed": false,
+        "reasons": [
+          "语速偏慢"
+        ],
+        "raw_duration_s": 3.04,
+        "trim_start_s": 0.0,
+        "trim_end_s": 2.85,
+        "attempt": 3
+      }
+    },
+    {
+      "id": "chat_03",
+      "kind": "chat",
+      "pool_index": 2,
+      "face": "smile",
+      "emotion": "smile",
+      "text": "黑咖啡，不加糖。",
+      "tts_text": "黑咖啡，不加糖。",
+      "assistant": "(轻松)黑咖啡，不加糖。",
+      "han_count": 6,
+      "attempts": [
+        {
+          "duration_s": 2.23,
+          "cps": 2.690582959641256,
+          "head_s": 0.09,
+          "tail_s": 0.15,
+          "max_pause_s": 0.25,
+          "internal_pauses": [
+            {
+              "start_s": 1.03,
+              "end_s": 1.28,
+              "duration_s": 0.25
+            }
+          ],
+          "passed": false,
+          "reasons": [
+            "语速偏慢"
+          ],
+          "raw_duration_s": 2.4,
+          "trim_start_s": 0.0,
+          "trim_end_s": 2.23,
+          "attempt": 1
+        },
+        {
+          "duration_s": 2.1,
+          "cps": 2.857142857142857,
+          "head_s": 0.15,
+          "tail_s": 0.15,
+          "max_pause_s": 0.26,
+          "internal_pauses": [
+            {
+              "start_s": 1.0,
+              "end_s": 1.26,
+              "duration_s": 0.26
+            },
+            {
+              "start_s": 1.62,
+              "end_s": 1.63,
+              "duration_s": 0.01
+            }
+          ],
+          "passed": false,
+          "reasons": [
+            "语速偏慢"
+          ],
+          "raw_duration_s": 2.4,
+          "trim_start_s": 0.02,
+          "trim_end_s": 2.12,
+          "attempt": 2
+        },
+        {
+          "duration_s": 2.11,
+          "cps": 2.843601895734597,
+          "head_s": 0.15,
+          "tail_s": 0.15,
+          "max_pause_s": 0.25,
+          "internal_pauses": [
+            {
+              "start_s": 1.01,
+              "end_s": 1.26,
+              "duration_s": 0.25
+            }
+          ],
+          "passed": false,
+          "reasons": [
+            "语速偏慢"
+          ],
+          "raw_duration_s": 2.4,
+          "trim_start_s": 0.01,
+          "trim_end_s": 2.12,
+          "attempt": 3
+        },
+        {
+          "duration_s": 1.93,
+          "cps": 3.1088082901554404,
+          "head_s": 0.09,
+          "tail_s": 0.15,
+          "max_pause_s": 0.38,
+          "internal_pauses": [
+            {
+              "start_s": 0.79,
+              "end_s": 1.17,
+              "duration_s": 0.38
+            },
+            {
+              "start_s": 1.75,
+              "end_s": 1.77,
+              "duration_s": 0.02
+            }
+          ],
+          "passed": false,
+          "reasons": [
+            "语速偏慢"
+          ],
+          "raw_duration_s": 2.24,
+          "trim_start_s": 0.0,
+          "trim_end_s": 1.93,
+          "attempt": 4
+        }
+      ],
+      "status": "out_of_range",
+      "listening_approved": false,
+      "file": "chat_03.mp3",
+      "sha256": "bfc16915066fea8e7010bda030f98a3aaeca66ec235339e43d536e713032e022",
+      "selected": {
+        "duration_s": 1.93,
+        "cps": 3.1088082901554404,
+        "head_s": 0.09,
+        "tail_s": 0.15,
+        "max_pause_s": 0.38,
+        "internal_pauses": [
+          {
+            "start_s": 0.79,
+            "end_s": 1.17,
+            "duration_s": 0.38
+          },
+          {
+            "start_s": 1.75,
+            "end_s": 1.77,
+            "duration_s": 0.02
+          }
+        ],
+        "passed": false,
+        "reasons": [
+          "语速偏慢"
+        ],
+        "raw_duration_s": 2.24,
+        "trim_start_s": 0.0,
+        "trim_end_s": 1.93,
+        "attempt": 4
+      }
+    },
+    {
+      "id": "chat_04",
+      "kind": "chat",
+      "pool_index": 3,
+      "face": "smile",
+      "emotion": "smile",
+      "text": "夜澜的棋下得还行。",
+      "tts_text": "夜澜的棋下得还行。",
+      "assistant": "(轻松)夜澜的棋下得还行。",
+      "han_count": 8,
+      "attempts": [
+        {
+          "duration_s": 2.46,
+          "cps": 3.252032520325203,
+          "head_s": 0.15,
+          "tail_s": 0.15,
+          "max_pause_s": 0.0,
+          "internal_pauses": [],
+          "passed": false,
+          "reasons": [
+            "语速偏慢"
+          ],
+          "raw_duration_s": 2.88,
+          "trim_start_s": 0.06,
+          "trim_end_s": 2.52,
+          "attempt": 1
+        },
+        {
+          "duration_s": 2.1,
+          "cps": 3.8095238095238093,
+          "head_s": 0.15,
+          "tail_s": 0.15,
+          "max_pause_s": 0.0,
+          "internal_pauses": [],
+          "passed": false,
+          "reasons": [
+            "语速偏慢"
+          ],
+          "raw_duration_s": 2.24,
+          "trim_start_s": 0.03,
+          "trim_end_s": 2.13,
+          "attempt": 2
+        },
+        {
+          "duration_s": 2.86,
+          "cps": 2.7972027972027975,
+          "head_s": 0.15,
+          "tail_s": 0.15,
+          "max_pause_s": 0.0,
+          "internal_pauses": [],
+          "passed": false,
+          "reasons": [
+            "语速偏慢"
+          ],
+          "raw_duration_s": 3.2,
+          "trim_start_s": 0.06,
+          "trim_end_s": 2.92,
+          "attempt": 3
+        },
+        {
+          "duration_s": 2.41,
+          "cps": 3.3195020746887964,
+          "head_s": 0.15,
+          "tail_s": 0.15,
+          "max_pause_s": 0.01,
+          "internal_pauses": [
+            {
+              "start_s": 0.77,
+              "end_s": 0.78,
+              "duration_s": 0.01
+            },
+            {
+              "start_s": 2.23,
+              "end_s": 2.24,
+              "duration_s": 0.01
+            }
+          ],
+          "passed": false,
+          "reasons": [
+            "语速偏慢"
+          ],
+          "raw_duration_s": 2.72,
+          "trim_start_s": 0.04,
+          "trim_end_s": 2.45,
+          "attempt": 4
+        }
+      ],
+      "status": "out_of_range",
+      "listening_approved": false,
+      "file": "chat_04.mp3",
+      "sha256": "67923120c36853019793d3222c189fddd2d3c655aeca23c618e64d6572c1b595",
+      "selected": {
+        "duration_s": 2.1,
+        "cps": 3.8095238095238093,
+        "head_s": 0.15,
+        "tail_s": 0.15,
+        "max_pause_s": 0.0,
+        "internal_pauses": [],
+        "passed": false,
+        "reasons": [
+          "语速偏慢"
+        ],
+        "raw_duration_s": 2.24,
+        "trim_start_s": 0.03,
+        "trim_end_s": 2.13,
+        "attempt": 2
+      }
+    },
+    {
+      "id": "chat_05",
+      "kind": "chat",
+      "pool_index": 4,
+      "face": "angry",
+      "emotion": "angry",
+      "text": "实验室的灯坏了两天，没人修。",
+      "tts_text": "实验室的灯坏了两天，没人修。",
+      "assistant": "(有点恼)实验室的灯坏了两天，没人修。",
+      "han_count": 12,
+      "attempts": [
+        {
+          "duration_s": 3.7,
+          "cps": 3.243243243243243,
+          "head_s": 0.07,
+          "tail_s": 0.15,
+          "max_pause_s": 0.44,
+          "internal_pauses": [
+            {
+              "start_s": 0.85,
+              "end_s": 0.9,
+              "duration_s": 0.05
+            },
+            {
+              "start_s": 2.37,
+              "end_s": 2.81,
+              "duration_s": 0.44
+            }
+          ],
+          "passed": false,
+          "reasons": [
+            "语速偏慢"
+          ],
+          "raw_duration_s": 4.0,
+          "trim_start_s": 0.0,
+          "trim_end_s": 3.7,
+          "attempt": 1
+        },
+        {
+          "duration_s": 3.19,
+          "cps": 3.761755485893417,
+          "head_s": 0.07,
+          "tail_s": 0.15,
+          "max_pause_s": 0.01,
+          "internal_pauses": [
+            {
+              "start_s": 3.02,
+              "end_s": 3.03,
+              "duration_s": 0.01
+            }
+          ],
+          "passed": false,
+          "reasons": [
+            "语速偏慢"
+          ],
+          "raw_duration_s": 3.2,
+          "trim_start_s": 0.0,
+          "trim_end_s": 3.19,
+          "attempt": 2
+        },
+        {
+          "duration_s": 3.11,
+          "cps": 3.8585209003215435,
+          "head_s": 0.15,
+          "tail_s": 0.15,
+          "max_pause_s": 0.24,
+          "internal_pauses": [
+            {
+              "start_s": 2.03,
+              "end_s": 2.27,
+              "duration_s": 0.24
+            }
+          ],
+          "passed": false,
+          "reasons": [
+            "语速偏慢"
+          ],
+          "raw_duration_s": 3.36,
+          "trim_start_s": 0.02,
+          "trim_end_s": 3.13,
+          "attempt": 3
+        },
+        {
+          "duration_s": 5.58,
+          "cps": 2.150537634408602,
+          "head_s": 0.15,
+          "tail_s": 0.15,
+          "max_pause_s": 0.77,
+          "internal_pauses": [
+            {
+              "start_s": 1.42,
+              "end_s": 1.49,
+              "duration_s": 0.07
+            },
+            {
+              "start_s": 2.92,
+              "end_s": 2.95,
+              "duration_s": 0.03
+            },
+            {
+              "start_s": 3.41,
+              "end_s": 4.18,
+              "duration_s": 0.77
+            }
+          ],
+          "passed": false,
+          "reasons": [
+            "语速偏慢",
+            "句中停顿超过0.5秒"
+          ],
+          "raw_duration_s": 5.76,
+          "trim_start_s": 0.06,
+          "trim_end_s": 5.64,
+          "attempt": 4
+        }
+      ],
+      "status": "out_of_range",
+      "listening_approved": false,
+      "file": "chat_05.mp3",
+      "sha256": "07429217630a84914d08fd81cb2bfb31b331ca40fe32230506fbc86d29851965",
+      "selected": {
+        "duration_s": 3.11,
+        "cps": 3.8585209003215435,
+        "head_s": 0.15,
+        "tail_s": 0.15,
+        "max_pause_s": 0.24,
+        "internal_pauses": [
+          {
+            "start_s": 2.03,
+            "end_s": 2.27,
+            "duration_s": 0.24
+          }
+        ],
+        "passed": false,
+        "reasons": [
+          "语速偏慢"
+        ],
+        "raw_duration_s": 3.36,
+        "trim_start_s": 0.02,
+        "trim_end_s": 3.13,
+        "attempt": 3
+      }
+    },
+    {
+      "id": "chat_06",
+      "kind": "chat",
+      "pool_index": 5,
+      "face": "shy",
+      "emotion": "shy",
+      "text": "……你居然还记得我不吃甜的。",
+      "tts_text": "你居然还记得我不吃甜的。",
+      "assistant": "(小声 有点不好意思)你居然还记得我不吃甜的。",
+      "han_count": 11,
+      "attempts": [
+        {
+          "duration_s": 2.58,
+          "cps": 4.263565891472868,
+          "head_s": 0.15,
+          "tail_s": 0.15,
+          "max_pause_s": 0.07,
+          "internal_pauses": [
+            {
+              "start_s": 0.28,
+              "end_s": 0.33,
+              "duration_s": 0.05
+            },
+            {
+              "start_s": 0.8,
+              "end_s": 0.83,
+              "duration_s": 0.03
+            },
+            {
+              "start_s": 1.3,
+              "end_s": 1.37,
+              "duration_s": 0.07
+            },
+            {
+              "start_s": 1.67,
+              "end_s": 1.68,
+              "duration_s": 0.01
+            }
+          ],
+          "passed": false,
+          "reasons": [
+            "语速偏慢"
+          ],
+          "raw_duration_s": 2.88,
+          "trim_start_s": 0.04,
+          "trim_end_s": 2.62,
+          "attempt": 1
+        },
+        {
+          "duration_s": 3.89,
+          "cps": 2.827763496143959,
+          "head_s": 0.15,
+          "tail_s": 0.15,
+          "max_pause_s": 0.09,
+          "internal_pauses": [
+            {
+              "start_s": 1.15,
+              "end_s": 1.2,
+              "duration_s": 0.05
+            },
+            {
+              "start_s": 1.99,
+              "end_s": 2.0,
+              "duration_s": 0.01
+            },
+            {
+              "start_s": 2.01,
+              "end_s": 2.02,
+              "duration_s": 0.01
+            },
+            {
+              "start_s": 2.32,
+              "end_s": 2.41,
+              "duration_s": 0.09
+            },
+            {
+              "start_s": 2.53,
+              "end_s": 2.56,
+              "duration_s": 0.03
+            },
+            {
+              "start_s": 2.86,
+              "end_s": 2.91,
+              "duration_s": 0.05
+            },
+            {
+              "start_s": 3.21,
+              "end_s": 3.22,
+              "duration_s": 0.01
+            },
+            {
+              "start_s": 3.34,
+              "end_s": 3.39,
+              "duration_s": 0.05
+            }
+          ],
+          "passed": false,
+          "reasons": [
+            "语速偏慢"
+          ],
+          "raw_duration_s": 4.16,
+          "trim_start_s": 0.04,
+          "trim_end_s": 3.93,
+          "attempt": 2
+        },
+        {
+          "duration_s": 5.13,
+          "cps": 2.1442495126705654,
+          "head_s": 0.15,
+          "tail_s": 0.15,
+          "max_pause_s": 2.27,
+          "internal_pauses": [
+            {
+              "start_s": 1.39,
+              "end_s": 1.42,
+              "duration_s": 0.03
+            },
+            {
+              "start_s": 2.32,
+              "end_s": 4.59,
+              "duration_s": 2.27
+            },
+            {
+              "start_s": 4.96,
+              "end_s": 4.97,
+              "duration_s": 0.01
+            }
+          ],
+          "passed": false,
+          "reasons": [
+            "语速偏慢",
+            "句中停顿超过0.5秒"
+          ],
+          "raw_duration_s": 5.28,
+          "trim_start_s": 0.05,
+          "trim_end_s": 5.18,
+          "attempt": 3
+        },
+        {
+          "duration_s": 2.99,
+          "cps": 3.6789297658862874,
+          "head_s": 0.15,
+          "tail_s": 0.03,
+          "max_pause_s": 0.18,
+          "internal_pauses": [
+            {
+              "start_s": 0.3,
+              "end_s": 0.36,
+              "duration_s": 0.06
+            },
+            {
+              "start_s": 0.87,
+              "end_s": 0.91,
+              "duration_s": 0.04
+            },
+            {
+              "start_s": 1.38,
+              "end_s": 1.43,
+              "duration_s": 0.05
+            },
+            {
+              "start_s": 1.55,
+              "end_s": 1.57,
+              "duration_s": 0.02
+            },
+            {
+              "start_s": 1.78,
+              "end_s": 1.82,
+              "duration_s": 0.04
+            },
+            {
+              "start_s": 2.55,
+              "end_s": 2.73,
+              "duration_s": 0.18
+            }
+          ],
+          "passed": false,
+          "reasons": [
+            "语速偏慢"
+          ],
+          "raw_duration_s": 3.04,
+          "trim_start_s": 0.05,
+          "trim_end_s": 3.04,
+          "attempt": 4
+        }
+      ],
+      "status": "out_of_range",
+      "listening_approved": true,
+      "file": "chat_06.mp3",
+      "sha256": "17a829c76f0109893668626c53b7a3d849dcf52c86d0d7db5c6c93fe374544a8",
+      "selected": {
+        "duration_s": 2.58,
+        "cps": 4.263565891472868,
+        "head_s": 0.15,
+        "tail_s": 0.15,
+        "max_pause_s": 0.07,
+        "internal_pauses": [
+          {
+            "start_s": 0.28,
+            "end_s": 0.33,
+            "duration_s": 0.05
+          },
+          {
+            "start_s": 0.8,
+            "end_s": 0.83,
+            "duration_s": 0.03
+          },
+          {
+            "start_s": 1.3,
+            "end_s": 1.37,
+            "duration_s": 0.07
+          },
+          {
+            "start_s": 1.67,
+            "end_s": 1.68,
+            "duration_s": 0.01
+          }
+        ],
+        "passed": false,
+        "reasons": [
+          "语速偏慢"
+        ],
+        "raw_duration_s": 2.88,
+        "trim_start_s": 0.04,
+        "trim_end_s": 2.62,
+        "attempt": 1
+      },
+      "reused_from": "assets/voice/yunsheng/unified_trial/chat_06.mp3"
+    },
+    {
+      "id": "chat_07",
+      "kind": "chat",
+      "pool_index": 6,
+      "face": "sleep",
+      "emotion": "calm",
+      "text": "明天半夜可能要去现场。",
+      "tts_text": "明天半夜可能要去现场。",
+      "assistant": "(平淡)明天半夜可能要去现场。",
+      "han_count": 10,
+      "attempts": [
+        {
+          "duration_s": 2.85,
+          "cps": 3.508771929824561,
+          "head_s": 0.15,
+          "tail_s": 0.15,
+          "max_pause_s": 0.01,
+          "internal_pauses": [
+            {
+              "start_s": 1.42,
+              "end_s": 1.43,
+              "duration_s": 0.01
+            }
+          ],
+          "passed": false,
+          "reasons": [
+            "语速偏慢"
+          ],
+          "raw_duration_s": 3.04,
+          "trim_start_s": 0.04,
+          "trim_end_s": 2.89,
+          "attempt": 1
+        },
+        {
+          "duration_s": 3.51,
+          "cps": 2.8490028490028494,
+          "head_s": 0.15,
+          "tail_s": 0.15,
+          "max_pause_s": 0.28,
+          "internal_pauses": [
+            {
+              "start_s": 1.67,
+              "end_s": 1.95,
+              "duration_s": 0.28
+            },
+            {
+              "start_s": 2.49,
+              "end_s": 2.5,
+              "duration_s": 0.01
+            }
+          ],
+          "passed": false,
+          "reasons": [
+            "语速偏慢"
+          ],
+          "raw_duration_s": 3.84,
+          "trim_start_s": 0.07,
+          "trim_end_s": 3.58,
+          "attempt": 2
+        },
+        {
+          "duration_s": 3.31,
+          "cps": 3.0211480362537766,
+          "head_s": 0.15,
+          "tail_s": 0.1,
+          "max_pause_s": 0.05,
+          "internal_pauses": [
+            {
+              "start_s": 1.25,
+              "end_s": 1.29,
+              "duration_s": 0.04
+            },
+            {
+              "start_s": 1.3,
+              "end_s": 1.33,
+              "duration_s": 0.03
+            },
+            {
+              "start_s": 2.04,
+              "end_s": 2.09,
+              "duration_s": 0.05
+            },
+            {
+              "start_s": 3.19,
+              "end_s": 3.2,
+              "duration_s": 0.01
+            }
+          ],
+          "passed": false,
+          "reasons": [
+            "语速偏慢"
+          ],
+          "raw_duration_s": 3.36,
+          "trim_start_s": 0.05,
+          "trim_end_s": 3.36,
+          "attempt": 3
+        },
+        {
+          "duration_s": 3.12,
+          "cps": 3.205128205128205,
+          "head_s": 0.15,
+          "tail_s": 0.15,
+          "max_pause_s": 0.33,
+          "internal_pauses": [
+            {
+              "start_s": 1.29,
+              "end_s": 1.62,
+              "duration_s": 0.33
+            }
+          ],
+          "passed": false,
+          "reasons": [
+            "语速偏慢"
+          ],
+          "raw_duration_s": 3.36,
+          "trim_start_s": 0.04,
+          "trim_end_s": 3.16,
+          "attempt": 4
+        }
+      ],
+      "status": "out_of_range",
+      "listening_approved": true,
+      "file": "chat_07.mp3",
+      "sha256": "936d685236debd5dcd980af48ee59ef9e5acf605d790c175fd70f7d8ec2ea453",
+      "selected": {
+        "duration_s": 2.85,
+        "cps": 3.508771929824561,
+        "head_s": 0.15,
+        "tail_s": 0.15,
+        "max_pause_s": 0.01,
+        "internal_pauses": [
+          {
+            "start_s": 1.42,
+            "end_s": 1.43,
+            "duration_s": 0.01
+          }
+        ],
+        "passed": false,
+        "reasons": [
+          "语速偏慢"
+        ],
+        "raw_duration_s": 3.04,
+        "trim_start_s": 0.04,
+        "trim_end_s": 2.89,
+        "attempt": 1
+      },
+      "reused_from": "assets/voice/yunsheng/unified_trial/chat_07.mp3"
+    },
+    {
+      "id": "chat_08",
+      "kind": "chat",
+      "pool_index": 7,
+      "face": "smile",
+      "emotion": "smile",
+      "text": "推理小说看到一半，凶手太蠢了。",
+      "tts_text": "推理小说看到一半，凶手太蠢了。",
+      "assistant": "(轻松)推理小说看到一半，凶手太蠢了。",
+      "han_count": 13,
+      "attempts": [
+        {
+          "duration_s": 4.64,
+          "cps": 2.8017241379310347,
+          "head_s": 0.14,
+          "tail_s": 0.15,
+          "max_pause_s": 0.51,
+          "internal_pauses": [
+            {
+              "start_s": 0.95,
+              "end_s": 0.97,
+              "duration_s": 0.02
+            },
+            {
+              "start_s": 1.48,
+              "end_s": 1.55,
+              "duration_s": 0.07
+            },
+            {
+              "start_s": 1.86,
+              "end_s": 2.21,
+              "duration_s": 0.35
+            },
+            {
+              "start_s": 2.22,
+              "end_s": 2.73,
+              "duration_s": 0.51
+            },
+            {
+              "start_s": 3.28,
+              "end_s": 3.29,
+              "duration_s": 0.01
+            },
+            {
+              "start_s": 3.56,
+              "end_s": 3.59,
+              "duration_s": 0.03
+            },
+            {
+              "start_s": 3.88,
+              "end_s": 3.9,
+              "duration_s": 0.02
+            },
+            {
+              "start_s": 3.96,
+              "end_s": 4.04,
+              "duration_s": 0.08
+            },
+            {
+              "start_s": 4.06,
+              "end_s": 4.11,
+              "duration_s": 0.05
+            }
+          ],
+          "passed": false,
+          "reasons": [
+            "语速偏慢",
+            "句中停顿超过0.5秒"
+          ],
+          "raw_duration_s": 4.64,
+          "trim_start_s": 0.0,
+          "trim_end_s": 4.64,
+          "attempt": 1
+        },
+        {
+          "duration_s": 4.91,
+          "cps": 2.6476578411405294,
+          "head_s": 0.12,
+          "tail_s": 0.15,
+          "max_pause_s": 0.89,
+          "internal_pauses": [
+            {
+              "start_s": 1.23,
+              "end_s": 1.25,
+              "duration_s": 0.02
+            },
+            {
+              "start_s": 1.76,
+              "end_s": 1.81,
+              "duration_s": 0.05
+            },
+            {
+              "start_s": 2.06,
+              "end_s": 2.95,
+              "duration_s": 0.89
+            },
+            {
+              "start_s": 3.54,
+              "end_s": 3.7,
+              "duration_s": 0.16
+            },
+            {
+              "start_s": 4.01,
+              "end_s": 4.05,
+              "duration_s": 0.04
+            },
+            {
+              "start_s": 4.33,
+              "end_s": 4.4,
+              "duration_s": 0.07
+            },
+            {
+              "start_s": 4.41,
+              "end_s": 4.49,
+              "duration_s": 0.08
+            }
+          ],
+          "passed": false,
+          "reasons": [
+            "语速偏慢",
+            "句中停顿超过0.5秒"
+          ],
+          "raw_duration_s": 5.12,
+          "trim_start_s": 0.0,
+          "trim_end_s": 4.91,
+          "attempt": 2
+        },
+        {
+          "duration_s": 4.21,
+          "cps": 3.0878859857482186,
+          "head_s": 0.15,
+          "tail_s": 0.15,
+          "max_pause_s": 0.68,
+          "internal_pauses": [
+            {
+              "start_s": 0.97,
+              "end_s": 0.99,
+              "duration_s": 0.02
+            },
+            {
+              "start_s": 1.49,
+              "end_s": 1.52,
+              "duration_s": 0.03
+            },
+            {
+              "start_s": 1.87,
+              "end_s": 2.55,
+              "duration_s": 0.68
+            },
+            {
+              "start_s": 3.12,
+              "end_s": 3.22,
+              "duration_s": 0.1
+            },
+            {
+              "start_s": 3.78,
+              "end_s": 3.86,
+              "duration_s": 0.08
+            }
+          ],
+          "passed": false,
+          "reasons": [
+            "语速偏慢",
+            "句中停顿超过0.5秒"
+          ],
+          "raw_duration_s": 4.48,
+          "trim_start_s": 0.02,
+          "trim_end_s": 4.23,
+          "attempt": 3
+        },
+        {
+          "duration_s": 3.79,
+          "cps": 3.430079155672823,
+          "head_s": 0.15,
+          "tail_s": 0.15,
+          "max_pause_s": 0.4,
+          "internal_pauses": [
+            {
+              "start_s": 1.07,
+              "end_s": 1.08,
+              "duration_s": 0.01
+            },
+            {
+              "start_s": 1.57,
+              "end_s": 1.61,
+              "duration_s": 0.04
+            },
+            {
+              "start_s": 1.94,
+              "end_s": 2.34,
+              "duration_s": 0.4
+            },
+            {
+              "start_s": 2.78,
+              "end_s": 2.79,
+              "duration_s": 0.01
+            },
+            {
+              "start_s": 2.8,
+              "end_s": 2.81,
+              "duration_s": 0.01
+            },
+            {
+              "start_s": 3.3,
+              "end_s": 3.34,
+              "duration_s": 0.04
+            }
+          ],
+          "passed": false,
+          "reasons": [
+            "语速偏慢"
+          ],
+          "raw_duration_s": 4.0,
+          "trim_start_s": 0.01,
+          "trim_end_s": 3.8,
+          "attempt": 4
+        }
+      ],
+      "status": "out_of_range",
+      "listening_approved": false,
+      "file": "chat_08.mp3",
+      "sha256": "ab77b5825c95127b0555ee92d5e7c4ce9b219f71dd1df1e280d38ef7ca173dff",
+      "selected": {
+        "duration_s": 3.79,
+        "cps": 3.430079155672823,
+        "head_s": 0.15,
+        "tail_s": 0.15,
+        "max_pause_s": 0.4,
+        "internal_pauses": [
+          {
+            "start_s": 1.07,
+            "end_s": 1.08,
+            "duration_s": 0.01
+          },
+          {
+            "start_s": 1.57,
+            "end_s": 1.61,
+            "duration_s": 0.04
+          },
+          {
+            "start_s": 1.94,
+            "end_s": 2.34,
+            "duration_s": 0.4
+          },
+          {
+            "start_s": 2.78,
+            "end_s": 2.79,
+            "duration_s": 0.01
+          },
+          {
+            "start_s": 2.8,
+            "end_s": 2.81,
+            "duration_s": 0.01
+          },
+          {
+            "start_s": 3.3,
+            "end_s": 3.34,
+            "duration_s": 0.04
+          }
+        ],
+        "passed": false,
+        "reasons": [
+          "语速偏慢"
+        ],
+        "raw_duration_s": 4.0,
+        "trim_start_s": 0.01,
+        "trim_end_s": 3.8,
+        "attempt": 4
+      }
+    },
+    {
+      "id": "chat_09",
+      "kind": "chat",
+      "pool_index": 8,
+      "face": "angry",
+      "emotion": "angry",
+      "text": "无聊的问题就别问了。",
+      "tts_text": "无聊的问题就别问了。",
+      "assistant": "(有点恼)无聊的问题就别问了。",
+      "han_count": 9,
+      "attempts": [
+        {
+          "duration_s": 2.24,
+          "cps": 4.017857142857142,
+          "head_s": 0.15,
+          "tail_s": 0.15,
+          "max_pause_s": 0.01,
+          "internal_pauses": [
+            {
+              "start_s": 1.43,
+              "end_s": 1.44,
+              "duration_s": 0.01
+            }
+          ],
+          "passed": false,
+          "reasons": [
+            "语速偏慢"
+          ],
+          "raw_duration_s": 2.56,
+          "trim_start_s": 0.05,
+          "trim_end_s": 2.29,
+          "attempt": 1
+        },
+        {
+          "duration_s": 2.34,
+          "cps": 3.8461538461538463,
+          "head_s": 0.15,
+          "tail_s": 0.15,
+          "max_pause_s": 0.03,
+          "internal_pauses": [
+            {
+              "start_s": 1.31,
+              "end_s": 1.34,
+              "duration_s": 0.03
+            }
+          ],
+          "passed": false,
+          "reasons": [
+            "语速偏慢"
+          ],
+          "raw_duration_s": 2.4,
+          "trim_start_s": 0.0,
+          "trim_end_s": 2.34,
+          "attempt": 2
+        },
+        {
+          "duration_s": 3.48,
+          "cps": 2.586206896551724,
+          "head_s": 0.15,
+          "tail_s": 0.15,
+          "max_pause_s": 0.58,
+          "internal_pauses": [
+            {
+              "start_s": 1.76,
+              "end_s": 2.34,
+              "duration_s": 0.58
+            },
+            {
+              "start_s": 2.56,
+              "end_s": 2.61,
+              "duration_s": 0.05
+            },
+            {
+              "start_s": 3.15,
+              "end_s": 3.17,
+              "duration_s": 0.02
+            }
+          ],
+          "passed": false,
+          "reasons": [
+            "语速偏慢",
+            "句中停顿超过0.5秒"
+          ],
+          "raw_duration_s": 3.68,
+          "trim_start_s": 0.03,
+          "trim_end_s": 3.51,
+          "attempt": 3
+        },
+        {
+          "duration_s": 2.41,
+          "cps": 3.734439834024896,
+          "head_s": 0.15,
+          "tail_s": 0.15,
+          "max_pause_s": 0.05,
+          "internal_pauses": [
+            {
+              "start_s": 1.39,
+              "end_s": 1.44,
+              "duration_s": 0.05
+            }
+          ],
+          "passed": false,
+          "reasons": [
+            "语速偏慢"
+          ],
+          "raw_duration_s": 2.72,
+          "trim_start_s": 0.04,
+          "trim_end_s": 2.45,
+          "attempt": 4
+        }
+      ],
+      "status": "out_of_range",
+      "listening_approved": false,
+      "file": "chat_09.mp3",
+      "sha256": "27571120a7d22f74b9f9285457fb5e31b016521f77467575ac541264ac1589fe",
+      "selected": {
+        "duration_s": 2.24,
+        "cps": 4.017857142857142,
+        "head_s": 0.15,
+        "tail_s": 0.15,
+        "max_pause_s": 0.01,
+        "internal_pauses": [
+          {
+            "start_s": 1.43,
+            "end_s": 1.44,
+            "duration_s": 0.01
+          }
+        ],
+        "passed": false,
+        "reasons": [
+          "语速偏慢"
+        ],
+        "raw_duration_s": 2.56,
+        "trim_start_s": 0.05,
+        "trim_end_s": 2.29,
+        "attempt": 1
+      }
+    },
+    {
+      "id": "chat_10",
+      "kind": "chat",
+      "pool_index": 9,
+      "face": "shy",
+      "emotion": "shy",
+      "text": "……今天，谢谢你。",
+      "tts_text": "今天，谢谢你。",
+      "assistant": "(小声 有点不好意思)今天，谢谢你。",
+      "han_count": 5,
+      "attempts": [
+        {
+          "duration_s": 2.65,
+          "cps": 1.8867924528301887,
+          "head_s": 0.15,
+          "tail_s": 0.15,
+          "max_pause_s": 0.38,
+          "internal_pauses": [
+            {
+              "start_s": 1.09,
+              "end_s": 1.47,
+              "duration_s": 0.38
+            },
+            {
+              "start_s": 1.49,
+              "end_s": 1.6,
+              "duration_s": 0.11
+            }
+          ],
+          "passed": false,
+          "reasons": [
+            "语速偏慢"
+          ],
+          "raw_duration_s": 2.88,
+          "trim_start_s": 0.04,
+          "trim_end_s": 2.69,
+          "attempt": 1
+        },
+        {
+          "duration_s": 2.26,
+          "cps": 2.212389380530974,
+          "head_s": 0.15,
+          "tail_s": 0.13,
+          "max_pause_s": 0.09,
+          "internal_pauses": [
+            {
+              "start_s": 1.03,
+              "end_s": 1.12,
+              "duration_s": 0.09
+            },
+            {
+              "start_s": 1.13,
+              "end_s": 1.17,
+              "duration_s": 0.04
+            },
+            {
+              "start_s": 2.05,
+              "end_s": 2.06,
+              "duration_s": 0.01
+            },
+            {
+              "start_s": 2.08,
+              "end_s": 2.09,
+              "duration_s": 0.01
+            },
+            {
+              "start_s": 2.11,
+              "end_s": 2.12,
+              "duration_s": 0.01
+            }
+          ],
+          "passed": false,
+          "reasons": [
+            "语速偏慢"
+          ],
+          "raw_duration_s": 2.4,
+          "trim_start_s": 0.04,
+          "trim_end_s": 2.3,
+          "attempt": 2
+        },
+        {
+          "duration_s": 2.58,
+          "cps": 1.937984496124031,
+          "head_s": 0.14,
+          "tail_s": 0.15,
+          "max_pause_s": 0.65,
+          "internal_pauses": [
+            {
+              "start_s": 0.99,
+              "end_s": 1.0,
+              "duration_s": 0.01
+            },
+            {
+              "start_s": 1.03,
+              "end_s": 1.68,
+              "duration_s": 0.65
+            }
+          ],
+          "passed": false,
+          "reasons": [
+            "语速偏慢",
+            "句中停顿超过0.5秒"
+          ],
+          "raw_duration_s": 2.72,
+          "trim_start_s": 0.0,
+          "trim_end_s": 2.58,
+          "attempt": 3
+        },
+        {
+          "duration_s": 13.33,
+          "cps": 0.3750937734433608,
+          "head_s": 0.15,
+          "tail_s": 0.15,
+          "max_pause_s": 2.44,
+          "internal_pauses": [
+            {
+              "start_s": 1.02,
+              "end_s": 2.23,
+              "duration_s": 1.21
+            },
+            {
+              "start_s": 2.93,
+              "end_s": 4.83,
+              "duration_s": 1.9
+            },
+            {
+              "start_s": 5.73,
+              "end_s": 6.26,
+              "duration_s": 0.53
+            },
+            {
+              "start_s": 6.58,
+              "end_s": 6.6,
+              "duration_s": 0.02
+            },
+            {
+              "start_s": 7.45,
+              "end_s": 9.89,
+              "duration_s": 2.44
+            },
+            {
+              "start_s": 9.9,
+              "end_s": 9.95,
+              "duration_s": 0.05
+            },
+            {
+              "start_s": 10.77,
+              "end_s": 12.51,
+              "duration_s": 1.74
+            },
+            {
+              "start_s": 12.52,
+              "end_s": 12.54,
+              "duration_s": 0.02
+            },
+            {
+              "start_s": 13.13,
+              "end_s": 13.16,
+              "duration_s": 0.03
+            }
+          ],
+          "passed": false,
+          "reasons": [
+            "语速偏慢",
+            "句中停顿超过0.5秒"
+          ],
+          "raw_duration_s": 13.6,
+          "trim_start_s": 0.05,
+          "trim_end_s": 13.38,
+          "attempt": 4
+        }
+      ],
+      "status": "out_of_range",
+      "listening_approved": true,
+      "file": "chat_10.mp3",
+      "sha256": "96ad663eb5742324e89eca4c1646bc685a66bb0065eb1e811f977c5a69bfa382",
+      "selected": {
+        "duration_s": 2.26,
+        "cps": 2.212389380530974,
+        "head_s": 0.15,
+        "tail_s": 0.13,
+        "max_pause_s": 0.09,
+        "internal_pauses": [
+          {
+            "start_s": 1.03,
+            "end_s": 1.12,
+            "duration_s": 0.09
+          },
+          {
+            "start_s": 1.13,
+            "end_s": 1.17,
+            "duration_s": 0.04
+          },
+          {
+            "start_s": 2.05,
+            "end_s": 2.06,
+            "duration_s": 0.01
+          },
+          {
+            "start_s": 2.08,
+            "end_s": 2.09,
+            "duration_s": 0.01
+          },
+          {
+            "start_s": 2.11,
+            "end_s": 2.12,
+            "duration_s": 0.01
+          }
+        ],
+        "passed": false,
+        "reasons": [
+          "语速偏慢"
+        ],
+        "raw_duration_s": 2.4,
+        "trim_start_s": 0.04,
+        "trim_end_s": 2.3,
+        "attempt": 2
+      },
+      "reused_from": "assets/voice/yunsheng/unified_trial/chat_10.mp3"
+    },
+    {
+      "id": "feed_coffee_1",
+      "kind": "feed",
+      "item": "black_coffee",
+      "pool_index": 0,
+      "face": "eat",
+      "emotion": "calm",
+      "text": "……放那儿吧。",
+      "tts_text": "放那儿吧。",
+      "assistant": "(平淡)放那儿吧。",
+      "han_count": 4,
+      "attempts": [
+        {
+          "duration_s": 1.02,
+          "cps": 3.9215686274509802,
+          "head_s": 0.1,
+          "tail_s": 0.15,
+          "max_pause_s": 0.0,
+          "internal_pauses": [],
+          "passed": false,
+          "reasons": [
+            "语速偏慢"
+          ],
+          "raw_duration_s": 1.28,
+          "trim_start_s": 0.0,
+          "trim_end_s": 1.02,
+          "attempt": 1
+        },
+        {
+          "duration_s": 1.14,
+          "cps": 3.5087719298245617,
+          "head_s": 0.15,
+          "tail_s": 0.15,
+          "max_pause_s": 0.0,
+          "internal_pauses": [],
+          "passed": false,
+          "reasons": [
+            "语速偏慢"
+          ],
+          "raw_duration_s": 1.28,
+          "trim_start_s": 0.0,
+          "trim_end_s": 1.14,
+          "attempt": 2
+        },
+        {
+          "duration_s": 0.93,
+          "cps": 4.301075268817204,
+          "head_s": 0.09,
+          "tail_s": 0.15,
+          "max_pause_s": 0.01,
+          "internal_pauses": [
+            {
+              "start_s": 0.75,
+              "end_s": 0.76,
+              "duration_s": 0.01
+            }
+          ],
+          "passed": false,
+          "reasons": [
+            "语速偏慢"
+          ],
+          "raw_duration_s": 1.12,
+          "trim_start_s": 0.0,
+          "trim_end_s": 0.93,
+          "attempt": 3
+        },
+        {
+          "duration_s": 2.16,
+          "cps": 1.8518518518518516,
+          "head_s": 0.08,
+          "tail_s": 0.15,
+          "max_pause_s": 0.78,
+          "internal_pauses": [
+            {
+              "start_s": 0.91,
+              "end_s": 1.69,
+              "duration_s": 0.78
+            }
+          ],
+          "passed": false,
+          "reasons": [
+            "语速偏慢",
+            "句中停顿超过0.5秒"
+          ],
+          "raw_duration_s": 2.4,
+          "trim_start_s": 0.0,
+          "trim_end_s": 2.16,
+          "attempt": 4
+        }
+      ],
+      "status": "out_of_range",
+      "listening_approved": false,
+      "file": "feed_coffee_1.mp3",
+      "sha256": "ff6751ec64926f2ab3c7218ed94585424aaa2eb9b7f543b370d60556e72413e8",
+      "selected": {
+        "duration_s": 0.93,
+        "cps": 4.301075268817204,
+        "head_s": 0.09,
+        "tail_s": 0.15,
+        "max_pause_s": 0.01,
+        "internal_pauses": [
+          {
+            "start_s": 0.75,
+            "end_s": 0.76,
+            "duration_s": 0.01
+          }
+        ],
+        "passed": false,
+        "reasons": [
+          "语速偏慢"
+        ],
+        "raw_duration_s": 1.12,
+        "trim_start_s": 0.0,
+        "trim_end_s": 0.93,
+        "attempt": 3
+      }
+    },
+    {
+      "id": "feed_coffee_2",
+      "kind": "feed",
+      "item": "black_coffee",
+      "pool_index": 1,
+      "face": "eat",
+      "emotion": "calm",
+      "text": "还算合口味。",
+      "tts_text": "还算合口味。",
+      "assistant": "(平淡)还算合口味。",
+      "han_count": 5,
+      "attempts": [
+        {
+          "duration_s": 1.42,
+          "cps": 3.5211267605633805,
+          "head_s": 0.09,
+          "tail_s": 0.15,
+          "max_pause_s": 0.0,
+          "internal_pauses": [],
+          "passed": false,
+          "reasons": [
+            "语速偏慢"
+          ],
+          "raw_duration_s": 1.6,
+          "trim_start_s": 0.0,
+          "trim_end_s": 1.42,
+          "attempt": 1
+        },
+        {
+          "duration_s": 1.61,
+          "cps": 3.105590062111801,
+          "head_s": 0.15,
+          "tail_s": 0.15,
+          "max_pause_s": 0.02,
+          "internal_pauses": [
+            {
+              "start_s": 0.97,
+              "end_s": 0.99,
+              "duration_s": 0.02
+            }
+          ],
+          "passed": false,
+          "reasons": [
+            "语速偏慢"
+          ],
+          "raw_duration_s": 1.76,
+          "trim_start_s": 0.0,
+          "trim_end_s": 1.61,
+          "attempt": 2
+        },
+        {
+          "duration_s": 1.6,
+          "cps": 3.125,
+          "head_s": 0.09,
+          "tail_s": 0.15,
+          "max_pause_s": 0.01,
+          "internal_pauses": [
+            {
+              "start_s": 0.89,
+              "end_s": 0.9,
+              "duration_s": 0.01
+            }
+          ],
+          "passed": false,
+          "reasons": [
+            "语速偏慢"
+          ],
+          "raw_duration_s": 1.6,
+          "trim_start_s": 0.0,
+          "trim_end_s": 1.6,
+          "attempt": 3
+        },
+        {
+          "duration_s": 1.3,
+          "cps": 3.846153846153846,
+          "head_s": 0.09,
+          "tail_s": 0.15,
+          "max_pause_s": 0.0,
+          "internal_pauses": [],
+          "passed": false,
+          "reasons": [
+            "语速偏慢"
+          ],
+          "raw_duration_s": 1.6,
+          "trim_start_s": 0.0,
+          "trim_end_s": 1.3,
+          "attempt": 4
+        }
+      ],
+      "status": "out_of_range",
+      "listening_approved": true,
+      "file": "feed_coffee_2.mp3",
+      "sha256": "7ee47f235ad2770f48d6f56c9906eaa8c4846d6820187a96fea1d1d0dc7019cf",
+      "selected": {
+        "duration_s": 1.3,
+        "cps": 3.846153846153846,
+        "head_s": 0.09,
+        "tail_s": 0.15,
+        "max_pause_s": 0.0,
+        "internal_pauses": [],
+        "passed": false,
+        "reasons": [
+          "语速偏慢"
+        ],
+        "raw_duration_s": 1.6,
+        "trim_start_s": 0.0,
+        "trim_end_s": 1.3,
+        "attempt": 4
+      },
+      "reused_from": "assets/voice/yunsheng/unified_trial/feed_coffee_2.mp3"
+    },
+    {
+      "id": "feed_catcan_1",
+      "kind": "feed",
+      "item": "cat_can",
+      "pool_index": 2,
+      "face": "shy",
+      "emotion": "shy",
+      "text": "给我这个干什么。无聊。",
+      "tts_text": "给我这个干什么。无聊。",
+      "assistant": "(小声 有点不好意思)给我这个干什么。无聊。",
+      "han_count": 9,
+      "attempts": [
+        {
+          "duration_s": 3.35,
+          "cps": 2.6865671641791042,
+          "head_s": 0.12,
+          "tail_s": 0.15,
+          "max_pause_s": 1.19,
+          "internal_pauses": [
+            {
+              "start_s": 0.47,
+              "end_s": 0.5,
+              "duration_s": 0.03
+            },
+            {
+              "start_s": 1.56,
+              "end_s": 2.75,
+              "duration_s": 1.19
+            },
+            {
+              "start_s": 3.18,
+              "end_s": 3.19,
+              "duration_s": 0.01
+            }
+          ],
+          "passed": false,
+          "reasons": [
+            "语速偏慢",
+            "句中停顿超过0.5秒"
+          ],
+          "raw_duration_s": 3.52,
+          "trim_start_s": 0.0,
+          "trim_end_s": 3.35,
+          "attempt": 1
+        },
+        {
+          "duration_s": 3.45,
+          "cps": 2.608695652173913,
+          "head_s": 0.15,
+          "tail_s": 0.15,
+          "max_pause_s": 0.26,
+          "internal_pauses": [
+            {
+              "start_s": 0.61,
+              "end_s": 0.69,
+              "duration_s": 0.08
+            },
+            {
+              "start_s": 1.14,
+              "end_s": 1.16,
+              "duration_s": 0.02
+            },
+            {
+              "start_s": 2.16,
+              "end_s": 2.17,
+              "duration_s": 0.01
+            },
+            {
+              "start_s": 2.2,
+              "end_s": 2.21,
+              "duration_s": 0.01
+            },
+            {
+              "start_s": 2.22,
+              "end_s": 2.48,
+              "duration_s": 0.26
+            }
+          ],
+          "passed": false,
+          "reasons": [
+            "语速偏慢"
+          ],
+          "raw_duration_s": 3.68,
+          "trim_start_s": 0.05,
+          "trim_end_s": 3.5,
+          "attempt": 2
+        },
+        {
+          "duration_s": 3.23,
+          "cps": 2.7863777089783284,
+          "head_s": 0.15,
+          "tail_s": 0.15,
+          "max_pause_s": 0.95,
+          "internal_pauses": [
+            {
+              "start_s": 0.88,
+              "end_s": 0.89,
+              "duration_s": 0.01
+            },
+            {
+              "start_s": 1.53,
+              "end_s": 2.48,
+              "duration_s": 0.95
+            }
+          ],
+          "passed": false,
+          "reasons": [
+            "语速偏慢",
+            "句中停顿超过0.5秒"
+          ],
+          "raw_duration_s": 3.52,
+          "trim_start_s": 0.04,
+          "trim_end_s": 3.27,
+          "attempt": 3
+        },
+        {
+          "duration_s": 2.93,
+          "cps": 3.0716723549488054,
+          "head_s": 0.15,
+          "tail_s": 0.15,
+          "max_pause_s": 0.66,
+          "internal_pauses": [
+            {
+              "start_s": 1.51,
+              "end_s": 2.17,
+              "duration_s": 0.66
+            }
+          ],
+          "passed": false,
+          "reasons": [
+            "语速偏慢",
+            "句中停顿超过0.5秒"
+          ],
+          "raw_duration_s": 3.04,
+          "trim_start_s": 0.03,
+          "trim_end_s": 2.96,
+          "attempt": 4
+        }
+      ],
+      "status": "out_of_range",
+      "listening_approved": false,
+      "file": "feed_catcan_1.mp3",
+      "sha256": "947da36d914e546c5a12ec92ed89809ba9ce53f383bafae4febc884fb5257be8",
+      "selected": {
+        "duration_s": 3.45,
+        "cps": 2.608695652173913,
+        "head_s": 0.15,
+        "tail_s": 0.15,
+        "max_pause_s": 0.26,
+        "internal_pauses": [
+          {
+            "start_s": 0.61,
+            "end_s": 0.69,
+            "duration_s": 0.08
+          },
+          {
+            "start_s": 1.14,
+            "end_s": 1.16,
+            "duration_s": 0.02
+          },
+          {
+            "start_s": 2.16,
+            "end_s": 2.17,
+            "duration_s": 0.01
+          },
+          {
+            "start_s": 2.2,
+            "end_s": 2.21,
+            "duration_s": 0.01
+          },
+          {
+            "start_s": 2.22,
+            "end_s": 2.48,
+            "duration_s": 0.26
+          }
+        ],
+        "passed": false,
+        "reasons": [
+          "语速偏慢"
+        ],
+        "raw_duration_s": 3.68,
+        "trim_start_s": 0.05,
+        "trim_end_s": 3.5,
+        "attempt": 2
+      }
+    },
+    {
+      "id": "feed_catcan_2",
+      "kind": "feed",
+      "item": "cat_can",
+      "needCat": true,
+      "pool_index": 3,
+      "face": "shy",
+      "emotion": "shy",
+      "text": "……楼道那只猫会吃。",
+      "tts_text": "楼道那只猫会吃。",
+      "assistant": "(小声 有点不好意思)楼道那只猫会吃。",
+      "han_count": 7,
+      "attempts": [
+        {
+          "duration_s": 3.73,
+          "cps": 1.876675603217158,
+          "head_s": 0.15,
+          "tail_s": 0.15,
+          "max_pause_s": 1.0,
+          "internal_pauses": [
+            {
+              "start_s": 0.47,
+              "end_s": 0.5,
+              "duration_s": 0.03
+            },
+            {
+              "start_s": 1.71,
+              "end_s": 1.89,
+              "duration_s": 0.18
+            },
+            {
+              "start_s": 2.16,
+              "end_s": 3.16,
+              "duration_s": 1.0
+            },
+            {
+              "start_s": 3.49,
+              "end_s": 3.56,
+              "duration_s": 0.07
+            }
+          ],
+          "passed": false,
+          "reasons": [
+            "语速偏慢",
+            "句中停顿超过0.5秒"
+          ],
+          "raw_duration_s": 4.0,
+          "trim_start_s": 0.04,
+          "trim_end_s": 3.77,
+          "attempt": 1
+        },
+        {
+          "duration_s": 2.69,
+          "cps": 2.6022304832713754,
+          "head_s": 0.15,
+          "tail_s": 0.15,
+          "max_pause_s": 0.21,
+          "internal_pauses": [
+            {
+              "start_s": 1.42,
+              "end_s": 1.44,
+              "duration_s": 0.02
+            },
+            {
+              "start_s": 1.45,
+              "end_s": 1.66,
+              "duration_s": 0.21
+            },
+            {
+              "start_s": 2.04,
+              "end_s": 2.1,
+              "duration_s": 0.06
+            }
+          ],
+          "passed": false,
+          "reasons": [
+            "语速偏慢"
+          ],
+          "raw_duration_s": 2.88,
+          "trim_start_s": 0.0,
+          "trim_end_s": 2.69,
+          "attempt": 2
+        },
+        {
+          "duration_s": 4.46,
+          "cps": 1.5695067264573992,
+          "head_s": 0.09,
+          "tail_s": 0.15,
+          "max_pause_s": 0.81,
+          "internal_pauses": [
+            {
+              "start_s": 1.59,
+              "end_s": 1.61,
+              "duration_s": 0.02
+            },
+            {
+              "start_s": 2.06,
+              "end_s": 2.87,
+              "duration_s": 0.81
+            },
+            {
+              "start_s": 3.97,
+              "end_s": 3.99,
+              "duration_s": 0.02
+            },
+            {
+              "start_s": 4.12,
+              "end_s": 4.15,
+              "duration_s": 0.03
+            }
+          ],
+          "passed": false,
+          "reasons": [
+            "语速偏慢",
+            "句中停顿超过0.5秒"
+          ],
+          "raw_duration_s": 4.8,
+          "trim_start_s": 0.0,
+          "trim_end_s": 4.46,
+          "attempt": 3
+        },
+        {
+          "duration_s": 2.21,
+          "cps": 3.167420814479638,
+          "head_s": 0.15,
+          "tail_s": 0.15,
+          "max_pause_s": 0.06,
+          "internal_pauses": [
+            {
+              "start_s": 1.63,
+              "end_s": 1.69,
+              "duration_s": 0.06
+            }
+          ],
+          "passed": false,
+          "reasons": [
+            "语速偏慢"
+          ],
+          "raw_duration_s": 2.56,
+          "trim_start_s": 0.05,
+          "trim_end_s": 2.26,
+          "attempt": 4
+        }
+      ],
+      "status": "out_of_range",
+      "listening_approved": false,
+      "file": "feed_catcan_2.mp3",
+      "sha256": "5c90937ad5c2310c209a297c4c852567b0d8177a206ebbff828359a0608d236b",
+      "selected": {
+        "duration_s": 2.21,
+        "cps": 3.167420814479638,
+        "head_s": 0.15,
+        "tail_s": 0.15,
+        "max_pause_s": 0.06,
+        "internal_pauses": [
+          {
+            "start_s": 1.63,
+            "end_s": 1.69,
+            "duration_s": 0.06
+          }
+        ],
+        "passed": false,
+        "reasons": [
+          "语速偏慢"
+        ],
+        "raw_duration_s": 2.56,
+        "trim_start_s": 0.05,
+        "trim_end_s": 2.26,
+        "attempt": 4
+      }
+    },
+    {
+      "id": "feed_sweets_1",
+      "kind": "feed",
+      "item": "sweets",
+      "pool_index": 4,
+      "face": "angry",
+      "emotion": "angry",
+      "text": "我不吃甜的。",
+      "tts_text": "我不吃甜的。",
+      "assistant": "(有点恼)我不吃甜的。",
+      "han_count": 5,
+      "attempts": [
+        {
+          "duration_s": 1.69,
+          "cps": 2.9585798816568047,
+          "head_s": 0.15,
+          "tail_s": 0.15,
+          "max_pause_s": 0.01,
+          "internal_pauses": [
+            {
+              "start_s": 0.48,
+              "end_s": 0.49,
+              "duration_s": 0.01
+            }
+          ],
+          "passed": false,
+          "reasons": [
+            "语速偏慢"
+          ],
+          "raw_duration_s": 1.92,
+          "trim_start_s": 0.05,
+          "trim_end_s": 1.74,
+          "attempt": 1
+        },
+        {
+          "duration_s": 1.27,
+          "cps": 3.937007874015748,
+          "head_s": 0.15,
+          "tail_s": 0.15,
+          "max_pause_s": 0.0,
+          "internal_pauses": [],
+          "passed": false,
+          "reasons": [
+            "语速偏慢"
+          ],
+          "raw_duration_s": 1.44,
+          "trim_start_s": 0.02,
+          "trim_end_s": 1.29,
+          "attempt": 2
+        },
+        {
+          "duration_s": 1.34,
+          "cps": 3.731343283582089,
+          "head_s": 0.15,
+          "tail_s": 0.13,
+          "max_pause_s": 0.01,
+          "internal_pauses": [
+            {
+              "start_s": 0.4,
+              "end_s": 0.41,
+              "duration_s": 0.01
+            },
+            {
+              "start_s": 1.19,
+              "end_s": 1.2,
+              "duration_s": 0.01
+            }
+          ],
+          "passed": false,
+          "reasons": [
+            "语速偏慢"
+          ],
+          "raw_duration_s": 1.44,
+          "trim_start_s": 0.0,
+          "trim_end_s": 1.34,
+          "attempt": 3
+        },
+        {
+          "duration_s": 1.36,
+          "cps": 3.676470588235294,
+          "head_s": 0.15,
+          "tail_s": 0.15,
+          "max_pause_s": 0.01,
+          "internal_pauses": [
+            {
+              "start_s": 0.31,
+              "end_s": 0.32,
+              "duration_s": 0.01
+            }
+          ],
+          "passed": false,
+          "reasons": [
+            "语速偏慢"
+          ],
+          "raw_duration_s": 1.6,
+          "trim_start_s": 0.04,
+          "trim_end_s": 1.4,
+          "attempt": 4
+        }
+      ],
+      "status": "out_of_range",
+      "listening_approved": false,
+      "file": "feed_sweets_1.mp3",
+      "sha256": "f32192d8507f4a1471411efa04c2aef496f17a0b56e6e86a300973616e90d2e8",
+      "selected": {
+        "duration_s": 1.27,
+        "cps": 3.937007874015748,
+        "head_s": 0.15,
+        "tail_s": 0.15,
+        "max_pause_s": 0.0,
+        "internal_pauses": [],
+        "passed": false,
+        "reasons": [
+          "语速偏慢"
+        ],
+        "raw_duration_s": 1.44,
+        "trim_start_s": 0.02,
+        "trim_end_s": 1.29,
+        "attempt": 2
+      }
+    },
+    {
+      "id": "feed_sweets_2",
+      "kind": "feed",
+      "item": "sweets",
+      "pool_index": 5,
+      "face": "angry",
+      "emotion": "angry",
+      "text": "拿走。无聊。",
+      "tts_text": "拿走。无聊。",
+      "assistant": "(有点恼)拿走。无聊。",
+      "han_count": 4,
+      "attempts": [
+        {
+          "duration_s": 2.13,
+          "cps": 1.8779342723004695,
+          "head_s": 0.15,
+          "tail_s": 0.15,
+          "max_pause_s": 0.83,
+          "internal_pauses": [
+            {
+              "start_s": 0.69,
+              "end_s": 1.52,
+              "duration_s": 0.83
+            }
+          ],
+          "passed": false,
+          "reasons": [
+            "语速偏慢",
+            "句中停顿超过0.5秒"
+          ],
+          "raw_duration_s": 2.4,
+          "trim_start_s": 0.05,
+          "trim_end_s": 2.18,
+          "attempt": 1
+        },
+        {
+          "duration_s": 2.2,
+          "cps": 1.8181818181818181,
+          "head_s": 0.15,
+          "tail_s": 0.15,
+          "max_pause_s": 0.39,
+          "internal_pauses": [
+            {
+              "start_s": 0.92,
+              "end_s": 1.31,
+              "duration_s": 0.39
+            }
+          ],
+          "passed": false,
+          "reasons": [
+            "语速偏慢"
+          ],
+          "raw_duration_s": 2.4,
+          "trim_start_s": 0.04,
+          "trim_end_s": 2.24,
+          "attempt": 2
+        },
+        {
+          "duration_s": 2.67,
+          "cps": 1.4981273408239701,
+          "head_s": 0.15,
+          "tail_s": 0.15,
+          "max_pause_s": 0.91,
+          "internal_pauses": [
+            {
+              "start_s": 0.91,
+              "end_s": 1.82,
+              "duration_s": 0.91
+            }
+          ],
+          "passed": false,
+          "reasons": [
+            "语速偏慢",
+            "句中停顿超过0.5秒"
+          ],
+          "raw_duration_s": 2.88,
+          "trim_start_s": 0.04,
+          "trim_end_s": 2.71,
+          "attempt": 3
+        },
+        {
+          "duration_s": 2.03,
+          "cps": 1.9704433497536948,
+          "head_s": 0.15,
+          "tail_s": 0.15,
+          "max_pause_s": 0.38,
+          "internal_pauses": [
+            {
+              "start_s": 0.97,
+              "end_s": 1.35,
+              "duration_s": 0.38
+            }
+          ],
+          "passed": false,
+          "reasons": [
+            "语速偏慢"
+          ],
+          "raw_duration_s": 2.24,
+          "trim_start_s": 0.05,
+          "trim_end_s": 2.08,
+          "attempt": 4
+        }
+      ],
+      "status": "out_of_range",
+      "listening_approved": false,
+      "file": "feed_sweets_2.mp3",
+      "sha256": "ef02aa1799ec8f3ea50095b58611cc84673970f7936411d1bc17b9d220683ee7",
+      "selected": {
+        "duration_s": 2.03,
+        "cps": 1.9704433497536948,
+        "head_s": 0.15,
+        "tail_s": 0.15,
+        "max_pause_s": 0.38,
+        "internal_pauses": [
+          {
+            "start_s": 0.97,
+            "end_s": 1.35,
+            "duration_s": 0.38
+          }
+        ],
+        "passed": false,
+        "reasons": [
+          "语速偏慢"
+        ],
+        "raw_duration_s": 2.24,
+        "trim_start_s": 0.05,
+        "trim_end_s": 2.08,
+        "attempt": 4
+      }
+    },
+    {
+      "id": "feed_bread_1",
+      "kind": "feed",
+      "item": "bread",
+      "pool_index": 6,
+      "face": "eat",
+      "emotion": "calm",
+      "text": "……谢谢。",
+      "tts_text": "谢谢。",
+      "assistant": "(平淡)谢谢。",
+      "han_count": 2,
+      "attempts": [
+        {
+          "duration_s": 1.0,
+          "cps": 2.0,
+          "head_s": 0.13,
+          "tail_s": 0.15,
+          "max_pause_s": 0.0,
+          "internal_pauses": [],
+          "passed": false,
+          "reasons": [
+            "语速偏慢"
+          ],
+          "raw_duration_s": 1.12,
+          "trim_start_s": 0.0,
+          "trim_end_s": 1.0,
+          "attempt": 1
+        },
+        {
+          "duration_s": 0.97,
+          "cps": 2.061855670103093,
+          "head_s": 0.15,
+          "tail_s": 0.15,
+          "max_pause_s": 0.0,
+          "internal_pauses": [],
+          "passed": false,
+          "reasons": [
+            "语速偏慢"
+          ],
+          "raw_duration_s": 1.12,
+          "trim_start_s": 0.02,
+          "trim_end_s": 0.99,
+          "attempt": 2
+        },
+        {
+          "duration_s": 0.83,
+          "cps": 2.4096385542168677,
+          "head_s": 0.15,
+          "tail_s": 0.15,
+          "max_pause_s": 0.0,
+          "internal_pauses": [],
+          "passed": false,
+          "reasons": [
+            "语速偏慢"
+          ],
+          "raw_duration_s": 1.44,
+          "trim_start_s": 0.0,
+          "trim_end_s": 0.83,
+          "attempt": 3
+        },
+        {
+          "duration_s": 0.96,
+          "cps": 2.0833333333333335,
+          "head_s": 0.15,
+          "tail_s": 0.15,
+          "max_pause_s": 0.0,
+          "internal_pauses": [],
+          "passed": false,
+          "reasons": [
+            "语速偏慢"
+          ],
+          "raw_duration_s": 1.12,
+          "trim_start_s": 0.01,
+          "trim_end_s": 0.97,
+          "attempt": 4
+        }
+      ],
+      "status": "out_of_range",
+      "listening_approved": false,
+      "file": "feed_bread_1.mp3",
+      "sha256": "2995337a7cdb48327a649b20f88f5ab52126ecc58c9958f10ffe1d5fe03e9be7",
+      "selected": {
+        "duration_s": 0.83,
+        "cps": 2.4096385542168677,
+        "head_s": 0.15,
+        "tail_s": 0.15,
+        "max_pause_s": 0.0,
+        "internal_pauses": [],
+        "passed": false,
+        "reasons": [
+          "语速偏慢"
+        ],
+        "raw_duration_s": 1.44,
+        "trim_start_s": 0.0,
+        "trim_end_s": 0.83,
+        "attempt": 3
+      }
+    },
+    {
+      "id": "feed_coffee_3",
+      "kind": "feed",
+      "item": "black_coffee",
+      "pool_index": 7,
+      "face": "eat",
+      "emotion": "calm",
+      "text": "第二杯了。你是想让我通宵？",
+      "tts_text": "第二杯了。你是想让我通宵？",
+      "assistant": "(平淡)第二杯了。你是想让我通宵？",
+      "han_count": 11,
+      "attempts": [
+        {
+          "duration_s": 3.21,
+          "cps": 3.426791277258567,
+          "head_s": 0.15,
+          "tail_s": 0.15,
+          "max_pause_s": 0.76,
+          "internal_pauses": [
+            {
+              "start_s": 1.0,
+              "end_s": 1.76,
+              "duration_s": 0.76
+            },
+            {
+              "start_s": 2.46,
+              "end_s": 2.5,
+              "duration_s": 0.04
+            }
+          ],
+          "passed": false,
+          "reasons": [
+            "语速偏慢",
+            "句中停顿超过0.5秒"
+          ],
+          "raw_duration_s": 3.52,
+          "trim_start_s": 0.04,
+          "trim_end_s": 3.25,
+          "attempt": 1
+        },
+        {
+          "duration_s": 3.56,
+          "cps": 3.089887640449438,
+          "head_s": 0.15,
+          "tail_s": 0.15,
+          "max_pause_s": 1.0,
+          "internal_pauses": [
+            {
+              "start_s": 0.96,
+              "end_s": 1.96,
+              "duration_s": 1.0
+            }
+          ],
+          "passed": false,
+          "reasons": [
+            "语速偏慢",
+            "句中停顿超过0.5秒"
+          ],
+          "raw_duration_s": 3.84,
+          "trim_start_s": 0.04,
+          "trim_end_s": 3.6,
+          "attempt": 2
+        },
+        {
+          "duration_s": 3.8,
+          "cps": 2.8947368421052633,
+          "head_s": 0.15,
+          "tail_s": 0.15,
+          "max_pause_s": 1.27,
+          "internal_pauses": [
+            {
+              "start_s": 0.51,
+              "end_s": 0.53,
+              "duration_s": 0.02
+            },
+            {
+              "start_s": 1.1,
+              "end_s": 2.37,
+              "duration_s": 1.27
+            },
+            {
+              "start_s": 2.38,
+              "end_s": 2.39,
+              "duration_s": 0.01
+            },
+            {
+              "start_s": 3.05,
+              "end_s": 3.07,
+              "duration_s": 0.02
+            }
+          ],
+          "passed": false,
+          "reasons": [
+            "语速偏慢",
+            "句中停顿超过0.5秒"
+          ],
+          "raw_duration_s": 4.0,
+          "trim_start_s": 0.04,
+          "trim_end_s": 3.84,
+          "attempt": 3
+        },
+        {
+          "duration_s": 3.16,
+          "cps": 3.481012658227848,
+          "head_s": 0.15,
+          "tail_s": 0.15,
+          "max_pause_s": 0.53,
+          "internal_pauses": [
+            {
+              "start_s": 0.53,
+              "end_s": 0.57,
+              "duration_s": 0.04
+            },
+            {
+              "start_s": 1.15,
+              "end_s": 1.17,
+              "duration_s": 0.02
+            },
+            {
+              "start_s": 1.18,
+              "end_s": 1.71,
+              "duration_s": 0.53
+            }
+          ],
+          "passed": false,
+          "reasons": [
+            "语速偏慢",
+            "句中停顿超过0.5秒"
+          ],
+          "raw_duration_s": 3.36,
+          "trim_start_s": 0.06,
+          "trim_end_s": 3.22,
+          "attempt": 4
+        }
+      ],
+      "status": "out_of_range",
+      "listening_approved": false,
+      "file": "feed_coffee_3.mp3",
+      "sha256": "0bc8d6e07ef79f558372324aa6c85449ad569d45d56c10c904ccb98d23e2a0fe",
+      "selected": {
+        "duration_s": 3.16,
+        "cps": 3.481012658227848,
+        "head_s": 0.15,
+        "tail_s": 0.15,
+        "max_pause_s": 0.53,
+        "internal_pauses": [
+          {
+            "start_s": 0.53,
+            "end_s": 0.57,
+            "duration_s": 0.04
+          },
+          {
+            "start_s": 1.15,
+            "end_s": 1.17,
+            "duration_s": 0.02
+          },
+          {
+            "start_s": 1.18,
+            "end_s": 1.71,
+            "duration_s": 0.53
+          }
+        ],
+        "passed": false,
+        "reasons": [
+          "语速偏慢",
+          "句中停顿超过0.5秒"
+        ],
+        "raw_duration_s": 3.36,
+        "trim_start_s": 0.06,
+        "trim_end_s": 3.22,
+        "attempt": 4
+      }
+    },
+    {
+      "id": "feed_sweets_3",
+      "kind": "feed",
+      "item": "sweets",
+      "pool_index": 8,
+      "face": "angry",
+      "emotion": "angry",
+      "text": "说了不吃甜的。",
+      "tts_text": "说了不吃甜的。",
+      "assistant": "(有点恼)说了不吃甜的。",
+      "han_count": 6,
+      "attempts": [
+        {
+          "duration_s": 1.74,
+          "cps": 3.4482758620689657,
+          "head_s": 0.07,
+          "tail_s": 0.15,
+          "max_pause_s": 0.03,
+          "internal_pauses": [
+            {
+              "start_s": 0.49,
+              "end_s": 0.52,
+              "duration_s": 0.03
+            },
+            {
+              "start_s": 0.85,
+              "end_s": 0.88,
+              "duration_s": 0.03
+            }
+          ],
+          "passed": false,
+          "reasons": [
+            "语速偏慢"
+          ],
+          "raw_duration_s": 1.92,
+          "trim_start_s": 0.0,
+          "trim_end_s": 1.74,
+          "attempt": 1
+        },
+        {
+          "duration_s": 1.87,
+          "cps": 3.2085561497326203,
+          "head_s": 0.15,
+          "tail_s": 0.15,
+          "max_pause_s": 0.0,
+          "internal_pauses": [],
+          "passed": false,
+          "reasons": [
+            "语速偏慢"
+          ],
+          "raw_duration_s": 2.08,
+          "trim_start_s": 0.02,
+          "trim_end_s": 1.89,
+          "attempt": 2
+        },
+        {
+          "duration_s": 1.75,
+          "cps": 3.4285714285714284,
+          "head_s": 0.07,
+          "tail_s": 0.15,
+          "max_pause_s": 0.06,
+          "internal_pauses": [
+            {
+              "start_s": 0.56,
+              "end_s": 0.62,
+              "duration_s": 0.06
+            },
+            {
+              "start_s": 0.72,
+              "end_s": 0.75,
+              "duration_s": 0.03
+            },
+            {
+              "start_s": 0.99,
+              "end_s": 1.0,
+              "duration_s": 0.01
+            }
+          ],
+          "passed": false,
+          "reasons": [
+            "语速偏慢"
+          ],
+          "raw_duration_s": 1.92,
+          "trim_start_s": 0.0,
+          "trim_end_s": 1.75,
+          "attempt": 3
+        },
+        {
+          "duration_s": 1.81,
+          "cps": 3.314917127071823,
+          "head_s": 0.07,
+          "tail_s": 0.15,
+          "max_pause_s": 0.07,
+          "internal_pauses": [
+            {
+              "start_s": 0.5,
+              "end_s": 0.57,
+              "duration_s": 0.07
+            },
+            {
+              "start_s": 0.99,
+              "end_s": 1.01,
+              "duration_s": 0.02
+            }
+          ],
+          "passed": false,
+          "reasons": [
+            "语速偏慢"
+          ],
+          "raw_duration_s": 1.92,
+          "trim_start_s": 0.0,
+          "trim_end_s": 1.81,
+          "attempt": 4
+        }
+      ],
+      "status": "out_of_range",
+      "listening_approved": false,
+      "file": "feed_sweets_3.mp3",
+      "sha256": "6b1e7b2d7fe77c591a284722dcb37feccb329c932f8b093f05a2a0e58038bd3d",
+      "selected": {
+        "duration_s": 1.74,
+        "cps": 3.4482758620689657,
+        "head_s": 0.07,
+        "tail_s": 0.15,
+        "max_pause_s": 0.03,
+        "internal_pauses": [
+          {
+            "start_s": 0.49,
+            "end_s": 0.52,
+            "duration_s": 0.03
+          },
+          {
+            "start_s": 0.85,
+            "end_s": 0.88,
+            "duration_s": 0.03
+          }
+        ],
+        "passed": false,
+        "reasons": [
+          "语速偏慢"
+        ],
+        "raw_duration_s": 1.92,
+        "trim_start_s": 0.0,
+        "trim_end_s": 1.74,
+        "attempt": 1
+      }
+    },
+    {
+      "id": "feed_catcan_3",
+      "kind": "feed",
+      "item": "cat_can",
+      "pool_index": 9,
+      "face": "shy",
+      "emotion": "shy",
+      "text": "……就这一次。",
+      "tts_text": "就这一次。",
+      "assistant": "(小声 有点不好意思)就这一次。",
+      "han_count": 4,
+      "attempts": [
+        {
+          "duration_s": 1.84,
+          "cps": 2.1739130434782608,
+          "head_s": 0.14,
+          "tail_s": 0.15,
+          "max_pause_s": 0.07,
+          "internal_pauses": [
+            {
+              "start_s": 0.52,
+              "end_s": 0.59,
+              "duration_s": 0.07
+            }
+          ],
+          "passed": false,
+          "reasons": [
+            "语速偏慢"
+          ],
+          "raw_duration_s": 2.08,
+          "trim_start_s": 0.0,
+          "trim_end_s": 1.84,
+          "attempt": 1
+        },
+        {
+          "duration_s": 1.21,
+          "cps": 3.3057851239669422,
+          "head_s": 0.13,
+          "tail_s": 0.15,
+          "max_pause_s": 0.01,
+          "internal_pauses": [
+            {
+              "start_s": 0.46,
+              "end_s": 0.47,
+              "duration_s": 0.01
+            },
+            {
+              "start_s": 0.75,
+              "end_s": 0.76,
+              "duration_s": 0.01
+            }
+          ],
+          "passed": false,
+          "reasons": [
+            "语速偏慢"
+          ],
+          "raw_duration_s": 1.44,
+          "trim_start_s": 0.0,
+          "trim_end_s": 1.21,
+          "attempt": 2
+        },
+        {
+          "duration_s": 1.44,
+          "cps": 2.7777777777777777,
+          "head_s": 0.12,
+          "tail_s": 0.07,
+          "max_pause_s": 0.01,
+          "internal_pauses": [
+            {
+              "start_s": 0.35,
+              "end_s": 0.36,
+              "duration_s": 0.01
+            },
+            {
+              "start_s": 1.28,
+              "end_s": 1.29,
+              "duration_s": 0.01
+            }
+          ],
+          "passed": false,
+          "reasons": [
+            "语速偏慢"
+          ],
+          "raw_duration_s": 1.44,
+          "trim_start_s": 0.0,
+          "trim_end_s": 1.44,
+          "attempt": 3
+        },
+        {
+          "duration_s": 1.16,
+          "cps": 3.4482758620689657,
+          "head_s": 0.14,
+          "tail_s": 0.15,
+          "max_pause_s": 0.0,
+          "internal_pauses": [],
+          "passed": false,
+          "reasons": [
+            "语速偏慢"
+          ],
+          "raw_duration_s": 1.28,
+          "trim_start_s": 0.0,
+          "trim_end_s": 1.16,
+          "attempt": 4
+        }
+      ],
+      "status": "out_of_range",
+      "listening_approved": false,
+      "file": "feed_catcan_3.mp3",
+      "sha256": "b8efadfc80aa8f3680786c1d4dc82e19ee43127c4303553d5709f469df19374a",
+      "selected": {
+        "duration_s": 1.16,
+        "cps": 3.4482758620689657,
+        "head_s": 0.14,
+        "tail_s": 0.15,
+        "max_pause_s": 0.0,
+        "internal_pauses": [],
+        "passed": false,
+        "reasons": [
+          "语速偏慢"
+        ],
+        "raw_duration_s": 1.28,
+        "trim_start_s": 0.0,
+        "trim_end_s": 1.16,
+        "attempt": 4
+      }
+    },
+    {
+      "id": "scene_coffee_open",
+      "kind": "scene",
+      "note": "（头也不抬）",
+      "pool_index": 0,
+      "face": null,
+      "emotion": "calm",
+      "text": "放那儿吧。",
+      "tts_text": "放那儿吧。",
+      "assistant": "(平淡)放那儿吧。",
+      "han_count": 4,
+      "attempts": [
+        {
+          "duration_s": 0.99,
+          "cps": 4.040404040404041,
+          "head_s": 0.1,
+          "tail_s": 0.15,
+          "max_pause_s": 0.04,
+          "internal_pauses": [
+            {
+              "start_s": 0.58,
+              "end_s": 0.62,
+              "duration_s": 0.04
+            }
+          ],
+          "passed": false,
+          "reasons": [
+            "语速偏慢"
+          ],
+          "raw_duration_s": 1.28,
+          "trim_start_s": 0.0,
+          "trim_end_s": 0.99,
+          "attempt": 1
+        },
+        {
+          "duration_s": 0.89,
+          "cps": 4.49438202247191,
+          "head_s": 0.14,
+          "tail_s": 0.15,
+          "max_pause_s": 0.0,
+          "internal_pauses": [],
+          "passed": false,
+          "reasons": [
+            "语速偏慢"
+          ],
+          "raw_duration_s": 1.12,
+          "trim_start_s": 0.0,
+          "trim_end_s": 0.89,
+          "attempt": 2
+        },
+        {
+          "duration_s": 0.94,
+          "cps": 4.25531914893617,
+          "head_s": 0.12,
+          "tail_s": 0.15,
+          "max_pause_s": 0.0,
+          "internal_pauses": [],
+          "passed": false,
+          "reasons": [
+            "语速偏慢"
+          ],
+          "raw_duration_s": 1.12,
+          "trim_start_s": 0.0,
+          "trim_end_s": 0.94,
+          "attempt": 3
+        },
+        {
+          "duration_s": 1.08,
+          "cps": 3.7037037037037033,
+          "head_s": 0.15,
+          "tail_s": 0.15,
+          "max_pause_s": 0.0,
+          "internal_pauses": [],
+          "passed": false,
+          "reasons": [
+            "语速偏慢"
+          ],
+          "raw_duration_s": 1.28,
+          "trim_start_s": 0.02,
+          "trim_end_s": 1.1,
+          "attempt": 4
+        }
+      ],
+      "status": "out_of_range",
+      "listening_approved": false,
+      "file": "scene_coffee_open.mp3",
+      "sha256": "cfe310210309e8e3ebb98366db5c97cee5ee6e19dbb25f7ca81a0165595ee70f",
+      "selected": {
+        "duration_s": 0.89,
+        "cps": 4.49438202247191,
+        "head_s": 0.14,
+        "tail_s": 0.15,
+        "max_pause_s": 0.0,
+        "internal_pauses": [],
+        "passed": false,
+        "reasons": [
+          "语速偏慢"
+        ],
+        "raw_duration_s": 1.12,
+        "trim_start_s": 0.0,
+        "trim_end_s": 0.89,
+        "attempt": 2
+      }
+    },
+    {
+      "id": "scene_coffee_choice_a",
+      "kind": "scene",
+      "note": "（她端起来喝了一口）",
+      "pool_index": 1,
+      "face": null,
+      "emotion": "calm",
+      "text": "……多事。",
+      "tts_text": "多事。",
+      "assistant": "(平淡)多事。",
+      "han_count": 2,
+      "attempts": [
+        {
+          "duration_s": 1.27,
+          "cps": 1.574803149606299,
+          "head_s": 0.15,
+          "tail_s": 0.14,
+          "max_pause_s": 0.0,
+          "internal_pauses": [],
+          "passed": false,
+          "reasons": [
+            "语速偏慢"
+          ],
+          "raw_duration_s": 1.28,
+          "trim_start_s": 0.01,
+          "trim_end_s": 1.28,
+          "attempt": 1
+        },
+        {
+          "duration_s": 1.0,
+          "cps": 2.0,
+          "head_s": 0.15,
+          "tail_s": 0.15,
+          "max_pause_s": 0.02,
+          "internal_pauses": [
+            {
+              "start_s": 0.8,
+              "end_s": 0.82,
+              "duration_s": 0.02
+            }
+          ],
+          "passed": false,
+          "reasons": [
+            "语速偏慢"
+          ],
+          "raw_duration_s": 1.12,
+          "trim_start_s": 0.0,
+          "trim_end_s": 1.0,
+          "attempt": 2
+        },
+        {
+          "duration_s": 0.96,
+          "cps": 2.0833333333333335,
+          "head_s": 0.13,
+          "tail_s": 0.15,
+          "max_pause_s": 0.01,
+          "internal_pauses": [
+            {
+              "start_s": 0.78,
+              "end_s": 0.79,
+              "duration_s": 0.01
+            }
+          ],
+          "passed": false,
+          "reasons": [
+            "语速偏慢"
+          ],
+          "raw_duration_s": 1.28,
+          "trim_start_s": 0.0,
+          "trim_end_s": 0.96,
+          "attempt": 3
+        },
+        {
+          "duration_s": 0.94,
+          "cps": 2.127659574468085,
+          "head_s": 0.15,
+          "tail_s": 0.15,
+          "max_pause_s": 0.0,
+          "internal_pauses": [],
+          "passed": false,
+          "reasons": [
+            "语速偏慢"
+          ],
+          "raw_duration_s": 1.12,
+          "trim_start_s": 0.03,
+          "trim_end_s": 0.97,
+          "attempt": 4
+        }
+      ],
+      "status": "out_of_range",
+      "listening_approved": false,
+      "file": "scene_coffee_choice_a.mp3",
+      "sha256": "d3b3ba8ca1783522895a01a2e4bec5a0007be21ebfbb56809b45179bce9c58e7",
+      "selected": {
+        "duration_s": 0.94,
+        "cps": 2.127659574468085,
+        "head_s": 0.15,
+        "tail_s": 0.15,
+        "max_pause_s": 0.0,
+        "internal_pauses": [],
+        "passed": false,
+        "reasons": [
+          "语速偏慢"
+        ],
+        "raw_duration_s": 1.12,
+        "trim_start_s": 0.03,
+        "trim_end_s": 0.97,
+        "attempt": 4
+      }
+    },
+    {
+      "id": "scene_coffee_choice_b",
+      "kind": "scene",
+      "note": "（她还是端起来喝了一口）",
+      "pool_index": 2,
+      "face": null,
+      "emotion": "calm",
+      "text": "……明天还有明天的报告。",
+      "tts_text": "明天还有明天的报告。",
+      "assistant": "(平淡)明天还有明天的报告。",
+      "han_count": 9,
+      "attempts": [
+        {
+          "duration_s": 6.24,
+          "cps": 1.4423076923076923,
+          "head_s": 0.15,
+          "tail_s": 0.15,
+          "max_pause_s": 2.44,
+          "internal_pauses": [
+            {
+              "start_s": 1.27,
+              "end_s": 1.31,
+              "duration_s": 0.04
+            },
+            {
+              "start_s": 1.52,
+              "end_s": 1.54,
+              "duration_s": 0.02
+            },
+            {
+              "start_s": 1.9,
+              "end_s": 1.91,
+              "duration_s": 0.01
+            },
+            {
+              "start_s": 1.92,
+              "end_s": 4.36,
+              "duration_s": 2.44
+            },
+            {
+              "start_s": 5.46,
+              "end_s": 5.51,
+              "duration_s": 0.05
+            },
+            {
+              "start_s": 5.68,
+              "end_s": 5.73,
+              "duration_s": 0.05
+            }
+          ],
+          "passed": false,
+          "reasons": [
+            "语速偏慢",
+            "句中停顿超过0.5秒"
+          ],
+          "raw_duration_s": 6.4,
+          "trim_start_s": 0.07,
+          "trim_end_s": 6.31,
+          "attempt": 1
+        },
+        {
+          "duration_s": 2.31,
+          "cps": 3.896103896103896,
+          "head_s": 0.15,
+          "tail_s": 0.15,
+          "max_pause_s": 0.02,
+          "internal_pauses": [
+            {
+              "start_s": 1.51,
+              "end_s": 1.52,
+              "duration_s": 0.01
+            },
+            {
+              "start_s": 1.73,
+              "end_s": 1.75,
+              "duration_s": 0.02
+            }
+          ],
+          "passed": false,
+          "reasons": [
+            "语速偏慢"
+          ],
+          "raw_duration_s": 2.56,
+          "trim_start_s": 0.05,
+          "trim_end_s": 2.36,
+          "attempt": 2
+        },
+        {
+          "duration_s": 2.67,
+          "cps": 3.370786516853933,
+          "head_s": 0.15,
+          "tail_s": 0.15,
+          "max_pause_s": 0.17,
+          "internal_pauses": [
+            {
+              "start_s": 0.84,
+              "end_s": 1.01,
+              "duration_s": 0.17
+            },
+            {
+              "start_s": 2.21,
+              "end_s": 2.22,
+              "duration_s": 0.01
+            }
+          ],
+          "passed": false,
+          "reasons": [
+            "语速偏慢"
+          ],
+          "raw_duration_s": 2.88,
+          "trim_start_s": 0.04,
+          "trim_end_s": 2.71,
+          "attempt": 3
+        },
+        {
+          "duration_s": 2.59,
+          "cps": 3.474903474903475,
+          "head_s": 0.15,
+          "tail_s": 0.15,
+          "max_pause_s": 0.06,
+          "internal_pauses": [
+            {
+              "start_s": 1.75,
+              "end_s": 1.81,
+              "duration_s": 0.06
+            },
+            {
+              "start_s": 2.01,
+              "end_s": 2.06,
+              "duration_s": 0.05
+            }
+          ],
+          "passed": false,
+          "reasons": [
+            "语速偏慢"
+          ],
+          "raw_duration_s": 2.72,
+          "trim_start_s": 0.05,
+          "trim_end_s": 2.64,
+          "attempt": 4
+        }
+      ],
+      "status": "out_of_range",
+      "listening_approved": false,
+      "file": "scene_coffee_choice_b.mp3",
+      "sha256": "03e4c3a9174900855e85b8b402d73e027c635d5adb49bbe16b5bf7f94fd364fe",
+      "selected": {
+        "duration_s": 2.31,
+        "cps": 3.896103896103896,
+        "head_s": 0.15,
+        "tail_s": 0.15,
+        "max_pause_s": 0.02,
+        "internal_pauses": [
+          {
+            "start_s": 1.51,
+            "end_s": 1.52,
+            "duration_s": 0.01
+          },
+          {
+            "start_s": 1.73,
+            "end_s": 1.75,
+            "duration_s": 0.02
+          }
+        ],
+        "passed": false,
+        "reasons": [
+          "语速偏慢"
+        ],
+        "raw_duration_s": 2.56,
+        "trim_start_s": 0.05,
+        "trim_end_s": 2.36,
+        "attempt": 2
+      }
+    },
+    {
+      "id": "scene_coffee_end",
+      "kind": "scene",
+      "pool_index": 3,
+      "face": null,
+      "emotion": "calm",
+      "text": "……还算合口味。",
+      "tts_text": "还算合口味。",
+      "assistant": "(平淡)还算合口味。",
+      "han_count": 5,
+      "attempts": [
+        {
+          "duration_s": 1.75,
+          "cps": 2.857142857142857,
+          "head_s": 0.11,
+          "tail_s": 0.15,
+          "max_pause_s": 0.01,
+          "internal_pauses": [
+            {
+              "start_s": 0.98,
+              "end_s": 0.99,
+              "duration_s": 0.01
+            }
+          ],
+          "passed": false,
+          "reasons": [
+            "语速偏慢"
+          ],
+          "raw_duration_s": 1.92,
+          "trim_start_s": 0.0,
+          "trim_end_s": 1.75,
+          "attempt": 1
+        },
+        {
+          "duration_s": 1.54,
+          "cps": 3.2467532467532467,
+          "head_s": 0.11,
+          "tail_s": 0.15,
+          "max_pause_s": 0.0,
+          "internal_pauses": [],
+          "passed": false,
+          "reasons": [
+            "语速偏慢"
+          ],
+          "raw_duration_s": 1.6,
+          "trim_start_s": 0.0,
+          "trim_end_s": 1.54,
+          "attempt": 2
+        },
+        {
+          "duration_s": 1.8,
+          "cps": 2.7777777777777777,
+          "head_s": 0.14,
+          "tail_s": 0.15,
+          "max_pause_s": 0.03,
+          "internal_pauses": [
+            {
+              "start_s": 1.03,
+              "end_s": 1.06,
+              "duration_s": 0.03
+            },
+            {
+              "start_s": 1.47,
+              "end_s": 1.48,
+              "duration_s": 0.01
+            }
+          ],
+          "passed": false,
+          "reasons": [
+            "语速偏慢"
+          ],
+          "raw_duration_s": 2.08,
+          "trim_start_s": 0.0,
+          "trim_end_s": 1.8,
+          "attempt": 3
+        },
+        {
+          "duration_s": 2.15,
+          "cps": 2.3255813953488373,
+          "head_s": 0.13,
+          "tail_s": 0.15,
+          "max_pause_s": 0.07,
+          "internal_pauses": [
+            {
+              "start_s": 1.35,
+              "end_s": 1.39,
+              "duration_s": 0.04
+            },
+            {
+              "start_s": 1.57,
+              "end_s": 1.62,
+              "duration_s": 0.05
+            },
+            {
+              "start_s": 1.64,
+              "end_s": 1.71,
+              "duration_s": 0.07
+            }
+          ],
+          "passed": false,
+          "reasons": [
+            "语速偏慢"
+          ],
+          "raw_duration_s": 2.4,
+          "trim_start_s": 0.0,
+          "trim_end_s": 2.15,
+          "attempt": 4
+        }
+      ],
+      "status": "out_of_range",
+      "listening_approved": false,
+      "file": "scene_coffee_end.mp3",
+      "sha256": "7eb5241956e1d340782e613d13f131e1ab2403ba071ed89fd906486aed795d72",
+      "selected": {
+        "duration_s": 1.54,
+        "cps": 3.2467532467532467,
+        "head_s": 0.11,
+        "tail_s": 0.15,
+        "max_pause_s": 0.0,
+        "internal_pauses": [],
+        "passed": false,
+        "reasons": [
+          "语速偏慢"
+        ],
+        "raw_duration_s": 1.6,
+        "trim_start_s": 0.0,
+        "trim_end_s": 1.54,
+        "attempt": 2
+      }
+    }
+  ],
+  "summary": {
+    "total": 34,
+    "generated": 34,
+    "passed": 0,
+    "out_of_range": [
+      "poke_head_1",
+      "poke_head_2",
+      "poke_face_1",
+      "poke_face_2",
+      "poke_hand_1",
+      "poke_hand_2",
+      "poke_shoulder_l_1",
+      "poke_shoulder_l_2",
+      "poke_shoulder_r_1",
+      "poke_shoulder_r_2",
+      "chat_01",
+      "chat_02",
+      "chat_03",
+      "chat_04",
+      "chat_05",
+      "chat_06",
+      "chat_07",
+      "chat_08",
+      "chat_09",
+      "chat_10",
+      "feed_coffee_1",
+      "feed_coffee_2",
+      "feed_catcan_1",
+      "feed_catcan_2",
+      "feed_sweets_1",
+      "feed_sweets_2",
+      "feed_bread_1",
+      "feed_coffee_3",
+      "feed_sweets_3",
+      "feed_catcan_3",
+      "scene_coffee_open",
+      "scene_coffee_choice_a",
+      "scene_coffee_choice_b",
+      "scene_coffee_end"
+    ],
+    "generation_failed": [],
+    "pending": [],
+    "reused_pilot": 5,
+    "new_attempts": 116
+  }
+}
