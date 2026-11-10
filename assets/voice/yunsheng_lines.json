@@ -51,7 +51,7 @@
       "emotion": "shy",
       "tts_text": "随便你。",
       "assistant": "(小声 有点不好意思)随便你。",
-      "listening_approved": false,
+      "listening_approved": true,
       "status": "out_of_range",
       "audio": "assets/voice/yunsheng/unified/poke_head_2.mp3"
     },
@@ -90,7 +90,7 @@
       "emotion": "shy",
       "tts_text": "痒。",
       "assistant": "(小声 有点不好意思)痒。",
-      "listening_approved": false,
+      "listening_approved": true,
       "status": "out_of_range",
       "audio": "assets/voice/yunsheng/unified/poke_hand_1.mp3"
     },
@@ -103,7 +103,7 @@
       "emotion": "shy",
       "tts_text": "戳够了就走。",
       "assistant": "(小声 有点不好意思)戳够了就走。",
-      "listening_approved": false,
+      "listening_approved": true,
       "status": "out_of_range",
       "audio": "assets/voice/yunsheng/unified/poke_hand_2.mp3"
     },
@@ -116,7 +116,7 @@
       "emotion": "smile",
       "tts_text": "下次记得敲门。",
       "assistant": "(轻松)下次记得敲门。",
-      "listening_approved": false,
+      "listening_approved": true,
       "status": "out_of_range",
       "audio": "assets/voice/yunsheng/unified/poke_shoulder_l_1.mp3"
     },
@@ -129,7 +129,7 @@
       "emotion": "angry",
       "tts_text": "你每天都这么闲？",
       "assistant": "(有点恼)你每天都这么闲？",
-      "listening_approved": false,
+      "listening_approved": true,
       "status": "out_of_range",
       "audio": "assets/voice/yunsheng/unified/poke_shoulder_l_2.mp3"
     },
@@ -142,7 +142,7 @@
       "emotion": "angry",
       "tts_text": "你手很闲？",
       "assistant": "(有点恼)你手很闲？",
-      "listening_approved": false,
+      "listening_approved": true,
       "status": "out_of_range",
       "audio": "assets/voice/yunsheng/unified/poke_shoulder_r_1.mp3"
     },
@@ -155,7 +155,7 @@
       "emotion": "angry",
       "tts_text": "我在看报告。",
       "assistant": "(有点恼)我在看报告。",
-      "listening_approved": false,
+      "listening_approved": true,
       "status": "out_of_range",
       "audio": "assets/voice/yunsheng/unified/poke_shoulder_r_2.mp3"
     },
@@ -167,7 +167,7 @@
       "emotion": "smile",
       "tts_text": "今天的报告写了六千字。",
       "assistant": "(轻松)今天的报告写了六千字。",
-      "listening_approved": false,
+      "listening_approved": true,
       "status": "out_of_range",
       "audio": "assets/voice/yunsheng/unified/chat_01.mp3"
     },
@@ -180,7 +180,7 @@
       "emotion": "shy",
       "tts_text": "楼道那只猫又来了。",
       "assistant": "(小声 有点不好意思)楼道那只猫又来了。",
-      "listening_approved": false,
+      "listening_approved": true,
       "status": "out_of_range",
       "audio": "assets/voice/yunsheng/unified/chat_02.mp3"
     },
@@ -192,7 +192,7 @@
       "emotion": "smile",
       "tts_text": "黑咖啡，不加糖。",
       "assistant": "(轻松)黑咖啡，不加糖。",
-      "listening_approved": false,
+      "listening_approved": true,
       "status": "out_of_range",
       "audio": "assets/voice/yunsheng/unified/chat_03.mp3"
     },
@@ -204,7 +204,7 @@
       "emotion": "smile",
       "tts_text": "夜澜的棋下得还行。",
       "assistant": "(轻松)夜澜的棋下得还行。",
-      "listening_approved": false,
+      "listening_approved": true,
       "status": "out_of_range",
       "audio": "assets/voice/yunsheng/unified/chat_04.mp3"
     },
@@ -216,7 +216,7 @@
       "emotion": "angry",
       "tts_text": "实验室的灯坏了两天，没人修。",
       "assistant": "(有点恼)实验室的灯坏了两天，没人修。",
-      "listening_approved": false,
+      "listening_approved": true,
       "status": "out_of_range",
       "audio": "assets/voice/yunsheng/unified/chat_05.mp3"
     },
@@ -264,7 +264,7 @@
       "emotion": "angry",
       "tts_text": "无聊的问题就别问了。",
       "assistant": "(有点恼)无聊的问题就别问了。",
-      "listening_approved": false,
+      "listening_approved": true,
       "status": "out_of_range",
       "audio": "assets/voice/yunsheng/unified/chat_09.mp3"
     },
@@ -315,7 +315,7 @@
       "emotion": "shy",
       "tts_text": "给我这个干什么。无聊。",
       "assistant": "(小声 有点不好意思)给我这个干什么。无聊。",
-      "listening_approved": false,
+      "listening_approved": true,
       "status": "out_of_range",
       "audio": "assets/voice/yunsheng/unified/feed_catcan_1.mp3"
     },
@@ -342,7 +342,7 @@
       "emotion": "angry",
       "tts_text": "我不吃甜的。",
       "assistant": "(有点恼)我不吃甜的。",
-      "listening_approved": false,
+      "listening_approved": true,
       "status": "out_of_range",
       "audio": "assets/voice/yunsheng/unified/feed_sweets_1.mp3"
     },
@@ -368,7 +368,7 @@
       "emotion": "calm",
       "tts_text": "谢谢。",
       "assistant": "(平淡)谢谢。",
-      "listening_approved": false,
+      "listening_approved": true,
       "status": "out_of_range",
       "audio": "assets/voice/yunsheng/unified/feed_bread_1.mp3"
     },
@@ -381,7 +381,7 @@
       "emotion": "calm",
       "tts_text": "第二杯了。你是想让我通宵？",
       "assistant": "(平淡)第二杯了。你是想让我通宵？",
-      "listening_approved": false,
+      "listening_approved": true,
       "status": "out_of_range",
       "audio": "assets/voice/yunsheng/unified/feed_coffee_3.mp3"
     },
@@ -394,7 +394,7 @@
       "emotion": "angry",
       "tts_text": "说了不吃甜的。",
       "assistant": "(有点恼)说了不吃甜的。",
-      "listening_approved": false,
+      "listening_approved": true,
       "status": "out_of_range",
       "audio": "assets/voice/yunsheng/unified/feed_sweets_3.mp3"
     },
@@ -407,7 +407,7 @@
       "emotion": "shy",
       "tts_text": "就这一次。",
       "assistant": "(小声 有点不好意思)就这一次。",
-      "listening_approved": false,
+      "listening_approved": true,
       "status": "out_of_range",
       "audio": "assets/voice/yunsheng/unified/feed_catcan_3.mp3"
     },
@@ -420,7 +420,7 @@
       "emotion": "calm",
       "tts_text": "放那儿吧。",
       "assistant": "(平淡)放那儿吧。",
-      "listening_approved": false,
+      "listening_approved": true,
       "status": "out_of_range",
       "audio": "assets/voice/yunsheng/unified/scene_coffee_open.mp3"
     },
@@ -433,7 +433,7 @@
       "emotion": "calm",
       "tts_text": "多事。",
       "assistant": "(平淡)多事。",
-      "listening_approved": false,
+      "listening_approved": true,
       "status": "out_of_range",
       "audio": "assets/voice/yunsheng/unified/scene_coffee_choice_a.mp3"
     },
@@ -446,7 +446,7 @@
       "emotion": "calm",
       "tts_text": "明天还有明天的报告。",
       "assistant": "(平淡)明天还有明天的报告。",
-      "listening_approved": false,
+      "listening_approved": true,
       "status": "out_of_range",
       "audio": "assets/voice/yunsheng/unified/scene_coffee_choice_b.mp3"
     },
@@ -458,7 +458,7 @@
       "emotion": "calm",
       "tts_text": "还算合口味。",
       "assistant": "(平淡)还算合口味。",
-      "listening_approved": false,
+      "listening_approved": true,
       "status": "out_of_range",
       "audio": "assets/voice/yunsheng/unified/scene_coffee_end.mp3"
     }

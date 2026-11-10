@@ -1,5 +1,5 @@
 {
-  "status": "pronunciation_redub_accepted",
+  "status": "all_listening_approved",
   "previous_audio": "obsolete_not_included",
   "pilot_listening_approved": true,
   "model": "mimo-v2.5-tts-voiceclone",
@@ -264,7 +264,7 @@
         }
       ],
       "status": "out_of_range",
-      "listening_approved": false,
+      "listening_approved": true,
       "file": "poke_head_2.mp3",
       "sha256": "f8f5d7f354437e376ce098bc9d8a2664f48ad1bbdec00473f292a975675bc516",
       "selected": {
@@ -751,7 +751,7 @@
         }
       ],
       "status": "out_of_range",
-      "listening_approved": false,
+      "listening_approved": true,
       "file": "poke_hand_1.mp3",
       "sha256": "5b4e0a53ea7f1f292cfc933edbde1f7a9ab370b9d8d81dff93a7049e819d2792",
       "selected": {
@@ -851,7 +851,7 @@
       "redub_failed": {
         "date": "2026-11-11",
         "reason": "痒 yǎng 读成 yō（哟）",
-        "qi_decision": "2026-11-11 保留原音频，不改台词"
+        "qi_decision": "2026-11-11 全部都可以，全部都保留（知晓错读仍保留原音频）"
       }
     },
     {
@@ -960,7 +960,7 @@
         }
       ],
       "status": "out_of_range",
-      "listening_approved": false,
+      "listening_approved": true,
       "file": "poke_hand_2.mp3",
       "sha256": "0da6bc02bfe2706ee048e0972a90490f68fe275cd2949baf008ca0697ea544ef",
       "selected": {
@@ -1092,7 +1092,7 @@
         }
       ],
       "status": "out_of_range",
-      "listening_approved": false,
+      "listening_approved": true,
       "file": "poke_shoulder_l_1.mp3",
       "sha256": "24b8c4ad7eaac6f6cc988f3e031a2bbe954e0ab7478c7e10ad60848c649617f0",
       "selected": {
@@ -1230,7 +1230,7 @@
         }
       ],
       "status": "out_of_range",
-      "listening_approved": false,
+      "listening_approved": true,
       "file": "poke_shoulder_l_2.mp3",
       "sha256": "1c148ddcf98a34882b3edb4e7c50010ff3706e4e3382ab827e7899eb168274a5",
       "selected": {
@@ -1340,7 +1340,7 @@
         }
       ],
       "status": "out_of_range",
-      "listening_approved": false,
+      "listening_approved": true,
       "file": "poke_shoulder_r_1.mp3",
       "sha256": "9456516896c740f18cd5ab12c31dd9d2dc4db071f28f4d959920dcd94c01c4e8",
       "selected": {
@@ -1466,7 +1466,7 @@
         }
       ],
       "status": "out_of_range",
-      "listening_approved": false,
+      "listening_approved": true,
       "file": "poke_shoulder_r_2.mp3",
       "sha256": "fafc48761c9fba3189d64257fab828c5c02f7fb49abd58596ed69221f0be7942",
       "selected": {
@@ -1670,7 +1670,7 @@
         }
       ],
       "status": "out_of_range",
-      "listening_approved": false,
+      "listening_approved": true,
       "file": "chat_01.mp3",
       "sha256": "0f05a424e313d55d69a733fb63b2976af32a77f942a56f5738ef99ec23c7b535",
       "selected": {
@@ -1834,7 +1834,7 @@
         }
       ],
       "status": "out_of_range",
-      "listening_approved": false,
+      "listening_approved": true,
       "file": "chat_02.mp3",
       "sha256": "ba6a5abbb3e9506114d4e5d09e46081e0c435748ee8c591ce0a84508914f62c4",
       "selected": {
@@ -1981,7 +1981,7 @@
         }
       ],
       "status": "out_of_range",
-      "listening_approved": false,
+      "listening_approved": true,
       "file": "chat_03.mp3",
       "sha256": "bfc16915066fea8e7010bda030f98a3aaeca66ec235339e43d536e713032e022",
       "selected": {
@@ -2100,7 +2100,7 @@
         }
       ],
       "status": "out_of_range",
-      "listening_approved": false,
+      "listening_approved": true,
       "file": "chat_04.mp3",
       "sha256": "67923120c36853019793d3222c189fddd2d3c655aeca23c618e64d6572c1b595",
       "selected": {
@@ -2237,7 +2237,7 @@
         }
       ],
       "status": "out_of_range",
-      "listening_approved": false,
+      "listening_approved": true,
       "file": "chat_05.mp3",
       "sha256": "07429217630a84914d08fd81cb2bfb31b331ca40fe32230506fbc86d29851965",
       "selected": {
@@ -3077,7 +3077,7 @@
         }
       ],
       "status": "out_of_range",
-      "listening_approved": false,
+      "listening_approved": true,
       "file": "chat_09.mp3",
       "sha256": "27571120a7d22f74b9f9285457fb5e31b016521f77467575ac541264ac1589fe",
       "selected": {
@@ -3773,7 +3773,7 @@
         }
       ],
       "status": "out_of_range",
-      "listening_approved": false,
+      "listening_approved": true,
       "file": "feed_catcan_1.mp3",
       "sha256": "947da36d914e546c5a12ec92ed89809ba9ce53f383bafae4febc884fb5257be8",
       "selected": {
@@ -4151,7 +4151,7 @@
         }
       ],
       "status": "out_of_range",
-      "listening_approved": false,
+      "listening_approved": true,
       "file": "feed_sweets_1.mp3",
       "sha256": "f32192d8507f4a1471411efa04c2aef496f17a0b56e6e86a300973616e90d2e8",
       "selected": {
@@ -4419,7 +4419,7 @@
         }
       ],
       "status": "out_of_range",
-      "listening_approved": false,
+      "listening_approved": true,
       "file": "feed_bread_1.mp3",
       "sha256": "2995337a7cdb48327a649b20f88f5ab52126ecc58c9958f10ffe1d5fe03e9be7",
       "selected": {
@@ -4575,7 +4575,7 @@
         }
       ],
       "status": "out_of_range",
-      "listening_approved": false,
+      "listening_approved": true,
       "file": "feed_coffee_3.mp3",
       "sha256": "0bc8d6e07ef79f558372324aa6c85449ad569d45d56c10c904ccb98d23e2a0fe",
       "selected": {
@@ -4728,7 +4728,7 @@
         }
       ],
       "status": "out_of_range",
-      "listening_approved": false,
+      "listening_approved": true,
       "file": "feed_sweets_3.mp3",
       "sha256": "6b1e7b2d7fe77c591a284722dcb37feccb329c932f8b093f05a2a0e58038bd3d",
       "selected": {
@@ -4865,7 +4865,7 @@
         }
       ],
       "status": "out_of_range",
-      "listening_approved": false,
+      "listening_approved": true,
       "file": "feed_catcan_3.mp3",
       "sha256": "b8efadfc80aa8f3680786c1d4dc82e19ee43127c4303553d5709f469df19374a",
       "selected": {
@@ -4969,7 +4969,7 @@
         }
       ],
       "status": "out_of_range",
-      "listening_approved": false,
+      "listening_approved": true,
       "file": "scene_coffee_open.mp3",
       "sha256": "cfe310210309e8e3ebb98366db5c97cee5ee6e19dbb25f7ca81a0165595ee70f",
       "selected": {
@@ -5079,7 +5079,7 @@
         }
       ],
       "status": "out_of_range",
-      "listening_approved": false,
+      "listening_approved": true,
       "file": "scene_coffee_choice_a.mp3",
       "sha256": "d3b3ba8ca1783522895a01a2e4bec5a0007be21ebfbb56809b45179bce9c58e7",
       "selected": {
@@ -5242,7 +5242,7 @@
         }
       ],
       "status": "out_of_range",
-      "listening_approved": false,
+      "listening_approved": true,
       "file": "scene_coffee_choice_b.mp3",
       "sha256": "03e4c3a9174900855e85b8b402d73e027c635d5adb49bbe16b5bf7f94fd364fe",
       "selected": {
@@ -5383,7 +5383,7 @@
         }
       ],
       "status": "out_of_range",
-      "listening_approved": false,
+      "listening_approved": true,
       "file": "scene_coffee_end.mp3",
       "sha256": "7eb5241956e1d340782e613d13f131e1ab2403ba071ed89fd906486aed795d72",
       "selected": {
@@ -5460,5 +5460,11 @@
     "redub_failed": [
       "poke_hand_1"
     ]
+  },
+  "listening_approval": {
+    "date": "2026-11-11",
+    "by": "qi",
+    "quote": "全部都可以，全部都保留",
+    "scope": "全部34句，含痒。原音频"
   }
 }
