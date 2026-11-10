@@ -262,6 +262,7 @@ function toast(msg) {
 }
 
 function showBubble(text) {
+  playLineVoice(text);
   var el = byId('bubble');
   byId('bubble-text').textContent = text;
   el.classList.remove('hidden');
@@ -271,6 +272,69 @@ function showBubble(text) {
 function hideBubble() {
   var el = byId('bubble');
   if (el) el.classList.add('hidden');
+}
+
+/* ---------- 云笙配音（阶段 B）：qi 试听定稿的 34 句，对应文字出现时播放 ----------
+   映射键 = 台词原文（一字不差，含省略号）→ 音频 id（assets/voice/yunsheng/<id>.mp3，定稿音频只换格式未动内容）。
+   规则：新一句开始上一句立刻停、不重叠；文件缺失或播放失败不出声、不报错不弹窗；
+   播放入口全在点击回调里，不自动播。没配音的文字（热点/旁白/主控句等）只停上一句、不出声。 */
+var YUNSHENG_VOICE = {
+  // 点按 10 句（区→台词下标：头 2/8、脸 0/4、垂手 5/6、左肩 9/7、右肩 1/3）
+  '无聊。': 'poke_head_1',
+  '……随便你。': 'poke_head_2',
+  '别戳。': 'poke_face_1',
+  '再戳我就关门了。': 'poke_face_2',
+  '……痒。': 'poke_hand_1',
+  '戳够了就走。': 'poke_hand_2',
+  '下次记得敲门。': 'poke_shoulder_l_1',
+  '你每天都这么闲？': 'poke_shoulder_l_2',
+  '……你手很闲？': 'poke_shoulder_r_1',
+  '我在看报告。': 'poke_shoulder_r_2',
+  // 聊天 10 句（chat 池下标 0–9 顺序）
+  '今天的报告写了六千字。': 'chat_01',
+  '楼道那只猫又来了。': 'chat_02',
+  '黑咖啡，不加糖。': 'chat_03',
+  '夜澜的棋下得还行。': 'chat_04',
+  '实验室的灯坏了两天，没人修。': 'chat_05',
+  '……你居然还记得我不吃甜的。': 'chat_06',
+  '明天半夜可能要去现场。': 'chat_07',
+  '推理小说看到一半，凶手太蠢了。': 'chat_08',
+  '无聊的问题就别问了。': 'chat_09',
+  '……今天，谢谢你。': 'chat_10',
+  // 喂食 10 句（「……放那儿吧。」与剧情「放那儿吧。」是两句，各对各的文件）
+  '……放那儿吧。': 'feed_coffee_1',
+  '还算合口味。': 'feed_coffee_2',
+  '给我这个干什么。无聊。': 'feed_catcan_1',
+  '……楼道那只猫会吃。': 'feed_catcan_2',
+  '我不吃甜的。': 'feed_sweets_1',
+  '拿走。无聊。': 'feed_sweets_2',
+  '……谢谢。': 'feed_bread_1',
+  '第二杯了。你是想让我通宵？': 'feed_coffee_3',
+  '说了不吃甜的。': 'feed_sweets_3',
+  '……就这一次。': 'feed_catcan_3',
+  // 咖啡剧情 4 句（旁白与主控二选一标签无配音）
+  '放那儿吧。': 'scene_coffee_open',
+  '……多事。': 'scene_coffee_choice_a',
+  '……明天还有明天的报告。': 'scene_coffee_choice_b',
+  '……还算合口味。': 'scene_coffee_end'
+};
+var voiceAudio = null;
+
+function stopVoice() {
+  if (!voiceAudio) return;
+  try { voiceAudio.pause(); voiceAudio.currentTime = 0; } catch (e) { /* 未加载完时置位可能抛错，不出声即可 */ }
+}
+
+function playLineVoice(text) {
+  stopVoice();
+  var id = YUNSHENG_VOICE[text];
+  if (!id) return;
+  try {
+    if (!voiceAudio) voiceAudio = new Audio();
+    voiceAudio.src = 'assets/voice/yunsheng/' + id + '.mp3';
+    var p = voiceAudio.play();
+    if (p && typeof p.catch === 'function') p.catch(function () {}); // 缺失/受限 → 静默
+  } catch (e) { /* 播放失败不出声、不弹窗 */ }
 }
 
 /* ---------- 外观：贴片 / 遮罩 / 点按区 ---------- */
@@ -403,6 +467,7 @@ function enterRoom() {
 }
 
 function goExterior() {
+  stopVoice();
   closePopups();
   hideBubble();
   closeScene();
@@ -815,6 +880,7 @@ function startScene() {
 
 /* 把一拍渲染到对话框；display 优先（二选一后插播的主控台词 / 她的回复） */
 function renderDialog(speaker, text, note, showHint) {
+  playLineVoice(text);
   byId('scene-speaker').textContent = speaker;
   byId('scene-text').textContent = text;
   byId('scene-text').classList.remove('hidden');
