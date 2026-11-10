@@ -165,9 +165,11 @@ var ACTION_CARDS_401 = {
   sleep:   { asset: 'assets/chibi/yunsheng_sleep.png',   doing: '缩在床上睡着了',   note: '小声点…' },
   feedcat: { asset: 'assets/chibi/yunsheng_feedcat.png', doing: '蹲在地上喂猫',     note: '猫吃得比她香' }
 };
+var actionSeq = 0;
 function setRoomAction(name) {
   var card = byId('action-card'), el = byId('room-action');
   var spot = name && ACTION_CARDS_401[name];
+  var seq = ++actionSeq; // 撤下/切换后迟到的 load/error 不回填旧卡片
   if (!spot) { card.classList.add('hidden'); return; }
   byId('action-doing').textContent = spot.doing;
   byId('action-note').textContent = spot.note;
@@ -178,11 +180,13 @@ function setRoomAction(name) {
     card.classList.remove('hidden');
   };
   el.onload = function () {
+    if (seq !== actionSeq) return;
     el.dataset.fxLoaded = spot.asset;
+    if (EDGE_FX_CACHE[spot.asset] && el.src === EDGE_FX_CACHE[spot.asset]) return; // 去白边回填那次 load 不重播淡入
     applyEdgeFx(spot.asset, el); // 小人同款渲染期去白边，alpha 不动
     show();
   };
-  el.onerror = function () { card.classList.add('hidden'); };
+  el.onerror = function () { if (seq === actionSeq) card.classList.add('hidden'); };
   if (el.dataset.fxLoaded === spot.asset && el.complete && el.naturalWidth > 0) {
     applyEdgeFx(spot.asset, el);
     show();

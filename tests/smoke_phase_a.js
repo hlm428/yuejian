@@ -314,6 +314,15 @@ ok('4 房间热点彼此不重叠（旧目测值咖啡压报告纸）', hotRects
   ok('sleep 文案跟表', txt('action-doing') === T.ACTION_CARDS_401.sleep.doing && txt('action-note') === T.ACTION_CARDS_401.sleep.note);
   T.setRoomAction(null);
   ok('收起不碰站桩', !registry['char-wrap'].classList.contains('hidden'));
+  T.setRoomAction('report');
+  const staleLoad = el.onload;
+  T.setRoomAction('sleep');
+  staleLoad();
+  ok('切走的旧 onload 不抢弹新卡片', card.classList.contains('hidden'));
+  el.onload();
+  T.setRoomAction(null);
+  el.onload();
+  ok('null 撤掉待决加载（迟到 onload 不复活卡片）', card.classList.contains('hidden'));
   const css = fs.readFileSync(path.join(repo, 'css/style.css'), 'utf8');
   ok('卡片带淡入', /animation: card-in 0\.28s ease-out;/.test(css) && /@keyframes card-in/.test(css));
   ok('卡片图整张 contain 不裁不拉伸', /#room-action \{ width: 100%; height: 100%; object-fit: contain;/.test(css));
