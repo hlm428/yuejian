@@ -104,7 +104,7 @@ const files = [
   path.join(repo, 'js', 'app.js')
 ];
 const code = files.map(f => fs.readFileSync(f, 'utf8')).join('\n;\n')
-  + '\n;globalThis.__T = { save, rolls, usedLines, renderExterior, onWindowClick, showCard, closeCard, enterRoom, goExterior, doPoke, doFeed, doChat, gainAffection, startScene, advanceScene, chooseScene, finishScene, updateSceneEntry, writeSave, ensureToday, loadSave, setFace, lightOn, bandOf, yelanAsleep, patrolTonight, HOTSPOTS_401, PEOPLE, POKE_ZONES, pickPokeLine, pickLine, applyZoneRects, applyFootAlign, SOLE_LINE, FOOT_Y, FEET_GEOM, edgeBandRecolor, ACTION_SPOTS_401, setRoomAction };';
+  + '\n;globalThis.__T = { save, rolls, usedLines, renderExterior, onWindowClick, showCard, closeCard, enterRoom, goExterior, doPoke, doFeed, doChat, gainAffection, startScene, advanceScene, chooseScene, finishScene, updateSceneEntry, writeSave, ensureToday, loadSave, setFace, lightOn, bandOf, yelanAsleep, patrolTonight, HOTSPOTS_401, PEOPLE, POKE_ZONES, pickPokeLine, pickLine, applyZoneRects, applyFootAlign, SOLE_LINE, FOOT_Y, FEET_GEOM, edgeBandRecolor, ACTION_CARDS_401, setRoomAction };';
 (0, eval)(code);
 const T = globalThis.__T;
 if (!T || !T.doPoke) { console.error('FAIL: 无法从 app.js 取出函数'); process.exit(1); }
@@ -290,27 +290,34 @@ ok('5 点按区彼此不重叠', zoneRects.every((a, i) => zoneRects.every((b, j
 const hotRects = T.HOTSPOTS_401.map(h => h.rect);
 ok('4 房间热点彼此不重叠（旧目测值咖啡压报告纸）', hotRects.every((a, i) => hotRects.every((b, j) => i === j || !overlap(a, b))));
 
-// —— 5e. 动作小人挂载点：定位跟表、缺图自动隐藏、null/未知名字撤 ——
+// —— 5e. 动作卡片：setRoomAction 弹 / null 收、文案跟表、站桩与引导不受影响 ——
 (function () {
-  const el = registry['room-action'];
+  const card = registry['action-card'], el = registry['room-action'];
   T.setRoomAction(null);
-  ok('setRoomAction(null) 撤动作小人', el.classList.contains('hidden'));
+  ok('setRoomAction(null) 收起动作卡片', card.classList.contains('hidden'));
   T.setRoomAction('report');
-  const r = T.ACTION_SPOTS_401.report.rect;
-  ok('动作挂载点定位跟 ACTION_SPOTS_401', el.style.left === (r.x * 100) + '%' && el.style.top === (r.y * 100) + '%'
-    && el.style.width === (r.w * 100) + '%' && el.style.height === (r.h * 100) + '%');
-  ok('挂载点指向约定资产名', el.src === T.ACTION_SPOTS_401.report.asset);
-  el.onerror();
-  ok('qi 图未到位自动隐藏（不出破图）', el.classList.contains('hidden'));
+  ok('图未加载完卡片不抢跑', card.classList.contains('hidden'));
   el.onload();
-  ok('图加载完成才显示', !el.classList.contains('hidden'));
+  ok('图加载完成卡片淡入弹出', !card.classList.contains('hidden'));
+  ok('卡片图指向约定资产名', el.src === T.ACTION_CARDS_401.report.asset);
+  ok('卡片三行文案跟表', txt('action-doing') === T.ACTION_CARDS_401.report.doing && txt('action-note') === T.ACTION_CARDS_401.report.note);
+  ok('站桩立绘不受卡片影响', !registry['char-wrap'].classList.contains('hidden'));
+  el.onerror();
+  ok('qi 图未到位自动隐藏（不出破图）', card.classList.contains('hidden'));
   T.setRoomAction('nope');
-  ok('未知动作名按撤处理', el.classList.contains('hidden'));
-  ok('window 未接（自带白天窗等缪子重出）', T.ACTION_SPOTS_401.window === undefined);
+  ok('未知动作名按撤处理', card.classList.contains('hidden'));
+  ok('window 未接（自带白天窗等缪子重出）', T.ACTION_CARDS_401.window === undefined);
+  const hintBefore = registry['poke-hint'].classList.contains('hidden');
   T.setRoomAction('sleep');
-  ok('演动作时站桩让位（同角色不同时两个身影）', registry['char-wrap'].classList.contains('hidden'));
+  el.onload();
+  ok('卡片不碰引导气泡', registry['poke-hint'].classList.contains('hidden') === hintBefore);
+  ok('sleep 文案跟表', txt('action-doing') === T.ACTION_CARDS_401.sleep.doing && txt('action-note') === T.ACTION_CARDS_401.sleep.note);
   T.setRoomAction(null);
-  ok('撤动作恢复站桩', !registry['char-wrap'].classList.contains('hidden'));
+  ok('收起不碰站桩', !registry['char-wrap'].classList.contains('hidden'));
+  const css = fs.readFileSync(path.join(repo, 'css/style.css'), 'utf8');
+  ok('卡片带淡入', /animation: card-in 0\.28s ease-out;/.test(css) && /@keyframes card-in/.test(css));
+  ok('卡片图整张 contain 不裁不拉伸', /#room-action \{ width: 100%; height: 100%; object-fit: contain;/.test(css));
+  ok('卡片锚在气泡上方（与 poke-hint 同源 bottom）', /#action-card \{[^}]*bottom: calc\(\(0\.2 \+ var\(--sole, 0\.96\) \* 0\.56\) \* 100% \+ 58px\)/.test(css));
 })();
 
 // —— 5f. 去弹簧化：呼吸 ≤1% / 4s、戳单次 ≤4px / 0.3s ease-out、阴影不随戳移动 ——

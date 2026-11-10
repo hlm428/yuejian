@@ -185,13 +185,56 @@ body {
 }
 @keyframes coaster-pop { from { transform: scale(0.4); opacity: 0; } to { transform: scale(1); opacity: 0.95; } }
 
-/* 动作小人挂载点：qi 的 4 张动作 PNG 到位后由 setRoomAction 定位显示；缺图自动隐藏；z4 在站桩立绘 z6 之下 */
-#room-action {
+/* 动作卡片（qi 二审：Q 版不进场景——比例不搭、图自带桌/猫/碗与房间重复）：顶栏下小卡片，左图右文。
+   bottom 与 #poke-hint 同源（头顶锚点 + 气泡高 33 + 浮动 5 + 间隙 8），保证不压气泡与人物头部；
+   矮屏（≤780px）改钉顶栏下并整体缩紧凑。弹出时机/点击行为留阶段 B，暂 pointer-events none。 */
+#action-card {
   position: absolute;
-  object-fit: contain;
-  object-position: 50% 100%;
+  left: 50%;
+  bottom: calc((0.2 + var(--sole, 0.96) * 0.56) * 100% + 58px);
+  transform: translateX(-50%);
+  z-index: 7;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 14px 8px 8px;
+  width: max-content;
+  max-width: calc(100% - 24px);
+  background: rgba(14, 22, 44, 0.66);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 225, 170, 0.35);
+  border-radius: 14px;
+  box-shadow: 0 6px 18px rgba(8, 12, 24, 0.35);
   pointer-events: none;
-  z-index: 4;
+  animation: card-in 0.28s ease-out;
+}
+@keyframes card-in {
+  from { opacity: 0; transform: translateX(-50%) translateY(-6px); }
+  to { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+.action-card-frame {
+  flex: none;
+  width: 76px;
+  height: 76px;
+  border-radius: 10px;
+  overflow: hidden;
+  background: rgba(10, 16, 34, 0.5);
+  border: 1px solid rgba(255, 225, 170, 0.22);
+}
+#room-action { width: 100%; height: 100%; object-fit: contain; object-position: 50% 50%; display: block; }
+.action-card-text { display: flex; flex-direction: column; gap: 2px; }
+.action-card-text > div { white-space: nowrap; } /* 名字/在做/备注各占一行，不折行 */
+.action-card-name { font-size: 12px; font-weight: 600; letter-spacing: 1px; color: var(--lamp-warm); }
+.action-card-doing { font-size: 13px; color: #f3e6cf; }
+.action-card-note { font-size: 11px; color: rgba(243, 230, 207, 0.62); }
+@media (max-height: 780px) {
+  #action-card { bottom: auto; top: 50px; gap: 6px; padding: 4px 8px 4px 4px; border-radius: 10px; }
+  .action-card-frame { width: 30px; height: 30px; border-radius: 6px; }
+  .action-card-text { gap: 0; line-height: 1.12; }
+  .action-card-name { font-size: 9px; letter-spacing: 0.5px; }
+  .action-card-doing { font-size: 9px; }
+  .action-card-note { font-size: 8px; }
 }
 
 /* 云笙大立绘：底部对齐居中站桩，轻微呼吸起伏；只在 5 张表情图之间切换（_full 不用在房间里） */

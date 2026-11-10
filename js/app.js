@@ -156,41 +156,36 @@ var HOTSPOTS_401 = [
 // 离桌前沿上棱实测 ≈19 底图像素 ≈ 杯垫可见高 20 的 0.96 倍（零遮挡前提下最大间隙位）；是否达标交 qi 验收
 var COASTER_RECT = { x: 0.2266, y: 0.4753, w: 0.062, h: 0.03 };
 
-/* 动作小人挂载点：rect 按 qi 已交的三张图实测比例定（图底=脚底/躺底，object-fit contain 底对齐）。
-   阶段 B 调 setRoomAction('report'|'sleep'|'feedcat'|null)；缺图 onerror 自动隐藏，不出破图。
+/* 动作卡片（qi 2026-11-10 二审）：Q 版小人不再进场景（比例与房间不搭、图自带桌/猫/碗与房间重复），
+   改顶栏下小卡片：左圆角框整图（contain 不裁不拉伸 + 渲染期去白边）、右三行名字/在做/备注。
+   站桩立绘与房间保持不动；卡片淡入弹出、null 收起。弹出时机/点击行为留阶段 B。
    window 那张自带白天窗户、与夜间 401 冲突：不接、不裁、不改，等缪子重出。 */
-var ACTION_SPOTS_401 = {
-  report:  { asset: 'assets/chibi/yunsheng_report.png',  rect: { x: 0.14, y: 0.50, w: 0.2648, h: 0.30 } }, // 靠书桌：桌前低桌写报告，脚落地板 0.80
-  sleep:   { asset: 'assets/chibi/yunsheng_sleep.png',   rect: { x: 0.70, y: 0.52, w: 0.2166, h: 0.22 } }, // 缩床睡觉：躺床面 0.74
-  feedcat: { asset: 'assets/chibi/yunsheng_feedcat.png', rect: { x: 0.52, y: 0.42, w: 0.1677, h: 0.24 } }  // 蹲地喂猫：猫碗左，脚落 0.66
+var ACTION_CARDS_401 = {
+  report:  { asset: 'assets/chibi/yunsheng_report.png',  doing: '正趴在桌上写报告', note: '咖啡快凉了…' },
+  sleep:   { asset: 'assets/chibi/yunsheng_sleep.png',   doing: '缩在床上睡着了',   note: '小声点…' },
+  feedcat: { asset: 'assets/chibi/yunsheng_feedcat.png', doing: '蹲在地上喂猫',     note: '猫吃得比她香' }
 };
-var actionHintWasVisible = false;
 function setRoomAction(name) {
-  var el = byId('room-action');
-  var spot = name && ACTION_SPOTS_401[name];
-  var wrap = byId('char-wrap'), hint = byId('poke-hint');
-  if (!spot) {
-    el.classList.add('hidden');
-    if (wrap.classList.contains('hidden')) { // 演动作时站桩让位；撤动作恢复进房原状
-      wrap.classList.remove('hidden');
-      if (actionHintWasVisible) hint.classList.remove('hidden');
-    }
-    return;
-  }
-  if (!wrap.classList.contains('hidden')) actionHintWasVisible = !hint.classList.contains('hidden');
-  wrap.classList.add('hidden'); // 同一角色不同时出现两个身影
-  hint.classList.add('hidden');
-  setRect(el, spot.rect);
+  var card = byId('action-card'), el = byId('room-action');
+  var spot = name && ACTION_CARDS_401[name];
+  if (!spot) { card.classList.add('hidden'); return; }
+  byId('action-doing').textContent = spot.doing;
+  byId('action-note').textContent = spot.note;
   el.dataset.fxSrc = spot.asset;
+  var show = function () {
+    card.classList.add('hidden');
+    void card.offsetWidth; // display none→flex 重播淡入
+    card.classList.remove('hidden');
+  };
   el.onload = function () {
     el.dataset.fxLoaded = spot.asset;
     applyEdgeFx(spot.asset, el); // 小人同款渲染期去白边，alpha 不动
-    el.classList.remove('hidden');
+    show();
   };
-  el.onerror = function () { el.classList.add('hidden'); };
+  el.onerror = function () { card.classList.add('hidden'); };
   if (el.dataset.fxLoaded === spot.asset && el.complete && el.naturalWidth > 0) {
     applyEdgeFx(spot.asset, el);
-    el.classList.remove('hidden');
+    show();
   } else el.src = spot.asset;
 }
 

@@ -39,7 +39,6 @@
       <img class="room-bg" src="assets/bg/room_401_yunsheng.png" alt="401 房间" draggable="false">
       <!-- 房间热点（黑咖啡 / 报告纸 / 推理小说 / 猫碗）由 js/app.js 生成 -->
       <img id="coaster" class="hidden" src="assets/props/coaster.png" alt="杯垫" draggable="false">
-      <img id="room-action" class="hidden" alt="" draggable="false">
     </div>
 
     <div id="char-wrap">
@@ -58,6 +57,16 @@
     </div>
 
     <div id="poke-hint" class="hidden">点她一下<span class="poke-hint-arrow">▾</span></div>
+
+    <!-- 动作卡片（qi 二审：Q 版不进场景）：顶栏下、引导气泡上方；弹出时机/点击留阶段 B -->
+    <div id="action-card" class="hidden" role="status">
+      <div class="action-card-frame"><img id="room-action" alt="" draggable="false"></div>
+      <div class="action-card-text">
+        <div class="action-card-name">云笙</div>
+        <div class="action-card-doing" id="action-doing"></div>
+        <div class="action-card-note" id="action-note"></div>
+      </div>
+    </div>
 
     <button id="btn-back">‹ 公寓</button>
     <div id="room-stats">心情 <b id="stat-mood">60</b> · 亲密度 <b id="stat-aff">0</b></div>
