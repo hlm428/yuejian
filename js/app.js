@@ -316,7 +316,9 @@ var YUNSHENG_VOICE = {
   '放那儿吧。': 'scene_coffee_open',
   '……多事。': 'scene_coffee_choice_a',
   '……明天还有明天的报告。': 'scene_coffee_choice_b',
-  '……还算合口味。': 'scene_coffee_end'
+  '……还算合口味。': 'scene_coffee_end',
+  // 书热点短句「凶手太蠢了。」借 chat_08 整句发声（qi 2026-11-11 定：文字不改、播整句音频）
+  '凶手太蠢了。': 'chat_08'
 };
 var voiceAudio = null;
 

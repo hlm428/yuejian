@@ -56,8 +56,9 @@ const L = global.window.LINES.yunsheng.neighbor;
 const scene = global.window.SCENES.yunsheng[0];
 const V = T.YUNSHENG_VOICE;
 
-// —— A. 映射完整性：34 句，台词原文一字不差 ——
-ok('映射共 34 条', Object.keys(V).length === 34);
+// —— A. 映射完整性：34 句台词 + 1 条书热点别名（共 35 键，仍只用 34 个音频文件）——
+ok('映射共 35 键（34 句 + 书热点别名）', Object.keys(V).length === 35);
+ok('仍只用 34 个定稿音频文件', new Set(Object.values(V)).size === 34);
 ['poke', 'chat', 'feed'].forEach(kind => {
   L[kind].forEach((ln, i) => ok(`${kind}[${i}]「${ln.text}」有配音映射`, typeof V[ln.text] === 'string'));
 });
@@ -81,6 +82,7 @@ Object.keys(T.POKE_ZONES).forEach(z => {
 // 省略号区分：喂「……放那儿吧。」≠ 剧情「放那儿吧。」；「……还算合口味。」≠「还算合口味。」
 ok('喂/剧情 放那儿吧 各对各的文件', V['……放那儿吧。'] === 'feed_coffee_1' && V['放那儿吧。'] === 'scene_coffee_open');
 ok('喂/剧情 还算合口味 各对各的文件', V['还算合口味。'] === 'feed_coffee_2' && V['……还算合口味。'] === 'scene_coffee_end');
+ok('书热点短句与聊天整句同播 chat_08', V['凶手太蠢了。'] === 'chat_08' && V['推理小说看到一半，凶手太蠢了。'] === 'chat_08');
 
 // —— B. 34 个音频文件都在 assets/voice/yunsheng/ ——
 Object.keys(V).forEach(text => {
@@ -90,7 +92,10 @@ Object.keys(V).forEach(text => {
 
 // —— C. 没配音的文字不在映射里（文字照常、不出声）——
 L.sleep.forEach((ln, i) => ok(`sleep[${i}] 无配音`, !(ln.text in V)));
-T.HOTSPOTS_401.forEach(h => ok(`热点「${h.text}」无配音`, !(h.text in V)));
+T.HOTSPOTS_401.forEach(h => {
+  if (h.id === 'novel') ok('书热点「凶手太蠢了。」借 chat_08 发声（qi 定）', V[h.text] === 'chat_08');
+  else ok(`热点「${h.text}」无配音`, !(h.text in V));
+});
 scene.beats.forEach(b => {
   if (b.type === 'line' && b.speaker === 'narration') ok('旁白无配音 ' + b.text.slice(0, 8) + '…', !(b.text in V));
   if (b.type === 'choice') b.options.forEach(o => ok('主控选项无配音 ' + o.label.slice(0, 8) + '…', !(o.label in V)));
