@@ -38,7 +38,7 @@
       "emotion": "shy",
       "tts_text": "无聊。",
       "assistant": "(小声 有点不好意思)无聊。",
-      "listening_approved": false,
+      "listening_approved": true,
       "status": "out_of_range",
       "audio": "assets/voice/yunsheng/unified/poke_head_1.mp3"
     },
@@ -64,7 +64,7 @@
       "emotion": "angry",
       "tts_text": "别戳。",
       "assistant": "(有点恼)别戳。",
-      "listening_approved": false,
+      "listening_approved": true,
       "status": "out_of_range",
       "audio": "assets/voice/yunsheng/unified/poke_face_1.mp3"
     },
@@ -77,7 +77,7 @@
       "emotion": "angry",
       "tts_text": "再戳我就关门了。",
       "assistant": "(有点恼)再戳我就关门了。",
-      "listening_approved": false,
+      "listening_approved": true,
       "status": "out_of_range",
       "audio": "assets/voice/yunsheng/unified/poke_face_2.mp3"
     },
@@ -252,7 +252,7 @@
       "emotion": "smile",
       "tts_text": "推理小说看到一半，凶手太蠢了。",
       "assistant": "(轻松)推理小说看到一半，凶手太蠢了。",
-      "listening_approved": false,
+      "listening_approved": true,
       "status": "out_of_range",
       "audio": "assets/voice/yunsheng/unified/chat_08.mp3"
     },
@@ -289,7 +289,7 @@
       "emotion": "calm",
       "tts_text": "放那儿吧。",
       "assistant": "(平淡)放那儿吧。",
-      "listening_approved": false,
+      "listening_approved": true,
       "status": "out_of_range",
       "audio": "assets/voice/yunsheng/unified/feed_coffee_1.mp3"
     },
@@ -329,7 +329,7 @@
       "emotion": "shy",
       "tts_text": "楼道那只猫会吃。",
       "assistant": "(小声 有点不好意思)楼道那只猫会吃。",
-      "listening_approved": false,
+      "listening_approved": true,
       "status": "out_of_range",
       "audio": "assets/voice/yunsheng/unified/feed_catcan_2.mp3"
     },
@@ -355,7 +355,7 @@
       "emotion": "angry",
       "tts_text": "拿走。无聊。",
       "assistant": "(有点恼)拿走。无聊。",
-      "listening_approved": false,
+      "listening_approved": true,
       "status": "out_of_range",
       "audio": "assets/voice/yunsheng/unified/feed_sweets_2.mp3"
     },

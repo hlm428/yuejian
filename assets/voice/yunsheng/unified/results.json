@@ -1,5 +1,5 @@
 {
-  "status": "pronunciation_redub_awaiting_listening",
+  "status": "pronunciation_redub_accepted",
   "previous_audio": "obsolete_not_included",
   "pilot_listening_approved": true,
   "model": "mimo-v2.5-tts-voiceclone",
@@ -64,7 +64,7 @@
         }
       ],
       "status": "out_of_range",
-      "listening_approved": false,
+      "listening_approved": true,
       "file": "poke_head_1.mp3",
       "sha256": "c62715a86eb751f9f97bfd4c6b85eda790e846c2cd6c0ec4a0ce32c1aafd2e62",
       "selected": {
@@ -159,7 +159,8 @@
         "reason": "无聊 被读成 我来（small+medium 一致）",
         "old_sha256": "0ac2d69418dce5bcc94578d3c588ee1b259b79f162c78c725e7b1de982ca0855",
         "old_listening_approved": false,
-        "asr_gate": "whisper-medium"
+        "asr_gate": "whisper-medium",
+        "listening_approved_by_qi": "2026-11-11 很好就这样"
       }
     },
     {
@@ -323,7 +324,7 @@
         }
       ],
       "status": "out_of_range",
-      "listening_approved": false,
+      "listening_approved": true,
       "file": "poke_face_1.mp3",
       "sha256": "5d40bf07c1932bd4542956cd688cbea334c66e849dbd00e3dcb5418ec2910c3a",
       "selected": {
@@ -452,7 +453,8 @@
         "reason": "别戳 两模型均无法识别（短音频，戳字疑似错读）",
         "old_sha256": "517889bff5e0708bdd99a7173136e8751098a6d4ffa0d756f213d68473dfd71a",
         "old_listening_approved": false,
-        "asr_gate": "whisper-medium"
+        "asr_gate": "whisper-medium",
+        "listening_approved_by_qi": "2026-11-11 很好就这样"
       }
     },
     {
@@ -500,7 +502,7 @@
         }
       ],
       "status": "out_of_range",
-      "listening_approved": false,
+      "listening_approved": true,
       "file": "poke_face_2.mp3",
       "sha256": "aaf19b987a92bc39e966671de017e83145bee7ffd25fa335d916e738d063afaf",
       "selected": {
@@ -629,7 +631,8 @@
         "reason": "戳 chuō 读成 cuò（small:挫 medium:错）",
         "old_sha256": "47f51e6b67cacce2abee3d0f4a8c4f9ed7612d8f35922b58a547cf41499d53d0",
         "old_listening_approved": true,
-        "asr_gate": "whisper-medium"
+        "asr_gate": "whisper-medium",
+        "listening_approved_by_qi": "2026-11-11 很好就这样"
       }
     },
     {
@@ -847,7 +850,8 @@
       ],
       "redub_failed": {
         "date": "2026-11-11",
-        "reason": "痒 yǎng 读成 yō（哟）"
+        "reason": "痒 yǎng 读成 yō（哟）",
+        "qi_decision": "2026-11-11 保留原音频，不改台词"
       }
     },
     {
@@ -2695,7 +2699,7 @@
         }
       ],
       "status": "out_of_range",
-      "listening_approved": false,
+      "listening_approved": true,
       "file": "chat_08.mp3",
       "sha256": "24339290c65e3396f3c57db89bbd04e01f0fc2375ed5b6b7d4cd1b9ac9d7a277",
       "selected": {
@@ -2957,7 +2961,8 @@
         "reason": "推 tuī 读成 tuǐ（腿）",
         "old_sha256": "ab77b5825c95127b0555ee92d5e7c4ce9b219f71dd1df1e280d38ef7ca173dff",
         "old_listening_approved": false,
-        "asr_gate": "whisper-medium"
+        "asr_gate": "whisper-medium",
+        "listening_approved_by_qi": "2026-11-11 很好就这样"
       }
     },
     {
@@ -3400,7 +3405,7 @@
         }
       ],
       "status": "out_of_range",
-      "listening_approved": false,
+      "listening_approved": true,
       "file": "feed_coffee_1.mp3",
       "sha256": "e4a1c47397563522030b4ab7fcfe75606e389ae65955c33d4fd4383d9ee0f17b",
       "selected": {
@@ -3513,7 +3518,8 @@
         "reason": "那儿 儿化丢失（放那吧）",
         "old_sha256": "ff6751ec64926f2ab3c7218ed94585424aaa2eb9b7f543b370d60556e72413e8",
         "old_listening_approved": false,
-        "asr_gate": "whisper-medium"
+        "asr_gate": "whisper-medium",
+        "listening_approved_by_qi": "2026-11-11 很好就这样"
       }
     },
     {
@@ -3864,7 +3870,7 @@
         }
       ],
       "status": "out_of_range",
-      "listening_approved": false,
+      "listening_approved": true,
       "file": "feed_catcan_2.mp3",
       "sha256": "db10d08068964327c071be34ddd3de27a9a6a9e16d97dddd1f0260a8954bdeba",
       "selected": {
@@ -4040,7 +4046,8 @@
         "reason": "楼 lóu 声调错（搂/捞）",
         "old_sha256": "5c90937ad5c2310c209a297c4c852567b0d8177a206ebbff828359a0608d236b",
         "old_listening_approved": false,
-        "asr_gate": "whisper-medium"
+        "asr_gate": "whisper-medium",
+        "listening_approved_by_qi": "2026-11-11 很好就这样"
       }
     },
     {
@@ -4204,7 +4211,7 @@
         }
       ],
       "status": "out_of_range",
-      "listening_approved": false,
+      "listening_approved": true,
       "file": "feed_sweets_2.mp3",
       "sha256": "9e9eb45311baeed8b6635ee62059b82ab4acef8bd8c5f41a69eaab8d3e28d71b",
       "selected": {
@@ -4330,7 +4337,8 @@
         "reason": "走 zǒu 读成 shǒu（手）",
         "old_sha256": "ef02aa1799ec8f3ea50095b58611cc84673970f7936411d1bc17b9d220683ee7",
         "old_listening_approved": false,
-        "asr_gate": "whisper-medium"
+        "asr_gate": "whisper-medium",
+        "listening_approved_by_qi": "2026-11-11 很好就这样"
       }
     },
     {
