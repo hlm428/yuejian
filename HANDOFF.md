@@ -9,7 +9,7 @@
 |---|---|---|
 | 点按区 | ✅ 做完 | 外观 5 扇窗（7f/501/401/301/302，`data/windows.js` hotspot）+ 401 房间 4 个热点（黑咖啡/报告纸/推理小说/猫碗，`js/app.js` 的 `HOTSPOTS_401`，坐标 2026-11-10 按底图逐像素复测过，四框互不相交） |
 | 去掉戳按钮 | ✅ 做完（2026-11-09） | 底部「戳」按钮已删，改成点立绘本人，且是 **5 个独立点按区**：头 / 脸 / 垂手 / 左肩 / 右肩（`#poke-head` 等 5 个按钮，矩形在 `js/app.js` 的 `POKE_ZONES`，按立绘实测 anatomy；左右肩以她本人左右为准）。每区专属台词池（合起来恰好覆盖 qi 定稿 10 句 poke，互不重叠），表情随台词 face：头/垂手 shy、脸/右肩 angry、左肩 smile/angry。`?debug=1` 时 5 个框带中文标签画在按钮上（CSS `.debug-zones`）。点她身边空气不算戳；点按区与 401 热点零相交（冒烟按 320×568/390×844/1280×900 三视口钉死）。戳的数值规则一字未动（+1、单日 >10 冷脸不涨不扣）。落点暖光扩散（指针落指尖、键盘落区中心）+ 一次轻微一缩（0.3s ease-out、脚不离地）；第一次进房间头顶飘「点她一下」引导，戳过即消失。按钮可 Tab 聚焦、Enter/Space 触发 |
-| 一起剧情动画 | 🟡 基础版做完 | 「一起」→「深夜送咖啡」全流程可演：背景变暗 + 底部两小人（mc_side 镜像 + yunsheng_side，透明 PNG 直接叠）+ 对话框点一下继续 + 中途二选一 + 奖励（+8 计软上限、杯垫）+ 当天灰掉。小人没有动作动画（三视图站桩，动作小人 qi 未出图，姿势参考 v3.2 §6） |
+| 一起剧情动画 | 🟡 基础版做完 | 「一起」→「深夜送咖啡」全流程可演：背景变暗 + 底部两小人（mc_side 镜像 + yunsheng_side，透明 PNG 直接叠）+ 对话框点一下继续 + 中途二选一 + 奖励（+8 计软上限、杯垫）+ 当天灰掉。小人没有动作动画（三视图站桩；动作小人改顶部卡片显示，见下节第 3 条） |
 | 401 整图 | ✅ 做完 | `assets/bg/room_401_yunsheng.png` 全屏 cover + 云笙大立绘底部对齐站桩（5 表情切换、4s 轻呼吸、戳单次轻微一缩） |
 | BGM | ❌ 没做 | v3.2 §20 声音放后期，阶段 A 任务清单里没有，未实现、未放 `<audio>` |
 | 换修好的立绘 | ✅ 做完（2026-11-09） | 已换 v4 透明版：云笙 5 张表情走 `gh/art/yunsheng-v4` 分支（去掉左右发丝白边，逐像素校验边缘 0 残留），其余 26 张为 v3 高清清边版：`assets/characters/` 27 张（1600×2450）+ `assets/chibi/` 4 张（1280×1984），共 31 张，全部 RGBA 带 alpha。**第三单又补 6 张女主 saira 新画风**（`zhixi_smile/shy`、`xiyue_smile/shy`、`yelan_smile/shy`，走 `gh/art/heroines-saira` 分支 ff-merge 8f9400d，均 RGBA 1600×2450、透明无白边，其余 21 张 blob 不变）。`css/style.css` 三处 `mix-blend-mode: multiply` 与 `#room-char`/`#scene-chibis img` 的 `brightness` 补偿已删，代码无其他改动 |
@@ -22,9 +22,9 @@
 
 阶段 A 内**没有半截代码**——所有已开工的东西都是做完、测过、提交的。遗留事项（均等 qi 素材/决定，不是烂尾）：
 
-1. **杯垫**：✅ 已出图（2026-11-10）。`assets/props/coaster.png`（256×128 RGBA；ImageGen 配额 403 不可用，改程序绘制，禁令仅对此道具解除）。`index.html` 的 `#coaster` 已是 `<img>`，CSS 椭圆占位删除；位置 `js/app.js` 的 `COASTER_RECT`（2026-11-10 qi 反馈后挪进桌面内侧：书右、纸叠前缘右段空档，离桌前沿 ≈1 个杯垫高、不压杯/纸/书，待 qi 验收）。qi 不满意换同名文件即可。
+1. **杯垫**：✅ 已出图（2026-11-10）。`assets/props/coaster.png`（256×128 RGBA；ImageGen 配额 403 不可用，改程序绘制，禁令仅对此道具解除）。`index.html` 的 `#coaster` 已是 `<img>`，CSS 椭圆占位删除；位置 `js/app.js` 的 `COASTER_RECT`（2026-11-10 qi 反馈后挪进桌面内侧：书右、纸叠前缘右段空档，离桌前沿 ≈1 个杯垫高、不压杯/纸/书；**qi 二审验收通过（2026-11-10），位置冻结不再动**）。qi 不满意换同名文件即可。
 2. **401 热点坐标**：✅ 已复测（2026-11-10）。`js/app.js` `HOTSPOTS_401` 四个矩形按 768×1376 底图加像素网格逐张量出（咖啡=杯+碟+热气、报告纸=桌面纸叠、小说=第四层带书名那排、猫碗=地上食盆），各留 ~4px 触摸余量、彼此不相交；浏览器 elementFromPoint 与实点四件全验证。qi 试玩若仍觉得不准，改 rect 即可。
-3. **动作小人 / BGM / 猫 / 私信等**：全部属阶段 B 及以后（v3.2 §22），**下一步是等 qi 验收阶段 A，然后才开始阶段 B**。动作小人已接三张（2026-11-10，缪子 ce15178 交图后）：`js/app.js` 的 `ACTION_SPOTS_401`（report 靠书桌 / sleep 躺床 / feedcat 蹲猫碗旁，rect 按图实测、图底=脚底）+ `setRoomAction(name|null)`（演动作时站桩让位、撤动作恢复）+ `index.html` 的 `#room-action`；三张同款渲染期去白边（alpha/PNG 不动）。**window 那张自带白天窗户与夜间 401 冲突：不接、不裁、不改，等缪子重出**；缺图 onerror 自动隐藏不出破图。
+3. **动作小人 / BGM / 猫 / 私信等**：全部属阶段 B 及以后（v3.2 §22），**下一步是等 qi 验收阶段 A，然后才开始阶段 B**。动作小人改顶部卡片显示（2026-11-10 qi 二审：Q 版比例和房间不搭、图自带桌猫碗与房间重复 → 不进场景）：`js/app.js` 的 `ACTION_CARDS_401`（report/sleep/feedcat 三张图 + qi 定稿两行文案）+ `setRoomAction(name|null)` 弹/收卡片（0.28s 淡入、缺图 onerror 自动隐藏），`index.html` 的 `#action-card`（左圆角小框整张 contain + 渲染期去白边、右三行字）；卡片在顶栏下、引导气泡上方，站桩立绘与房间不动；弹出时机/点击行为留阶段 B。**window 那张自带白天窗户与夜间 401 冲突：不接、不裁、不改，等缪子重出**。
 
 ## 三、项目结构（哪个文件管什么）
 
@@ -42,7 +42,7 @@ data/passerby.js      路人窗 20 扇 + 古董店点按区（阶段 C 用；现
 assets/characters/    27 张立绘（1600×2450，RGBA 透明）
 assets/exterior/      bg_exterior_empty.png 底图 + 12 张窗内贴片（透明 RGBA）
 assets/bg/            5 张房间背景（768×1376，阶段 A 只用 room_401_yunsheng.png）
-assets/chibi/         4 张 Q 版小人（1280×1984，RGBA 透明）
+assets/chibi/         4 张 Q 版小人（1280×1984）+ 4 张动作小人（report/sleep/feedcat 接顶部卡片，window 不接等重出）
 tests/test_lights.js  亮灯规则回归（纯 node）
 tests/smoke_phase_a.js 无头 DOM 冒烟（按 index.html 真实 id 表驱动 app.js 全交互）
 docs/GAME_SPEC.md     唯一设定依据（优先级：美术资产 > 定稿设定 > 参考级）
@@ -50,19 +50,19 @@ docs/GAME_SPEC.md     唯一设定依据（优先级：美术资产 > 定稿设�
                       today{date,gained,pokes,capMsgShown}, coaster, scenes{yunsheng_coffee:'YYYY-MM-DD'}, lastOpened}
 ```
 
-## 四、怎么跑测试（2026-11-09 实测结果，仓库根目录执行）
+## 四、怎么跑测试（2026-11-10 实测结果，仓库根目录执行）
 
 ```
 node tests/test_lights.js     → 亮灯规则断言：44 通过，0 失败
-node tests/smoke_phase_a.js   → 冒烟测试：131 通过，0 失败
+node tests/smoke_phase_a.js   → 冒烟测试：178 通过，0 失败
 ```
 
 改 `js/app.js` 的纯函数或任何互动/存档逻辑后必须两个都重跑。改台词/剧本/窗位不用跑（但改 data 后建议跑一遍冒烟防 id/令牌拼错——冒烟里有 data-item ↔ 台词令牌一致性断言）。
 
 ## 五、已知 bug 与占位
 
-- **已知功能性 bug：无**（5 轮 entire review，轨迹 5→4→2→2→3 条，后三轮均 approve with nits，全部修复；测试 175 条断言全绿（亮灯 44 + 冒烟 131）。2026-11-09 顺手修掉一个旧缺陷：立绘加载失败时 JS 只写 `dataset.broken` 没挂 `.broken` 类，CSS 的 `#room-char.broken { visibility: hidden }` 一直是死规则，浏览器会露出 alt 破图标——现在 `markPortraitBroken()` 统一挂类。
-- **占位（qi 素材到位即替换）**：动作小人（qi 出图）；杯垫已用程序绘制道具图顶替，qi 可换 `assets/props/coaster.png` 同名文件。
+- **已知功能性 bug：无**（5 轮 entire review，轨迹 5→4→2→2→3 条，后三轮均 approve with nits，全部修复；测试 222 条断言全绿（亮灯 44 + 冒烟 178）。2026-11-09 顺手修掉一个旧缺陷：立绘加载失败时 JS 只写 `dataset.broken` 没挂 `.broken` 类，CSS 的 `#room-char.broken { visibility: hidden }` 一直是死规则，浏览器会露出 alt 破图标——现在 `markPortraitBroken()` 统一挂类。
+- **占位（qi 素材到位即替换）**：window 动作小人（等缪子重出，不接不裁不改）；杯垫已用程序绘制道具图顶替且 qi 验收通过，qi 可换 `assets/props/coaster.png` 同名文件。
 - **有意为之的阶段 A 限制（不是 bug）**：路人窗常亮不随机（passerby.js 阶段 C 用）；便利店只走规则函数无视觉遮罩；除 401 外三人「拜访」灰掉；302 卡片无按钮；云笙出警概率是实现层定的 1/7（`patrolTonight`，qi 可改）。
 - 内嵌浏览器（ZCode）打不开是已知环境问题：试玩用系统浏览器双击 `index.html`，或起本地静态服务器。
 
