@@ -45,7 +45,7 @@
 ## 音频清单（不推送，本地路径 + 每条时长）
 
 目录：`C:\Users\jiaai\.zcode\workspace\draft-f0907a4f-f57d-40b5-af1e-9820c8acefd9\yuejian\assets\voice\yunsheng\unified\`
-试听页：同目录上级 `assets\voice\yunsheng\listen.html`（双击可听）
+试听页（本机点击或双击打开，34 句全部可听）：[listen.html](file:///C:/Users/jiaai/.zcode/workspace/draft-f0907a4f-f57d-40b5-af1e-9820c8acefd9/yuejian/assets/voice/yunsheng/listen.html)
 
 | id | 台词 | 时长(秒) | 字/秒 | 本轮动作 |
 | --- | --- | --- | --- | --- |
