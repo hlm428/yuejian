@@ -1,0 +1,272 @@
+{
+  "character": "yunsheng",
+  "name": "顾云笙",
+  "seed": "assets/voice/seed/yunsheng.wav",
+  "voice_desc": "年轻女研究生，声音清冷、偏低，语速稍慢，淡淡的。标准普通话，没有口音。声音实，不要气声、不要气泡音、不要夹子音、不要撒娇。按意思自然断句，不要一字一顿。",
+  "source": "data/lines_yunsheng.js + data/scenes_yunsheng.js + js/app.js POKE_ZONES（gh/main 2dbd14b，原文未改）",
+  "lines": [
+    {
+      "scene": "被戳了头，耳根有点红，嘴上嫌弃，声音放轻。",
+      "id": "poke_head_1",
+      "text": "无聊。",
+      "face": "shy",
+      "kind": "poke",
+      "zone": "head"
+    },
+    {
+      "scene": "又被戳头，懒得躲，耳根红，语气淡淡地妥协。",
+      "id": "poke_head_2",
+      "text": "……随便你。",
+      "face": "shy",
+      "kind": "poke",
+      "zone": "head"
+    },
+    {
+      "scene": "被戳脸，有点恼，压着火不大喊，短短一句。",
+      "id": "poke_face_1",
+      "text": "别戳。",
+      "face": "angry",
+      "kind": "poke",
+      "zone": "face"
+    },
+    {
+      "scene": "又被戳脸，压着火警告，语气冷，不喊。",
+      "id": "poke_face_2",
+      "text": "再戳我就关门了。",
+      "face": "angry",
+      "kind": "poke",
+      "zone": "face"
+    },
+    {
+      "scene": "被戳垂手，有点痒，不好意思，声音放轻。",
+      "id": "poke_hand_1",
+      "text": "……痒。",
+      "face": "shy",
+      "kind": "poke",
+      "zone": "hand"
+    },
+    {
+      "scene": "被戳手，嘴上赶人其实不好意思，声音放轻。",
+      "id": "poke_hand_2",
+      "text": "戳够了就走。",
+      "face": "shy",
+      "kind": "poke",
+      "zone": "hand"
+    },
+    {
+      "scene": "被拍左肩，淡淡一笑，仍清冷，半开玩笑地提醒。",
+      "id": "poke_shoulder_l_1",
+      "text": "下次记得敲门。",
+      "face": "smile",
+      "kind": "poke",
+      "zone": "shoulder_l"
+    },
+    {
+      "scene": "被拍左肩，冷脸反问，压着一点不耐烦。",
+      "id": "poke_shoulder_l_2",
+      "text": "你每天都这么闲？",
+      "face": "angry",
+      "kind": "poke",
+      "zone": "shoulder_l"
+    },
+    {
+      "scene": "被拍右肩，有点恼，压着火，冷冷反问。",
+      "id": "poke_shoulder_r_1",
+      "text": "……你手很闲？",
+      "face": "angry",
+      "kind": "poke",
+      "zone": "shoulder_r"
+    },
+    {
+      "scene": "被拍右肩打断，冷淡提醒你她在忙，不喊。",
+      "id": "poke_shoulder_r_2",
+      "text": "我在看报告。",
+      "face": "angry",
+      "kind": "poke",
+      "zone": "shoulder_r"
+    },
+    {
+      "scene": "深夜书桌前，难得主动分享，淡淡一点笑意，仍清冷。",
+      "id": "chat_01",
+      "text": "今天的报告写了六千字。",
+      "face": "smile",
+      "kind": "chat"
+    },
+    {
+      "scene": "提到楼道猫，嘴上平淡其实心软，声音放轻。",
+      "id": "chat_02",
+      "text": "楼道那只猫又来了。",
+      "face": "shy",
+      "kind": "chat",
+      "needCat": true
+    },
+    {
+      "scene": "随口说自己的习惯，语气平淡，一点不易察觉的放松。",
+      "id": "chat_03",
+      "text": "黑咖啡，不加糖。",
+      "face": "smile",
+      "kind": "chat"
+    },
+    {
+      "scene": "评价棋友，语气平静，淡淡认可。",
+      "id": "chat_04",
+      "text": "夜澜的棋下得还行。",
+      "face": "smile",
+      "kind": "chat"
+    },
+    {
+      "scene": "说起实验室的事，有点不满，压着情绪陈述，不喊。",
+      "id": "chat_05",
+      "text": "实验室的灯坏了两天，没人修。",
+      "face": "angry",
+      "kind": "chat"
+    },
+    {
+      "scene": "发现你记得她的习惯，有点意外有点不好意思，声音放轻。",
+      "id": "chat_06",
+      "text": "……你居然还记得我不吃甜的。",
+      "face": "shy",
+      "kind": "chat"
+    },
+    {
+      "scene": "深夜有点疲惫，声音低而慢，平静陈述。",
+      "id": "chat_07",
+      "text": "明天半夜可能要去现场。",
+      "face": "sleep",
+      "kind": "chat"
+    },
+    {
+      "scene": "聊到小说，淡淡吐槽，嘴角一点笑，仍清冷。",
+      "id": "chat_08",
+      "text": "推理小说看到一半，凶手太蠢了。",
+      "face": "smile",
+      "kind": "chat"
+    },
+    {
+      "scene": "被问了无聊问题，冷淡挡回去，压着不耐烦。",
+      "id": "chat_09",
+      "text": "无聊的问题就别问了。",
+      "face": "angry",
+      "kind": "chat"
+    },
+    {
+      "scene": "轻声答谢，不好意思，声音放轻，语速慢。",
+      "id": "chat_10",
+      "text": "……今天，谢谢你。",
+      "face": "shy",
+      "kind": "chat"
+    },
+    {
+      "scene": "深夜写报告，你递来黑咖啡，她头也不抬，平静地说。",
+      "id": "feed_coffee_1",
+      "text": "……放那儿吧。",
+      "face": "eat",
+      "kind": "feed",
+      "item": "black_coffee"
+    },
+    {
+      "scene": "喝了一口黑咖啡，淡淡认可，语气平静。",
+      "id": "feed_coffee_2",
+      "text": "还算合口味。",
+      "face": "eat",
+      "kind": "feed",
+      "item": "black_coffee"
+    },
+    {
+      "scene": "收到猫罐头，嘴上说无聊其实收下了，声音放轻。",
+      "id": "feed_catcan_1",
+      "text": "给我这个干什么。无聊。",
+      "face": "shy",
+      "kind": "feed",
+      "item": "cat_can"
+    },
+    {
+      "scene": "收下猫罐头，嘴硬说是给猫的，声音放轻。",
+      "id": "feed_catcan_2",
+      "text": "……楼道那只猫会吃。",
+      "face": "shy",
+      "kind": "feed",
+      "item": "cat_can",
+      "needCat": true
+    },
+    {
+      "scene": "被递甜食，冷脸拒绝，压着不耐烦，不喊。",
+      "id": "feed_sweets_1",
+      "text": "我不吃甜的。",
+      "face": "angry",
+      "kind": "feed",
+      "item": "sweets"
+    },
+    {
+      "scene": "又被递甜品，冷淡拒绝，语气短促。",
+      "id": "feed_sweets_2",
+      "text": "拿走。无聊。",
+      "face": "angry",
+      "kind": "feed",
+      "item": "sweets"
+    },
+    {
+      "scene": "接过面包，轻声答谢，平静里带一点温和。",
+      "id": "feed_bread_1",
+      "text": "……谢谢。",
+      "face": "eat",
+      "kind": "feed",
+      "item": "bread"
+    },
+    {
+      "scene": "你又送一杯咖啡，她淡淡反问，不是真生气，语气平静。",
+      "id": "feed_coffee_3",
+      "text": "第二杯了。你是想让我通宵？",
+      "face": "eat",
+      "kind": "feed",
+      "item": "black_coffee"
+    },
+    {
+      "scene": "又被递甜食，压着火重申，不喊。",
+      "id": "feed_sweets_3",
+      "text": "说了不吃甜的。",
+      "face": "angry",
+      "kind": "feed",
+      "item": "sweets"
+    },
+    {
+      "scene": "又收下猫罐头，嘴硬妥协，声音放轻。",
+      "id": "feed_catcan_3",
+      "text": "……就这一次。",
+      "face": "shy",
+      "kind": "feed",
+      "item": "cat_can"
+    },
+    {
+      "scene": "深夜十一点写报告，你端咖啡进来，她头也不抬，平静地说。",
+      "id": "scene_coffee_open",
+      "text": "放那儿吧。",
+      "face": null,
+      "kind": "scene",
+      "note": "（头也不抬）"
+    },
+    {
+      "scene": "你说趁热喝，她嘴上嫌你多事，还是端起来喝了一口，声音放轻一点。",
+      "id": "scene_coffee_choice_a",
+      "text": "……多事。",
+      "face": null,
+      "kind": "scene",
+      "note": "（她端起来喝了一口）"
+    },
+    {
+      "scene": "你劝她明天再写，她平静回一句，还是端起来喝了一口。",
+      "id": "scene_coffee_choice_b",
+      "text": "……明天还有明天的报告。",
+      "face": null,
+      "kind": "scene",
+      "note": "（她还是端起来喝了一口）"
+    },
+    {
+      "scene": "喝着咖啡，淡淡认可一句，语气平静，一点不易察觉的满意。",
+      "id": "scene_coffee_end",
+      "text": "……还算合口味。",
+      "face": null,
+      "kind": "scene"
+    }
+  ]
+}
